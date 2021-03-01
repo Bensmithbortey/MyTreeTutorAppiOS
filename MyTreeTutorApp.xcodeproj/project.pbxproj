@@ -1,0 +1,858 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A4A341425ED076700A93563 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4A341325ED076700A93563 /* TabBar.swift */; };
+		4AAACF3325EBBD0900A59D64 /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF3225EBBD0900A59D64 /* CourseItem.swift */; };
+		4AAACF3425EBBD0900A59D64 /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF3225EBBD0900A59D64 /* CourseItem.swift */; };
+		4AAACF3825EBC01E00A59D64 /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF3725EBC01E00A59D64 /* CourseList.swift */; };
+		4AAACF3925EBC01E00A59D64 /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF3725EBC01E00A59D64 /* CourseList.swift */; };
+		4AAACF3B25EBD85600A59D64 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF3A25EBD85600A59D64 /* Course.swift */; };
+		4AAACF3C25EBD85600A59D64 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF3A25EBD85600A59D64 /* Course.swift */; };
+		4AAACF3F25EBE89400A59D64 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF3E25EBE89400A59D64 /* CloseButton.swift */; };
+		4AAACF4025EBE89400A59D64 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF3E25EBE89400A59D64 /* CloseButton.swift */; };
+		4AAACF4225EBF0D300A59D64 /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4125EBF0D300A59D64 /* CourseDetail.swift */; };
+		4AAACF4325EBF0D300A59D64 /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4125EBF0D300A59D64 /* CourseDetail.swift */; };
+		4AAACF4B25EBF32C00A59D64 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4425EBF32B00A59D64 /* Tutorial.swift */; };
+		4AAACF4C25EBF32C00A59D64 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4425EBF32B00A59D64 /* Tutorial.swift */; };
+		4AAACF4D25EBF32C00A59D64 /* TutorialSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4525EBF32B00A59D64 /* TutorialSection.swift */; };
+		4AAACF4E25EBF32C00A59D64 /* TutorialSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4525EBF32B00A59D64 /* TutorialSection.swift */; };
+		4AAACF4F25EBF32C00A59D64 /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4625EBF32B00A59D64 /* CourseSection.swift */; };
+		4AAACF5025EBF32C00A59D64 /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4625EBF32B00A59D64 /* CourseSection.swift */; };
+		4AAACF5125EBF32C00A59D64 /* LivestreamSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4725EBF32B00A59D64 /* LivestreamSection.swift */; };
+		4AAACF5225EBF32C00A59D64 /* LivestreamSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4725EBF32B00A59D64 /* LivestreamSection.swift */; };
+		4AAACF5325EBF32C00A59D64 /* GradientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4825EBF32C00A59D64 /* GradientModel.swift */; };
+		4AAACF5425EBF32C00A59D64 /* GradientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4825EBF32C00A59D64 /* GradientModel.swift */; };
+		4AAACF5525EBF32C00A59D64 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4925EBF32C00A59D64 /* Download.swift */; };
+		4AAACF5625EBF32C00A59D64 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4925EBF32C00A59D64 /* Download.swift */; };
+		4AAACF5725EBF32C00A59D64 /* Livestream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4A25EBF32C00A59D64 /* Livestream.swift */; };
+		4AAACF5825EBF32C00A59D64 /* Livestream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF4A25EBF32C00A59D64 /* Livestream.swift */; };
+		4AAACF6025EBF65E00A59D64 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF5F25EBF65E00A59D64 /* VisualEffectBlur.swift */; };
+		4AAACF6225EBF66900A59D64 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAACF6125EBF66900A59D64 /* VisualEffectBlur.swift */; };
+		4ACD162525EB092000A1DE99 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD162425EB092000A1DE99 /* Tests_iOS.swift */; };
+		4ACD163025EB092000A1DE99 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD162F25EB092000A1DE99 /* Tests_macOS.swift */; };
+		4ACD163225EB092000A1DE99 /* MyTreeTutorApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD160625EB091F00A1DE99 /* MyTreeTutorApp.xcdatamodeld */; };
+		4ACD163325EB092000A1DE99 /* MyTreeTutorApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD160625EB091F00A1DE99 /* MyTreeTutorApp.xcdatamodeld */; };
+		4ACD163425EB092000A1DE99 /* MyTreeTutorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD160825EB091F00A1DE99 /* MyTreeTutorApp.swift */; };
+		4ACD163525EB092000A1DE99 /* MyTreeTutorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD160825EB091F00A1DE99 /* MyTreeTutorApp.swift */; };
+		4ACD163625EB092000A1DE99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD160925EB091F00A1DE99 /* ContentView.swift */; };
+		4ACD163725EB092000A1DE99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD160925EB091F00A1DE99 /* ContentView.swift */; };
+		4ACD163825EB092000A1DE99 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD160A25EB091F00A1DE99 /* Persistence.swift */; };
+		4ACD163925EB092000A1DE99 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD160A25EB091F00A1DE99 /* Persistence.swift */; };
+		4ACD163A25EB092000A1DE99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACD160B25EB092000A1DE99 /* Assets.xcassets */; };
+		4ACD163B25EB092000A1DE99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACD160B25EB092000A1DE99 /* Assets.xcassets */; };
+		4ACD164B25EB1AB700A1DE99 /* CourseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD164A25EB1AB700A1DE99 /* CourseRow.swift */; };
+		4ACD164C25EB1AB700A1DE99 /* CourseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD164A25EB1AB700A1DE99 /* CourseRow.swift */; };
+		4ACD164E25EB222E00A1DE99 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD164D25EB222E00A1DE99 /* CoursesView.swift */; };
+		4ACD164F25EB222E00A1DE99 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD164D25EB222E00A1DE99 /* CoursesView.swift */; };
+		4ACD165425EB248600A1DE99 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD165325EB248600A1DE99 /* Sidebar.swift */; };
+		4ACD165525EB248600A1DE99 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD165325EB248600A1DE99 /* Sidebar.swift */; };
+		4AD9564725ED124E00BF8C7A /* CourseSectionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD9564625ED124E00BF8C7A /* CourseSectionDetail.swift */; };
+		4AD9564825ED124E00BF8C7A /* CourseSectionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD9564625ED124E00BF8C7A /* CourseSectionDetail.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4ACD162125EB092000A1DE99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4ACD160125EB091F00A1DE99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4ACD160F25EB092000A1DE99;
+			remoteInfo = "MyTreeTutorApp (iOS)";
+		};
+		4ACD162C25EB092000A1DE99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4ACD160125EB091F00A1DE99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4ACD161725EB092000A1DE99;
+			remoteInfo = "MyTreeTutorApp (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4A4A341325ED076700A93563 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		4AAACF3225EBBD0900A59D64 /* CourseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
+		4AAACF3725EBC01E00A59D64 /* CourseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
+		4AAACF3A25EBD85600A59D64 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		4AAACF3E25EBE89400A59D64 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
+		4AAACF4125EBF0D300A59D64 /* CourseDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetail.swift; sourceTree = "<group>"; };
+		4AAACF4425EBF32B00A59D64 /* Tutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
+		4AAACF4525EBF32B00A59D64 /* TutorialSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialSection.swift; sourceTree = "<group>"; };
+		4AAACF4625EBF32B00A59D64 /* CourseSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSection.swift; sourceTree = "<group>"; };
+		4AAACF4725EBF32B00A59D64 /* LivestreamSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivestreamSection.swift; sourceTree = "<group>"; };
+		4AAACF4825EBF32C00A59D64 /* GradientModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientModel.swift; sourceTree = "<group>"; };
+		4AAACF4925EBF32C00A59D64 /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		4AAACF4A25EBF32C00A59D64 /* Livestream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Livestream.swift; sourceTree = "<group>"; };
+		4AAACF5F25EBF65E00A59D64 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
+		4AAACF6125EBF66900A59D64 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
+		4ACD160725EB091F00A1DE99 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
+		4ACD160825EB091F00A1DE99 /* MyTreeTutorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTreeTutorApp.swift; sourceTree = "<group>"; };
+		4ACD160925EB091F00A1DE99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4ACD160A25EB091F00A1DE99 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		4ACD160B25EB092000A1DE99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4ACD161025EB092000A1DE99 /* MyTreeTutorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTreeTutorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ACD161325EB092000A1DE99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4ACD161825EB092000A1DE99 /* MyTreeTutorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTreeTutorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ACD161A25EB092000A1DE99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4ACD161B25EB092000A1DE99 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		4ACD162025EB092000A1DE99 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ACD162425EB092000A1DE99 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		4ACD162625EB092000A1DE99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4ACD162B25EB092000A1DE99 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ACD162F25EB092000A1DE99 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		4ACD163125EB092000A1DE99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4ACD164A25EB1AB700A1DE99 /* CourseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseRow.swift; sourceTree = "<group>"; };
+		4ACD164D25EB222E00A1DE99 /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
+		4ACD165325EB248600A1DE99 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		4AD9564625ED124E00BF8C7A /* CourseSectionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionDetail.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4ACD160D25EB092000A1DE99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ACD161525EB092000A1DE99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ACD161D25EB092000A1DE99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ACD162825EB092000A1DE99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4AAACF3525EBBF8400A59D64 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				4ACD160925EB091F00A1DE99 /* ContentView.swift */,
+				4A4A341325ED076700A93563 /* TabBar.swift */,
+				4ACD165325EB248600A1DE99 /* Sidebar.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		4AAACF3625EBBFA500A59D64 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				4AAACF3225EBBD0900A59D64 /* CourseItem.swift */,
+				4ACD164A25EB1AB700A1DE99 /* CourseRow.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		4AAACF3D25EBDD9B00A59D64 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4AAACF3A25EBD85600A59D64 /* Course.swift */,
+				4AAACF4625EBF32B00A59D64 /* CourseSection.swift */,
+				4AAACF4925EBF32C00A59D64 /* Download.swift */,
+				4AAACF4825EBF32C00A59D64 /* GradientModel.swift */,
+				4AAACF4A25EBF32C00A59D64 /* Livestream.swift */,
+				4AAACF4725EBF32B00A59D64 /* LivestreamSection.swift */,
+				4AAACF4425EBF32B00A59D64 /* Tutorial.swift */,
+				4AAACF4525EBF32B00A59D64 /* TutorialSection.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4ACD160025EB091F00A1DE99 = {
+			isa = PBXGroup;
+			children = (
+				4ACD160525EB091F00A1DE99 /* Shared */,
+				4ACD161225EB092000A1DE99 /* iOS */,
+				4ACD161925EB092000A1DE99 /* macOS */,
+				4ACD162325EB092000A1DE99 /* Tests iOS */,
+				4ACD162E25EB092000A1DE99 /* Tests macOS */,
+				4ACD161125EB092000A1DE99 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4ACD160525EB091F00A1DE99 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4ACD160825EB091F00A1DE99 /* MyTreeTutorApp.swift */,
+				4AAACF3525EBBF8400A59D64 /* Navigation */,
+				4AAACF3D25EBDD9B00A59D64 /* Model */,
+				4AAACF3625EBBFA500A59D64 /* Items */,
+				4ACD164D25EB222E00A1DE99 /* CoursesView.swift */,
+				4AAACF4125EBF0D300A59D64 /* CourseDetail.swift */,
+				4AD9564625ED124E00BF8C7A /* CourseSectionDetail.swift */,
+				4AAACF3E25EBE89400A59D64 /* CloseButton.swift */,
+				4AAACF3725EBC01E00A59D64 /* CourseList.swift */,
+				4ACD160A25EB091F00A1DE99 /* Persistence.swift */,
+				4ACD160B25EB092000A1DE99 /* Assets.xcassets */,
+				4ACD160625EB091F00A1DE99 /* MyTreeTutorApp.xcdatamodeld */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		4ACD161125EB092000A1DE99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4ACD161025EB092000A1DE99 /* MyTreeTutorApp.app */,
+				4ACD161825EB092000A1DE99 /* MyTreeTutorApp.app */,
+				4ACD162025EB092000A1DE99 /* Tests iOS.xctest */,
+				4ACD162B25EB092000A1DE99 /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4ACD161225EB092000A1DE99 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4AAACF6125EBF66900A59D64 /* VisualEffectBlur.swift */,
+				4ACD161325EB092000A1DE99 /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		4ACD161925EB092000A1DE99 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				4AAACF5F25EBF65E00A59D64 /* VisualEffectBlur.swift */,
+				4ACD161A25EB092000A1DE99 /* Info.plist */,
+				4ACD161B25EB092000A1DE99 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		4ACD162325EB092000A1DE99 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4ACD162425EB092000A1DE99 /* Tests_iOS.swift */,
+				4ACD162625EB092000A1DE99 /* Info.plist */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		4ACD162E25EB092000A1DE99 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				4ACD162F25EB092000A1DE99 /* Tests_macOS.swift */,
+				4ACD163125EB092000A1DE99 /* Info.plist */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4ACD160F25EB092000A1DE99 /* MyTreeTutorApp (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4ACD163E25EB092000A1DE99 /* Build configuration list for PBXNativeTarget "MyTreeTutorApp (iOS)" */;
+			buildPhases = (
+				4ACD160C25EB092000A1DE99 /* Sources */,
+				4ACD160D25EB092000A1DE99 /* Frameworks */,
+				4ACD160E25EB092000A1DE99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MyTreeTutorApp (iOS)";
+			productName = "MyTreeTutorApp (iOS)";
+			productReference = 4ACD161025EB092000A1DE99 /* MyTreeTutorApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4ACD161725EB092000A1DE99 /* MyTreeTutorApp (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4ACD164125EB092000A1DE99 /* Build configuration list for PBXNativeTarget "MyTreeTutorApp (macOS)" */;
+			buildPhases = (
+				4ACD161425EB092000A1DE99 /* Sources */,
+				4ACD161525EB092000A1DE99 /* Frameworks */,
+				4ACD161625EB092000A1DE99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MyTreeTutorApp (macOS)";
+			productName = "MyTreeTutorApp (macOS)";
+			productReference = 4ACD161825EB092000A1DE99 /* MyTreeTutorApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4ACD161F25EB092000A1DE99 /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4ACD164425EB092000A1DE99 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				4ACD161C25EB092000A1DE99 /* Sources */,
+				4ACD161D25EB092000A1DE99 /* Frameworks */,
+				4ACD161E25EB092000A1DE99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4ACD162225EB092000A1DE99 /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = 4ACD162025EB092000A1DE99 /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		4ACD162A25EB092000A1DE99 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4ACD164725EB092000A1DE99 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				4ACD162725EB092000A1DE99 /* Sources */,
+				4ACD162825EB092000A1DE99 /* Frameworks */,
+				4ACD162925EB092000A1DE99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4ACD162D25EB092000A1DE99 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = 4ACD162B25EB092000A1DE99 /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4ACD160125EB091F00A1DE99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					4ACD160F25EB092000A1DE99 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					4ACD161725EB092000A1DE99 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					4ACD161F25EB092000A1DE99 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 4ACD160F25EB092000A1DE99;
+					};
+					4ACD162A25EB092000A1DE99 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 4ACD161725EB092000A1DE99;
+					};
+				};
+			};
+			buildConfigurationList = 4ACD160425EB091F00A1DE99 /* Build configuration list for PBXProject "MyTreeTutorApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4ACD160025EB091F00A1DE99;
+			productRefGroup = 4ACD161125EB092000A1DE99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4ACD160F25EB092000A1DE99 /* MyTreeTutorApp (iOS) */,
+				4ACD161725EB092000A1DE99 /* MyTreeTutorApp (macOS) */,
+				4ACD161F25EB092000A1DE99 /* Tests iOS */,
+				4ACD162A25EB092000A1DE99 /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4ACD160E25EB092000A1DE99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4ACD163A25EB092000A1DE99 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ACD161625EB092000A1DE99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4ACD163B25EB092000A1DE99 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ACD161E25EB092000A1DE99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ACD162925EB092000A1DE99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4ACD160C25EB092000A1DE99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4ACD163425EB092000A1DE99 /* MyTreeTutorApp.swift in Sources */,
+				4AAACF3825EBC01E00A59D64 /* CourseList.swift in Sources */,
+				4AAACF3B25EBD85600A59D64 /* Course.swift in Sources */,
+				4AAACF5125EBF32C00A59D64 /* LivestreamSection.swift in Sources */,
+				4AAACF4D25EBF32C00A59D64 /* TutorialSection.swift in Sources */,
+				4AD9564725ED124E00BF8C7A /* CourseSectionDetail.swift in Sources */,
+				4AAACF4F25EBF32C00A59D64 /* CourseSection.swift in Sources */,
+				4A4A341425ED076700A93563 /* TabBar.swift in Sources */,
+				4AAACF5725EBF32C00A59D64 /* Livestream.swift in Sources */,
+				4ACD163825EB092000A1DE99 /* Persistence.swift in Sources */,
+				4ACD163225EB092000A1DE99 /* MyTreeTutorApp.xcdatamodeld in Sources */,
+				4AAACF5325EBF32C00A59D64 /* GradientModel.swift in Sources */,
+				4AAACF5525EBF32C00A59D64 /* Download.swift in Sources */,
+				4AAACF3325EBBD0900A59D64 /* CourseItem.swift in Sources */,
+				4AAACF4B25EBF32C00A59D64 /* Tutorial.swift in Sources */,
+				4ACD163625EB092000A1DE99 /* ContentView.swift in Sources */,
+				4ACD164B25EB1AB700A1DE99 /* CourseRow.swift in Sources */,
+				4AAACF6225EBF66900A59D64 /* VisualEffectBlur.swift in Sources */,
+				4ACD165425EB248600A1DE99 /* Sidebar.swift in Sources */,
+				4AAACF4225EBF0D300A59D64 /* CourseDetail.swift in Sources */,
+				4AAACF3F25EBE89400A59D64 /* CloseButton.swift in Sources */,
+				4ACD164E25EB222E00A1DE99 /* CoursesView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ACD161425EB092000A1DE99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4ACD163525EB092000A1DE99 /* MyTreeTutorApp.swift in Sources */,
+				4AAACF3925EBC01E00A59D64 /* CourseList.swift in Sources */,
+				4AAACF3C25EBD85600A59D64 /* Course.swift in Sources */,
+				4AD9564825ED124E00BF8C7A /* CourseSectionDetail.swift in Sources */,
+				4AAACF5225EBF32C00A59D64 /* LivestreamSection.swift in Sources */,
+				4AAACF4E25EBF32C00A59D64 /* TutorialSection.swift in Sources */,
+				4AAACF5025EBF32C00A59D64 /* CourseSection.swift in Sources */,
+				4AAACF5825EBF32C00A59D64 /* Livestream.swift in Sources */,
+				4ACD163925EB092000A1DE99 /* Persistence.swift in Sources */,
+				4ACD163325EB092000A1DE99 /* MyTreeTutorApp.xcdatamodeld in Sources */,
+				4AAACF5425EBF32C00A59D64 /* GradientModel.swift in Sources */,
+				4AAACF5625EBF32C00A59D64 /* Download.swift in Sources */,
+				4AAACF3425EBBD0900A59D64 /* CourseItem.swift in Sources */,
+				4AAACF4C25EBF32C00A59D64 /* Tutorial.swift in Sources */,
+				4ACD163725EB092000A1DE99 /* ContentView.swift in Sources */,
+				4ACD164C25EB1AB700A1DE99 /* CourseRow.swift in Sources */,
+				4AAACF6025EBF65E00A59D64 /* VisualEffectBlur.swift in Sources */,
+				4ACD165525EB248600A1DE99 /* Sidebar.swift in Sources */,
+				4AAACF4325EBF0D300A59D64 /* CourseDetail.swift in Sources */,
+				4AAACF4025EBE89400A59D64 /* CloseButton.swift in Sources */,
+				4ACD164F25EB222E00A1DE99 /* CoursesView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ACD161C25EB092000A1DE99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4ACD162525EB092000A1DE99 /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4ACD162725EB092000A1DE99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4ACD163025EB092000A1DE99 /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4ACD162225EB092000A1DE99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4ACD160F25EB092000A1DE99 /* MyTreeTutorApp (iOS) */;
+			targetProxy = 4ACD162125EB092000A1DE99 /* PBXContainerItemProxy */;
+		};
+		4ACD162D25EB092000A1DE99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4ACD161725EB092000A1DE99 /* MyTreeTutorApp (macOS) */;
+			targetProxy = 4ACD162C25EB092000A1DE99 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4ACD163C25EB092000A1DE99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4ACD163D25EB092000A1DE99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		4ACD163F25EB092000A1DE99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CZ4V2F5QY;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bortsolutions.MyTreeTutorApp;
+				PRODUCT_NAME = MyTreeTutorApp;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4ACD164025EB092000A1DE99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CZ4V2F5QY;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bortsolutions.MyTreeTutorApp;
+				PRODUCT_NAME = MyTreeTutorApp;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4ACD164225EB092000A1DE99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3CZ4V2F5QY;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bortsolutions.MyTreeTutorApp;
+				PRODUCT_NAME = MyTreeTutorApp;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4ACD164325EB092000A1DE99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3CZ4V2F5QY;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bortsolutions.MyTreeTutorApp;
+				PRODUCT_NAME = MyTreeTutorApp;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4ACD164525EB092000A1DE99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CZ4V2F5QY;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bortsolutions.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "MyTreeTutorApp (iOS)";
+			};
+			name = Debug;
+		};
+		4ACD164625EB092000A1DE99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3CZ4V2F5QY;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bortsolutions.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "MyTreeTutorApp (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4ACD164825EB092000A1DE99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3CZ4V2F5QY;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bortsolutions.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "MyTreeTutorApp (macOS)";
+			};
+			name = Debug;
+		};
+		4ACD164925EB092000A1DE99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3CZ4V2F5QY;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bortsolutions.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "MyTreeTutorApp (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4ACD160425EB091F00A1DE99 /* Build configuration list for PBXProject "MyTreeTutorApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4ACD163C25EB092000A1DE99 /* Debug */,
+				4ACD163D25EB092000A1DE99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4ACD163E25EB092000A1DE99 /* Build configuration list for PBXNativeTarget "MyTreeTutorApp (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4ACD163F25EB092000A1DE99 /* Debug */,
+				4ACD164025EB092000A1DE99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4ACD164125EB092000A1DE99 /* Build configuration list for PBXNativeTarget "MyTreeTutorApp (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4ACD164225EB092000A1DE99 /* Debug */,
+				4ACD164325EB092000A1DE99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4ACD164425EB092000A1DE99 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4ACD164525EB092000A1DE99 /* Debug */,
+				4ACD164625EB092000A1DE99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4ACD164725EB092000A1DE99 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4ACD164825EB092000A1DE99 /* Debug */,
+				4ACD164925EB092000A1DE99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4ACD160625EB091F00A1DE99 /* MyTreeTutorApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4ACD160725EB091F00A1DE99 /* Shared.xcdatamodel */,
+			);
+			currentVersion = 4ACD160725EB091F00A1DE99 /* Shared.xcdatamodel */;
+			path = MyTreeTutorApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 4ACD160125EB091F00A1DE99 /* Project object */;
+}
