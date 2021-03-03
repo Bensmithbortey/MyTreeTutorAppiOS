@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct CloseButton: View {
+struct ToggleButton: View {
     var body: some View {
-        Image(systemName: "xmark")
-            .font(.system(size: 17, weight: .bold))
+        Image(systemName: "switch.2")
+            .font(.system(size: 15, weight: .regular))
             .foregroundColor(.white)
-            .padding(.all, 10)
+            .padding(.all, 8)
             .background(Color.black.opacity(0.6))
-            .clipShape(Circle())
+            .mask(Circle())
     }
 }
 
-struct CloseeButton_Previews: PreviewProvider {
+struct ToggleButton_Previews: PreviewProvider {
     static var previews: some View {
-        CloseButton()
+        ToggleButton()
     }
 }

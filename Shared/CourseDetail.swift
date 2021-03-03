@@ -9,55 +9,36 @@ import SwiftUI
 
 struct CourseDetail: View {
     var course: Course = courses[0]
-    var namespace: Namespace.ID
-    #if os(iOS)
-    var cornerRadius: CGFloat = 10
-    #else
-    var cornerRadius: CGFloat = 0
-    #endif
-    @State var showModal = false
+    @Environment(\.presentationMode) var presentationMode
     
+    @ViewBuilder
     var body: some View {
         #if os(iOS)
         content
-        .edgesIgnoringSafeArea(.all)
         #else
-        content
+        content.frame(maxWidth: 800, maxHeight: 600)
         #endif
     }
     
     var content: some View {
-        VStack {
+        ZStack(alignment: .topTrailing) {
             ScrollView {
                 CourseItem(course: course, cornerRadius: 0)
-                    .matchedGeometryEffect(id: course.id, in: namespace)
-                    .frame(height: 300)
-                VStack {
-                    ForEach(courseSections) { item in
-                        CourseRow(item: item)
-                            .sheet(isPresented: $showModal) {
-                                CourseSectionDetail()
-                            }
-                            .onTapGesture {
-                                showModal = true
-                            }
-                        Divider()
-                    }
-                }
-                .padding()
+                    .frame(maxHeight: 300)
+                CourseContent()
             }
+            
+            CloseButton()
+                .padding(20)
+                .onTapGesture {
+                    presentationMode.wrappedValue.dismiss()
+                }
         }
-        .background(Color("Background 1"))
-        .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-        .matchedGeometryEffect(id: "container\(course.id)", in: namespace)
     }
 }
 
 struct CourseDetail_Previews: PreviewProvider {
-    @Namespace static var namespace
     static var previews: some View {
-        CourseDetail(namespace: namespace)
+        CourseDetail()
     }
 }
-
-

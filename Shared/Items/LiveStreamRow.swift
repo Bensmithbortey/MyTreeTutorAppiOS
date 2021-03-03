@@ -1,5 +1,5 @@
 //
-//  CourseRow.swift
+//  LiveStreamRow.swift
 //  MyTreeTutorApp
 //
 //  Created by Benjamin-Smith Bortey on 03/03/2021.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct CourseRow: View {
-    var section: CourseSection = courseSections[0]
+struct LivestreamRow: View {
+    var section: LivestreamSection = livestreamSections[0]
     
     var body: some View {
         HStack(alignment: .top) {
@@ -18,12 +18,10 @@ struct CourseRow: View {
                 .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(section.color))
             VStack(alignment: .leading, spacing: 4) {
                 Text(section.title)
-                    .font(.subheadline)
-                    .bold()
+                    .font(.subheadline).bold()
                     .foregroundColor(Color.primary)
                 Text(section.subtitle)
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
+                    .font(.footnote).foregroundColor(.secondary)
                     .padding(.bottom, 2)
                 ProgressView(progress: 50, color: Color.white, background: Color("Background 4"))
                     .frame(maxWidth: 200)
@@ -34,9 +32,9 @@ struct CourseRow: View {
     }
 }
 
-struct CourseRow_Previews: PreviewProvider {
+struct LivestreamRow_Previews: PreviewProvider {
     static var previews: some View {
-        CourseRow()
+        LivestreamRow()
     }
 }
 

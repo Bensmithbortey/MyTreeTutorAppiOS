@@ -14,12 +14,12 @@ struct TabBar: View {
                 CoursesView()
             }
             .tabItem {
-                Image(systemName: "book.closed")
+                Image(systemName: "list.bullet.rectangle")
                 Text("Courses")
             }
             
             NavigationView {
-                CourseList()
+                TutorialsView()
             }
             .tabItem {
                 Image(systemName: "list.bullet.rectangle")
@@ -27,7 +27,7 @@ struct TabBar: View {
             }
             
             NavigationView {
-                CourseList()
+                LivestreamsView()
             }
             .tabItem {
                 Image(systemName: "tv")
@@ -35,7 +35,7 @@ struct TabBar: View {
             }
             
             NavigationView {
-                CourseList()
+                CertificatesView()
             }
             .tabItem {
                 Image(systemName: "mail.stack")
@@ -43,7 +43,7 @@ struct TabBar: View {
             }
             
             NavigationView {
-                CourseList()
+                SearchView()
             }
             .tabItem {
                 Image(systemName: "magnifyingglass")
@@ -58,4 +58,3 @@ struct TabBar_Previews: PreviewProvider {
         TabBar()
     }
 }
-

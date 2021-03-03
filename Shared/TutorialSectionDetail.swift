@@ -1,35 +1,34 @@
 //
-//  CourseSectionDetail.swift
+//  TutorialSectionDetail.swift
 //  MyTreeTutorApp
 //
-//  Created by Benjamin-Smith Bortey on 01/03/2021.
+//  Created by Benjamin-Smith Bortey on 03/03/2021.
 //
 
 import SwiftUI
 
-struct CourseSectionDetail: View {
-    var section: CourseSection = courseSections[1]
+struct TutorialSectionDetail: View {
+    var section: TutorialSection = tutorialSections[0]
     @Environment(\.presentationMode) var presentationMode
     
+    @ViewBuilder
     var body: some View {
+        #if os(iOS)
+        content
+            .navigationTitle(section.title)
+            .navigationBarTitleDisplayMode(.inline)
+        #else
         ZStack(alignment: .topTrailing) {
-            #if os(iOS)
-            content
-                .navigationTitle(section.title)
-                .navigationBarTitleDisplayMode(.inline)
-            #else
             content
                 .frame(maxWidth: 800, maxHeight: 600)
-            #endif
-            
             CloseButton()
                 .padding(20)
                 .onTapGesture {
                     presentationMode.wrappedValue.dismiss()
                 }
         }
+        #endif
     }
-    
     var content: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -54,7 +53,7 @@ struct CourseSectionDetail: View {
             }
             .padding(.all, 20)
             .background(
-                Image("Livestream 1")
+                Image("Livestream 2")
                     .renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -68,8 +67,8 @@ struct CourseSectionDetail: View {
     }
 }
 
-struct SectionView_Previews: PreviewProvider {
+struct TutorialSectionDetail_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSectionDetail()
+        TutorialSectionDetail()
     }
 }

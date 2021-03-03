@@ -2,7 +2,7 @@
 //  CourseItem.swift
 //  MyTreeTutorApp
 //
-//  Created by Benjamin-Smith Bortey on 28/02/2021.
+//  Created by Benjamin-Smith Bortey on 03/03/2021.
 //
 
 import SwiftUI
@@ -21,14 +21,20 @@ struct CourseItem: View {
             HStack {
                 Spacer()
                 Image(course.image)
+                    .renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .frame(maxWidth: 200)
                 Spacer()
             }
-            Text(course.title).fontWeight(.bold).foregroundColor(Color.white)
-            Text(course.subtitle).font(.footnote).foregroundColor(Color.white)
+            Text(course.title)
+                .bold()
+                .foregroundColor(.white)
+            Text(course.subtitle)
+                .font(.footnote)
+                .foregroundColor(Color.white.opacity(0.7))
         }
-        .padding(.all)
+        .padding(16)
         .background(course.color)
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
         .shadow(color: course.color.opacity(0.3), radius: 20, x: 0, y: 10)
@@ -40,4 +46,3 @@ struct CourseItem_Previews: PreviewProvider {
         CourseItem()
     }
 }
-

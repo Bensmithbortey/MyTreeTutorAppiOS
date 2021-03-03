@@ -1,5 +1,5 @@
 //
-//  CourseRow.swift
+//  TutorialRow.swift
 //  MyTreeTutorApp
 //
 //  Created by Benjamin-Smith Bortey on 03/03/2021.
@@ -7,23 +7,21 @@
 
 import SwiftUI
 
-struct CourseRow: View {
-    var section: CourseSection = courseSections[0]
+struct TutorialRow: View {
+    var tutorial: Tutorial = tutorials[0]
     
     var body: some View {
         HStack(alignment: .top) {
-            Image(section.logo)
+            Image(tutorial.image)
                 .renderingMode(.original)
                 .frame(width: 48, height: 48)
-                .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(section.color))
+                .background(Circle().fill(Color("Background 1")))
             VStack(alignment: .leading, spacing: 4) {
-                Text(section.title)
-                    .font(.subheadline)
-                    .bold()
+                Text(tutorial.title)
+                    .font(.subheadline).bold()
                     .foregroundColor(Color.primary)
-                Text(section.subtitle)
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
+                Text(tutorial.subtitle)
+                    .font(.footnote).foregroundColor(.secondary)
                     .padding(.bottom, 2)
                 ProgressView(progress: 50, color: Color.white, background: Color("Background 4"))
                     .frame(maxWidth: 200)
@@ -34,9 +32,9 @@ struct CourseRow: View {
     }
 }
 
-struct CourseRow_Previews: PreviewProvider {
+struct SectionItem_Previews: PreviewProvider {
     static var previews: some View {
-        CourseRow()
+        TutorialRow()
     }
 }
 
