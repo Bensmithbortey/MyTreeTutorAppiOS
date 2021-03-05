@@ -14,7 +14,7 @@ struct TutorialsView: View {
                 content
             }
             .frame(width: 300)
-            .navigationTitle("Tutorials")
+            .navigationTitle("Tree Visualiser")
         }
     }
     

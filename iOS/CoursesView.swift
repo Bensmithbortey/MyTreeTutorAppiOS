@@ -128,25 +128,25 @@ struct CoursesView: View {
             }
             .tabItem {
                 Image(systemName: "list.bullet.rectangle")
-                Text("Tutorials")
+                Text("Tree Visualiser")
             }
             
-            NavigationView {
-                LivestreamsView()
-            }
-            .tabItem {
-                Image(systemName: "tv")
-                Text("Livestreams")
-            }
-            
-            NavigationView {
-                CertificatesView()
-            }
-            .tabItem {
-                Image(systemName: "mail.stack")
-                Text("Certificates")
-            }
-            
+//            NavigationView {
+//                LivestreamsView()
+//            }
+//            .tabItem {
+//                Image(systemName: "tv")
+//                Text("Livestreams")
+//            }
+//
+//            NavigationView {
+//                CertificatesView()
+//            }
+//            .tabItem {
+//                Image(systemName: "mail.stack")
+//                Text("Certificates")
+//            }
+//
             NavigationView {
                 SearchView()
             }

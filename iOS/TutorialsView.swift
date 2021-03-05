@@ -30,7 +30,7 @@ struct TutorialsView: View {
             SectionTitle(title: "Recent tutorials")
             TutorialContent()
         }
-        .navigationTitle("Tutorials")
+        .navigationTitle("Tree Visualiser")
     }
 }
 
