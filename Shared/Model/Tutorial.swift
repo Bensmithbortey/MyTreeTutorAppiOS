@@ -38,39 +38,4 @@ var tutorials = [
         image: "Logo UI Design",
         progress: 30.0
     )
-//    Tutorial(
-//        title: "The Sketch Handbook",
-//        subtitle: "Sketch is a design tool entirely vector-based and focused on user interface design. It’s easy to pick up and costs a fraction of the price of Photoshop. Because of its simplicity, anyone with little to no training can learn Sketch. On top of that, it’s perfect for today’s need for designing for multiple devices.",
-//        color: Color(#colorLiteral(red: 1, green: 0.5838500857, blue: 0, alpha: 1)),
-//        image: "Logo Sketch",
-//        progress: 50.0
-//    ),
-//    Tutorial(
-//        title: "The React Handbook",
-//        subtitle: "React is component-based, similar to how you use Components in Figma in order to reuse the elements in powerful ways. This in turn allows for better collaboration between teammates. With this course, you'll learn how to build and animate your site from scratch. Create highly customizable components for your design system.",
-//        color: Color(#colorLiteral(red: 0, green: 0.8117647059, blue: 0.9921568627, alpha: 1)),
-//        image: "Logo React",
-//        progress: 50.0
-//    ),
-//    Tutorial(
-//        title: "The Framer Handbook",
-//        subtitle: "Framer makes it incredibly easy to add complex user interactions inside your prototype, taking your design and code components to the next level. Playground allows you to quickly test new concepts within the all-new in-app code editor. You can combine your current app flow with new code components created in Playground.",
-//        color: Color(#colorLiteral(red: 0, green: 0.6002155542, blue: 0.9979781508, alpha: 1)),
-//        image: "Logo Framer",
-//        progress: 20.0
-//    ),
-//    Tutorial(
-//        title: "The Webflow Handbook",
-//        subtitle: "Webflow is a design tool that can build production-ready experiences without code. You can implement CSS-driven adaptive layouts, build complex interactions and deploy all in one tool. Webflow also comes with a built-in content management system (CMS) and Ecommerce for creating a purchase experience without the need of third-party tools.",
-//        color: Color(#colorLiteral(red: 0.261730969, green: 0.3264437318, blue: 1, alpha: 1)),
-//        image: "Logo Webflow",
-//        progress: 20.0
-//    ),
-//    Tutorial(
-//        title: "The ProtoPie Handbook",
-//        subtitle: "ProtoPie is a cross-platform prototyping tool that creates prototypes nearly as powerful as those made with code, with half of the efforts, and zero code. It's perfect for designers who want to quickly experiment with advanced interactions using variables, conditions, sensors and more.",
-//        color: Color(#colorLiteral(red: 0.9613218904, green: 0.2685908377, blue: 0.4664257169, alpha: 1)),
-//        image: "Logo ProtoPie",
-//        progress: 20.0
-//    )
 ]

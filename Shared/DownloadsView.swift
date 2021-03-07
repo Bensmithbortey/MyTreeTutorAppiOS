@@ -54,4 +54,3 @@ struct DownloadView_Previews: PreviewProvider {
         DownloadsView()
     }
 }
-
