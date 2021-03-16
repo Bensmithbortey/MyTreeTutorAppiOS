@@ -15,7 +15,7 @@ struct TutorialsView: View {
                 spacing: 16) {
                 ForEach(tutorials) { tutorial in
                     #if os(iOS)
-                    NavigationLink(destination: TutorialDetail(tutorial: tutorial)) {
+                    NavigationLink(destination: TutorialDetail(tutorial: tutorial))  {
                         TutorialItem(tutorial: tutorial)
                             .frame(maxHeight: 240)
                     }
