@@ -19,7 +19,7 @@ struct TabBar: View {
             }
             
             NavigationView {
-                TutorialsView()
+                TreesView()
             }
             .tabItem {
                 Image(systemName: "list.bullet.rectangle")
