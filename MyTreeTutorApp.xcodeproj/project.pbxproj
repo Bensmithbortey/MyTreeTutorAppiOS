@@ -12,6 +12,12 @@
 		4A24C0E226026A030046A99D /* TreeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24C0E126026A030046A99D /* TreeItem.swift */; };
 		4A24C0E326026A2F0046A99D /* TreeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24C0E126026A030046A99D /* TreeItem.swift */; };
 		4A4A341425ED076700A93563 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4A341325ED076700A93563 /* TabBar.swift */; };
+		4A50BC422603C50D00286FBA /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC412603C50D00286FBA /* BinaryTree.swift */; };
+		4A50BC482603C53C00286FBA /* BinaryTreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC472603C53C00286FBA /* BinaryTreeViewModel.swift */; };
+		4A50BC4E2603C57B00286FBA /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC4D2603C57B00286FBA /* Arrow.swift */; };
+		4A50BC542603C59900286FBA /* BinaryTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC532603C59900286FBA /* BinaryTreeView.swift */; };
+		4A50BC5A2603D52B00286FBA /* Diagrams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC592603D52B00286FBA /* Diagrams.swift */; };
+		4A50BC602603D5AF00286FBA /* DiagramDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC5F2603D5AF00286FBA /* DiagramDetail.swift */; };
 		4AAA9EFC25F02ACA005F958D /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA9EFB25F02ACA005F958D /* CoursesView.swift */; };
 		4AAA9EFE25F02AF9005F958D /* TutorialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA9EFD25F02AF9005F958D /* TutorialsView.swift */; };
 		4AAA9F0025F02B19005F958D /* LivestreamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA9EFF25F02B19005F958D /* LivestreamsView.swift */; };
@@ -128,6 +134,12 @@
 		4A24C0DF260269C80046A99D /* TreeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeDetail.swift; sourceTree = "<group>"; };
 		4A24C0E126026A030046A99D /* TreeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeItem.swift; sourceTree = "<group>"; };
 		4A4A341325ED076700A93563 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		4A50BC412603C50D00286FBA /* BinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
+		4A50BC472603C53C00286FBA /* BinaryTreeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeViewModel.swift; sourceTree = "<group>"; };
+		4A50BC4D2603C57B00286FBA /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		4A50BC532603C59900286FBA /* BinaryTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeView.swift; sourceTree = "<group>"; };
+		4A50BC592603D52B00286FBA /* Diagrams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagrams.swift; sourceTree = "<group>"; };
+		4A50BC5F2603D5AF00286FBA /* DiagramDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramDetail.swift; sourceTree = "<group>"; };
 		4AAA9EFB25F02ACA005F958D /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
 		4AAA9EFD25F02AF9005F958D /* TutorialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialsView.swift; sourceTree = "<group>"; };
 		4AAA9EFF25F02B19005F958D /* LivestreamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivestreamsView.swift; sourceTree = "<group>"; };
@@ -223,6 +235,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A50BC3C2603C4F900286FBA /* Tree Detail */ = {
+			isa = PBXGroup;
+			children = (
+				4A50BC592603D52B00286FBA /* Diagrams.swift */,
+				4A50BC5F2603D5AF00286FBA /* DiagramDetail.swift */,
+				4A50BC652603F07700286FBA /* ViewModel version */,
+			);
+			path = "Tree Detail";
+			sourceTree = "<group>";
+		};
+		4A50BC652603F07700286FBA /* ViewModel version */ = {
+			isa = PBXGroup;
+			children = (
+				4A24C0DF260269C80046A99D /* TreeDetail.swift */,
+				4A50BC532603C59900286FBA /* BinaryTreeView.swift */,
+				4A50BC4D2603C57B00286FBA /* Arrow.swift */,
+				4A50BC472603C53C00286FBA /* BinaryTreeViewModel.swift */,
+				4A50BC412603C50D00286FBA /* BinaryTree.swift */,
+			);
+			path = "ViewModel version";
+			sourceTree = "<group>";
+		};
 		4A5720F425EFF8C90094181E /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,7 +349,7 @@
 				4AAACF4125EBF0D300A59D64 /* CourseDetail.swift */,
 				4AD9564625ED124E00BF8C7A /* CourseSectionDetail.swift */,
 				4AAA9F0D25F02EBE005F958D /* TutorialDetail.swift */,
-				4A24C0DF260269C80046A99D /* TreeDetail.swift */,
+				4A50BC3C2603C4F900286FBA /* Tree Detail */,
 				4AAA9F1025F02F5D005F958D /* TutorialSectionDetail.swift */,
 				4AAA9F1325F02F9C005F958D /* TutorialPages.swift */,
 				4AAA9F1625F02FDE005F958D /* DownloadsView.swift */,
@@ -552,6 +586,7 @@
 				4AAA9F2F25F032E0005F958D /* DateTitle.swift in Sources */,
 				4AAA9F0A25F02CD2005F958D /* Livestreams.swift in Sources */,
 				4AAA9F3B25F03456005F958D /* LivestreamContent.swift in Sources */,
+				4A50BC482603C53C00286FBA /* BinaryTreeViewModel.swift in Sources */,
 				4AAACF4D25EBF32C00A59D64 /* TutorialSection.swift in Sources */,
 				4AD9564725ED124E00BF8C7A /* CourseSectionDetail.swift in Sources */,
 				4AAA9F3825F03445005F958D /* TutorialContent.swift in Sources */,
@@ -559,8 +594,11 @@
 				4AAA9F4425F0358A005F958D /* TutorialItem.swift in Sources */,
 				4AAA9F4A25F035AF005F958D /* TutorialSectionRow.swift in Sources */,
 				4A24C0E0260269C80046A99D /* TreeDetail.swift in Sources */,
+				4A50BC5A2603D52B00286FBA /* Diagrams.swift in Sources */,
+				4A50BC602603D5AF00286FBA /* DiagramDetail.swift in Sources */,
 				4AAA9F6025F048C7005F958D /* LibraryContent.swift in Sources */,
 				4AAA9F1A25F03072005F958D /* SearchView.swift in Sources */,
+				4A50BC422603C50D00286FBA /* BinaryTree.swift in Sources */,
 				4A4A341425ED076700A93563 /* TabBar.swift in Sources */,
 				4AAACF5725EBF32C00A59D64 /* Livestream.swift in Sources */,
 				4ACD163825EB092000A1DE99 /* Persistence.swift in Sources */,
@@ -572,6 +610,7 @@
 				4AAACF5525EBF32C00A59D64 /* Download.swift in Sources */,
 				4AAA9F2725F032E0005F958D /* ToggleButton.swift in Sources */,
 				4AAA9F4D25F0361B005F958D /* LiveStreamItem.swift in Sources */,
+				4A50BC542603C59900286FBA /* BinaryTreeView.swift in Sources */,
 				4A24C0DE260269360046A99D /* TreesView.swift in Sources */,
 				4AAA9F1425F02F9C005F958D /* TutorialPages.swift in Sources */,
 				4AAACF4B25EBF32C00A59D64 /* Tutorial.swift in Sources */,
@@ -584,6 +623,7 @@
 				4AAA9F3525F03434005F958D /* CourseSectionContent.swift in Sources */,
 				4ACD165425EB248600A1DE99 /* Sidebar.swift in Sources */,
 				4AAA9F5025F03630005F958D /* LiveStreamRow.swift in Sources */,
+				4A50BC4E2603C57B00286FBA /* Arrow.swift in Sources */,
 				4AAA9F3225F03417005F958D /* CourseContent.swift in Sources */,
 				4AAACF4225EBF0D300A59D64 /* CourseDetail.swift in Sources */,
 				4AAA9F2B25F032E0005F958D /* ProgressView.swift in Sources */,

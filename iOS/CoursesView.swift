@@ -50,9 +50,6 @@ struct CoursesView: View {
             }
             .animation(.spring(response: 0.4, dampingFraction: 0.8))
             .padding(.all, 20)
-            
-            SectionTitle(title: "Recent sections")
-            CourseContent()
         }
     }
     
@@ -66,8 +63,6 @@ struct CoursesView: View {
                             .frame(maxHeight: 300)
                             .zIndex(1)
                         VStack {
-                            SectionTitle(title: "Recent sections")
-                            CourseContent()
                             CourseSectionContent()
                         }
                         .offset(y: show ? 0 : -100)

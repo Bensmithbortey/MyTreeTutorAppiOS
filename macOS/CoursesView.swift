@@ -13,7 +13,6 @@ struct CoursesView: View {
     var body: some View {
         ScrollView {
             content
-            SectionTitle(title: "Recent sections")
             CourseContent()
         }
         .frame(minWidth: 500, idealWidth: 700, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity)
