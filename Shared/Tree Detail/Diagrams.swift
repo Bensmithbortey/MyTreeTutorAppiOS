@@ -32,9 +32,19 @@ extension Tree {
     }
 }
 
-class Unique<A>: Identifiable {
+class Unique<A: Comparable>: Identifiable, Comparable, Equatable {
     let value: A
     init(_ value: A) { self.value = value }
+    
+    static func < (lhs: Unique<A>, rhs: Unique<A>) -> Bool {
+        return lhs.value < rhs.value
+    }
+    
+    static func == (lhs: Unique<A>, rhs: Unique<A>) -> Bool {
+        return lhs.value == rhs.value
+    }
+    
+    var id = UUID()
 }
 
 struct CollectDict<Key: Hashable, Value>: PreferenceKey {
@@ -111,4 +121,76 @@ struct Diagram<A: Identifiable, V: View>: View {
             }
         })
     }
+}
+
+
+/// A simple Diagram. It's not very performant yet, but works great for smallish trees.
+struct BinaryDiagram<A: Identifiable & Comparable, V: View>: View {
+    let tree: Tree<A>
+    let node: (A) -> V
+    
+    typealias Key = CollectDict<A.ID, Anchor<CGPoint>>
+    var body: some View {
+        VStack(alignment: .center) {
+            node(tree.value)
+                .anchorPreference(key: Key.self, value: .center, transform: {
+                    [self.tree.value.id: $0]
+                })
+            HStack(alignment: .bottom, spacing: 10) {
+                
+                
+                if tree.children.count == 1 {
+                    let child = tree.children[0]
+                    let value = child.value
+                    if value < tree.value {
+                        BinaryDiagram(tree: child, node: self.node)
+                        GeometryReader { geometry in
+                            Rectangle()
+                                .frame(width: geometry.size.width / 2)
+                                .foregroundColor(.clear)
+                        }
+                    } else {
+                        GeometryReader { geometry in
+                            Rectangle()
+                                .frame(width: geometry.size.width / 2)
+                                .foregroundColor(.clear)
+                        }
+                        BinaryDiagram(tree: child, node: self.node)
+                    }
+                } else {
+                    ForEach(tree.children, id: \.value.id, content: { child in
+                        BinaryDiagram(tree: child, node: self.node)
+                    })
+                }
+            }
+        }.backgroundPreferenceValue(Key.self, { (centers: [A.ID: Anchor<CGPoint>]) in
+            GeometryReader { proxy in
+                ForEach(self.tree.children, id: \.value.id, content: {
+                    child in
+                    Line(
+                        from: proxy[centers[self.tree.value.id]!],
+                        to: proxy[centers[child.value.id]!])
+                        .stroke()
+                })
+            }
+        })
+    }
+}
+
+extension Tree where A: Identifiable & Equatable {
+    
+    func findIDs(value: A) -> [A.ID] {
+        var ids = [A.ID]()
+        
+        if self.value == value {
+            ids.append(self.value.id)
+        }
+        
+        for child in children {
+            ids += child.findIDs(value: value)
+        }
+        
+        return ids
+    }
+    
 }

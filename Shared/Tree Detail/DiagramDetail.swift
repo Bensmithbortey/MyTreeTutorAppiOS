@@ -71,7 +71,7 @@ extension View {
         self
             .frame(width: 50, height: 50)
             .background(Circle().stroke())
-            .background(Circle().fill(Color.white))
+            .background(Circle().fill(Color(.TreeBackground)))
             .padding(10)
     }
 }
@@ -79,9 +79,9 @@ extension View {
 extension Tree where A == Unique<Int> {
     
     mutating func insert(_ number: Int) {
-        if number == value.value {
+//        if number == value.value {
             // Do nothing - the number is already in the Tree
-        } else
+//        } else
         if number < value.value {
             if children.count > 0 {
                 children[0].insert(number)
@@ -99,35 +99,49 @@ extension Tree where A == Unique<Int> {
         }
     }
     
-    mutating func delete(_ number: Int) {
-        if number < value.value {
-            if children.count > 0 {
-                if children[0].value.value == number {
-                    children.remove(at: 0)
-                } else {
-                    children[0].delete(number)
-                }
-            } else {
-                // Nothing
-            }
-        } else {
-            if children.count == 2 {
-                if children[1].value.value == number {
-                    children.remove(at: 1)
-                } else {
-                    children[1].delete(number)
-                }
-            } else if children.count == 1 {
-                if children[0].value.value == number {
-                    children.remove(at: 0)
-                } else {
-                    children[0].delete(number)
-                }
-            } else {
-                // Nothing
+    mutating func delete(_ id: A.ID) {
+        for index in 0..<children.count {
+            let child = children[index]
+            if child.value.id == id {
+                children.remove(at: index)
+                break
             }
         }
+        
+        for index in 0..<children.count {
+            children[index].delete(id)
+        }
     }
+    
+//    mutating func delete(_ number: Int) {
+//        if number < value.value {
+//            if children.count > 0 {
+//                if children[0].value.value == number {
+//                    children.remove(at: 0)
+//                } else {
+//                    children[0].delete(number)
+//                }
+//            } else {
+//                // Nothing
+//            }
+//        } else {
+//            if children.count == 2 {
+//                if children[1].value.value == number {
+//                    children.remove(at: 1)
+//                } else {
+//                    children[1].delete(number)
+//                }
+//            } else if children.count == 1 {
+//                if children[0].value.value == number {
+//                    children.remove(at: 0)
+//                } else {
+//                    children[0].delete(number)
+//                }
+//            } else {
+//                // Nothing
+//            }
+//        }
+//    }
 }
 
 
@@ -140,7 +154,7 @@ struct BinaryTreeView: View {
     @State var generateMinValue: String = ""
     @State var generateMaxValue: String = ""
     
-    @State var selectedValue: Int?
+    @State var selectedNodeID: UUID?
     
     @State var history = [Int]()
     
@@ -153,106 +167,34 @@ struct BinaryTreeView: View {
                 VStack {
                     
                     if let tree = tree {
-                        Diagram(tree: tree, node: { value in
+                        BinaryDiagram(tree: tree, node: { value in
                             
                             Text("\(value.value)")
+                                .foregroundColor(Color(.TreeOutline))
                                 .roundedCircle()
                                 .overlay(
                                     Circle()
                                         .stroke()
-                                        .foregroundColor((selectedValue != nil ? value.value == selectedValue! : false) ? .blue : .clear)
+                                        .foregroundColor((selectedNodeID != nil ? value.id == selectedNodeID! : false) ?
+                                                            Color(.TreeOutline) : .clear)
                                 )
                                 .onTapGesture {
-                                    if selectedValue == value.value {
-                                        selectedValue = nil
+                                    if selectedNodeID == value.id {
+                                        selectedNodeID = nil
                                     } else {
-                                        selectedValue = value.value
+                                        selectedNodeID = value.id
                                     }
                                 }
                         })
                     }
                     
                     
-                    // Delete
-                    HStack {
-                        
-                        Button {
-                            
-                            withAnimation(.default) {
-                                if let selectedValue = selectedValue {
-                                    
-                                    if let tree = tree, tree.value.value == selectedValue {
-                                        self.tree = nil
-                                    } else {
-                                        tree?.delete(selectedValue)
-                                    }
-                                    self.selectedValue = nil
-                                }
-                            }
-                        } label: {
-                            Text("Delete")
-                        }
-                    }
                     
-                    // Generate random Tree
-                    HStack {
-                        Text("Generate\nrandom tree")
-                        
-                        VStack {
-                            TextField("Min", text: $generateMinValue)
-                            TextField("Max", text: $generateMaxValue)
-                        }
-                        
-                        Button {
-                            if let min = Int(generateMinValue), let max = Int(generateMaxValue) {
-                                generate(min: min, max: max)
-                            }
-                        } label: {
-                            Text("Generate")
-                        }
-                    }
-                    
-                    // Insert
-                    HStack {
-                        TextField("Insert a node", text: $insertValue)
-                        
-                        Button {
-                            withAnimation(.default) {
-                                if let value = Int(insertValue) {
-                                    if let _ = tree {
-                                        self.tree?.insert(value)
-                                    } else {
-                                        tree = Tree(Unique(value))
-                                    }
-                                    history.append(value)
-                                }
-                            }
-                        } label: {
-                            Text("Insert")
-                        }
-                    }
-                    
-                    // Find
-                    HStack {
-                        TextField("Find a node", text: $findValue)
-                        
-                        Button {
-                            withAnimation(.default) {
-                                if let value = Int(findValue) {
-                                    selectedValue = value
-                                }
-                            }
-                        } label: {
-                            Text("Find")
-                        }
-                    }
                 }//: VStack
             }//: ScrollView
             
-            HStack {
-                
-            }
-        }
+            toolboxView
+        }// Outer VStack
         .alert(isPresented: $showsOptionToGenerate) {
             Alert(title: Text("Generate a Tree?"), primaryButton: .default(Text("Generate Random Tree!"), action: {
                 generate(min: 1, max: 100)
@@ -262,6 +204,112 @@ struct BinaryTreeView: View {
         }
         .onAppear {
             showsOptionToGenerate = true
+        }
+    }
+    
+    @ViewBuilder
+    var toolboxView: some View {
+        // Generate random Tree
+        HStack {
+            Text("Generate\nrandom tree")
+            
+            VStack {
+                TextField("Min", text: $generateMinValue)
+                TextField("Max", text: $generateMaxValue)
+            }
+            
+            Button {
+                if let min = Int(generateMinValue), let max = Int(generateMaxValue) {
+                    generate(min: min, max: max)
+                }
+            } label: {
+                Text("Generate")
+            }
+        }
+        
+        // Insert
+        HStack {
+            TextField("Insert a node", text: $insertValue)
+            
+            Button {
+                withAnimation(.default) {
+                    if let value = Int(insertValue) {
+                        if let _ = tree {
+                            self.tree?.insert(value)
+                        } else {
+                            tree = Tree(Unique(value))
+                        }
+                        history.append(value)
+                    }
+                }
+            } label: {
+                Text("Insert")
+            }
+        }
+        
+        // Find
+        HStack {
+            TextField("Find a node", text: $findValue)
+            
+            Button {
+                withAnimation(.default) {
+                    if let value = Int(findValue) {
+                        let ids = tree?.findIDs(value: Unique(value)) ?? []
+                        self.selectedNodeID = ids.first
+                    }
+                }
+            } label: {
+                Text("Find")
+            }
+        }
+        
+        //
+        HStack {
+            Button {
+                withAnimation(.default) {
+                    
+                }
+            } label: {
+                Text("Balance")
+            }
+        }
+        
+        //
+        HStack {
+            Text("Generate sorted Array")
+            
+            Button {
+                withAnimation(.default) {
+                    
+                }
+            } label: {
+                Text("In Order")
+            }
+        }
+        
+        deleteButton
+    }
+    
+    var deleteButton: some View {
+        // Delete
+        HStack {
+            
+            Button {
+                
+                withAnimation(.default) {
+                    if let selectedNodeID = selectedNodeID {
+                        
+                        if let tree = tree, tree.value.id == selectedNodeID {
+                            self.tree = nil
+                        } else {
+                            tree?.delete(selectedNodeID)
+                        }
+                        self.selectedNodeID = nil
+                    }
+                }
+            } label: {
+                Text("Delete")
+            }
         }
     }
     
