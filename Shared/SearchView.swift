@@ -20,6 +20,24 @@ struct SearchView: View {
         #endif
     }
     
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(entity: TreeModel.entity(), sortDescriptors: [], predicate: NSPredicate(format: "title != nil"))
+    var trees: FetchedResults<TreeModel>
+    
+    var filteredTrees: [TreeModel] {
+        if searchText.isEmpty {
+            return self.trees.filter({ _ in true })
+        } else {
+            let searchTextLowercased = searchText.lowercased()
+            let filteredTrees = trees.filter({ model in
+                let tree = model as TreeModel
+                return tree.title?.lowercased().contains(searchTextLowercased) ?? false
+            })
+            return filteredTrees
+        }
+    }
+    
     var content: some View {
         List {
             TextField("Search", text: $searchText)
@@ -29,17 +47,29 @@ struct SearchView: View {
                 .mask(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .padding(.vertical, 8)
             
-            ForEach(courseSections){ section in
-                if section.title.localizedCaseInsensitiveContains(searchText) || section.subtitle.localizedCaseInsensitiveContains(searchText) || searchText == "" {
-                    
-                    CourseRow(section: section)
-                        .padding(.vertical, 4)
-                        .sheet(isPresented: $show) {
-                            CourseSectionDetail()
-                        }
-                        .onTapGesture {
-                            show.toggle()
-                        }
+            
+            ForEach(filteredTrees) { tree in
+                let tree = tree as TreeModel
+                
+                
+                #if os(iOS)
+                NavigationLink(destination:
+                    TreeDetail(treeType: .binary, tree: tree.generateTree(), treeName: tree.title)
+                ){
+                    Text(tree.title ?? "")
+                        .frame(maxHeight: 240)
+                }
+                #else
+                TreeItem(treeType: treeType)
+                    .frame(maxHeight: 240)
+                #endif
+                
+            }.onDelete { (indexSet) in
+                for index in indexSet {
+                    let treeIndex = Int(index)
+                    let tree = filteredTrees[treeIndex]
+                    viewContext.delete(tree)
+                    try! viewContext.save()
                 }
             }
         }

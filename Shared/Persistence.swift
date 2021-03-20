@@ -14,8 +14,8 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = TreeModel(context: viewContext)
+//            newItem.timestamp = Date()
         }
         do {
             try viewContext.save()
@@ -52,4 +52,54 @@ struct PersistenceController {
             }
         })
     }
+}
+
+extension TreeModel {
+    
+    var sortedChildren: [TreeModel]{
+        return children?.sorted(by: { (a, b) -> Bool in
+            guard let a = a as? TreeModel, let b = b as? TreeModel else { return false }
+            return a.value < b.value
+        }) as! [TreeModel]
+    }
+
+    func generateTree() -> Tree<Unique<Int>> {
+        
+        var tree = Tree(Unique(Int(value)))
+        
+        for child in sortedChildren {
+            tree.children.append(child.generateTree())
+        }
+        
+        return tree
+    }
+    
+}
+
+
+extension Tree where A == Unique<Int> {
+    
+    func insertToCoreData(moc: NSManagedObjectContext) -> TreeModel {
+        let treeModel = TreeModel(entity: TreeModel.entity(), insertInto: moc)
+        treeModel.value = Int32(value.value)
+        for child in children {
+            let model = child.insertToCoreData(moc: moc)
+            treeModel.addToChildren(model)
+        }
+        return treeModel
+    }
+    
+    func insertToCoreData(moc: NSManagedObjectContext, title: String) throws {
+        let request: NSFetchRequest<TreeModel> = TreeModel.fetchRequest()
+        request.predicate = NSPredicate(format: "title == %@", title)
+        if let existingModel = try moc.fetch(request).first {
+            moc.delete(existingModel)
+        }
+        
+        let treeModel = insertToCoreData(moc: moc)
+        treeModel.title = title
+        
+        try moc.save()
+    }
+    
 }

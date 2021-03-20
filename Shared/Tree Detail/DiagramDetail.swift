@@ -11,13 +11,16 @@ import Combine
 struct TreeDetail: View {
 
     let treeType: TreeType
+    
+    var tree: Tree<Unique<Int>>?
+    var treeName: String?
 
     var body: some View {
         VStack {
             
                 switch treeType {
                 case .binary:
-                    BinaryTreeView()
+                    BinaryTreeView(tree: tree, treeName: treeName)
                 default:
                     Text("")
                 }
@@ -160,6 +163,8 @@ struct BinaryTreeView: View {
     
     @State var showsOptionToGenerate = false
     
+    @State var treeName: String?
+    
     var body: some View {
         VStack {
             
@@ -186,25 +191,55 @@ struct BinaryTreeView: View {
                                     }
                                 }
                         })
+                    } else {
+                        Button {
+                            generate(min: 1, max: 100)
+                        } label: {
+                            Text("Generate a Tree")
+                        }
+
                     }
-                    
-                    
-                    
                 }//: VStack
             }//: ScrollView
             
             toolboxView
         }// Outer VStack
-        .alert(isPresented: $showsOptionToGenerate) {
-            Alert(title: Text("Generate a Tree?"), primaryButton: .default(Text("Generate Random Tree!"), action: {
-                generate(min: 1, max: 100)
-            }), secondaryButton: .default(Text("Start from scratch"), action: {
-                // Do nothing
-            }))
-        }
+//        .alert(isPresented: $showsOptionToGenerate) {
+//            Alert(title: Text("Generate a Tree?"), primaryButton: .default(Text("Generate Random Tree!"), action: {
+//                generate(min: 1, max: 100)
+//            }), secondaryButton: .default(Text("Start from scratch"), action: {
+//                // Do nothing
+//            }))
+//        }
         .onAppear {
             showsOptionToGenerate = true
         }
+        .navigationBarItems(trailing:
+                                Button("Save", action: {
+                                    if let treeName = treeName {
+                                        try? tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: treeName)
+                                    } else {
+                                        let alert = UIAlertController(title: "Choose title", message: "", preferredStyle: .alert)
+                                        
+                                        alert.addTextField { textField in
+                                            //
+                                        }
+                                        
+                                        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] _ in
+                                            if let textField = alert?.textFields?.first, let text = textField.text, !text.isEmpty {
+                                                treeName = text
+                                                try? tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: text)
+                                            } else {
+                                                // Couldn't save because the title is missing
+                                            }
+                                        }))
+                                        
+                                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                                        
+                                        UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                                    }
+                                    
+        }))
     }
     
     @ViewBuilder
