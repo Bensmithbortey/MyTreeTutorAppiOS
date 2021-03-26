@@ -15,13 +15,15 @@ struct CoursesView: View {
     @State var selection: Set<NavigationItem> = [.courses]
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
+    @State var selectedTreeType: TreeType?
+    
     var body: some View {
         ZStack {
-            if horizontalSizeClass == .compact {
+//            if horizontalSizeClass == .compact {
                 tabView
-            } else {
-                sidebar
-            }
+//            } else {
+//                sidebar
+//            }
             fullContent
         }
     }
@@ -109,91 +111,72 @@ struct CoursesView: View {
         }
     }
     
+    @ViewBuilder
+    var fullVisualizer: some View {
+        ForEach(TreeType.allCases) { treeType in
+            
+            if treeType == selectedTreeType {
+                ScrollView {
+                    VStack {
+                        TreeDetail(treeType: treeType)
+                            .frame(maxHeight: 300)
+                            .zIndex(1)
+                        VStack {
+                            CourseSectionContent()
+                        }
+                        .offset(y: show ? 0 : -100)
+                        .opacity(show ? 1 : 0)
+                        .zIndex(0)
+                    }
+                    .background(
+                        Color("Background 1")
+                            .opacity(show ? 1 : 0)
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                }
+                .frame(maxWidth: 712)
+                .edgesIgnoringSafeArea(.vertical)
+                .frame(maxWidth: .infinity)
+                .animation(.spring(response: 0.4, dampingFraction: 0.8))
+                .background(
+                    BlurView()
+                        .opacity(show ? 1 : 0)
+                        .animation(.easeIn(duration: 0.5))
+                        .edgesIgnoringSafeArea(.all)
+                )
+            }
+        }
+    }
+    
     var tabView: some View {
         TabView {
-            NavigationView {
-                content
-                    .navigationTitle(showNavBar ? "Courses" : "")
-            }
-            .tabItem { Image(systemName: "book.closed")
-                Text("Courses") }
-            
-            NavigationView {
-                TreesView()
-//                TutorialsView()
-            }
+//            NavigationView {
+                TreeDetail(treeType: .binary)
+//            }
+//            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Image(systemName: "list.bullet.rectangle")
                 Text("Tree Visualiser")
             }
             
-//            NavigationView {
-//                LivestreamsView()
-//            }
-//            .tabItem {
-//                Image(systemName: "tv")
-//                Text("Livestreams")
-//            }
-//
-//            NavigationView {
-//                CertificatesView()
-//            }
-//            .tabItem {
-//                Image(systemName: "mail.stack")
-//                Text("Certificates")
-//            }
-//
+            NavigationView {
+                content
+                    .navigationTitle(showNavBar ? "Courses" : "")
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .tabItem { Image(systemName: "book.closed")
+                Text("Courses")
+                
+            }
+            
             NavigationView {
                 SearchView()
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Image(systemName: "magnifyingglass")
                 Text("Search")
             }
-        }
-    }
-    
-    var sidebar: some View {
-        NavigationView {
-            List(selection: $selection) {
-                NavigationLink(destination: content
-                                .navigationTitle(showNavBar ? "Courses" : "")
-                                .statusBar(hidden: !showNavBar)) {
-                    Label("Courses", systemImage: "book.closed")
-                }
-                .tag(NavigationItem.courses)
-                
-                NavigationLink(destination: TutorialsView()) {
-                    Label("Tutorials", systemImage: "list.bullet.rectangle")
-                }
-                .tag(NavigationItem.tutorials)
-                
-                NavigationLink(destination: LivestreamsView()) {
-                    Label("Livestreams", systemImage: "tv")
-                }
-                .tag(NavigationItem.downloads)
-                
-                NavigationLink(destination: CertificatesView()) {
-                    Label("Certificates", systemImage: "mail.stack")
-                }
-                .tag(NavigationItem.downloads)
-                
-                NavigationLink(destination: SearchView()) {
-                    Label("Search", systemImage: "magnifyingglass")
-                }
-                .tag(NavigationItem.search)
-            }
-            .listStyle(SidebarListStyle())
-            .navigationTitle("Learn")
-            .toolbar {
-                ToolbarItem(placement: .navigation) {
-                    Button(action: {}) {
-                        Image(systemName: "person.crop.circle").font(.system(size: 22, weight: .light))
-                    }
-                }
-            }
-            content
-                .navigationTitle(showNavBar ? "Courses" : "")
         }
     }
 }

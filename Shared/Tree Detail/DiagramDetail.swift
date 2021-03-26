@@ -10,52 +10,36 @@ import Combine
 
 struct TreeDetail: View {
 
-    let treeType: TreeType
+    var treeType: TreeType?
     
     var tree: Tree<Unique<Int>>?
     var treeName: String?
-
+    
+    @State var treeTypeSelection: String = TreeType.binary.rawValue
+    
+    var selectedTreeType: TreeType {
+        return  TreeType(rawValue: treeTypeSelection)!
+    }
+    
     var body: some View {
         VStack {
             
-                switch treeType {
-                case .binary:
-                    BinaryTreeView(tree: tree, treeName: treeName)
-                default:
-                    Text("")
+            Picker(selection: $treeTypeSelection, label: Text("")) {
+                ForEach(TreeType.allCases, id: \.id) { treeType in
+                    Text(treeType.title).tag(treeType.rawValue)
                 }
+            }.pickerStyle(SegmentedPickerStyle())
+            
+            switch selectedTreeType {
+            case .binary:
+                BinaryTreeView(tree: tree, treeName: treeName)
+            default:
+                Spacer()
+            }
 
         }.padding()
     }
 }
-//
-//
-//struct BinaryTreeVisualization: View {
-//
-//    @ObservedObject var viewModel: BinaryTreeViewModel
-//
-//    @State private var refreshFlag = false
-//
-//    var body: some View {
-////        GeometryReader { geometry in
-//        VStack {
-//            if let tree = viewModel.tree {
-//                BinaryTreeView(tree: tree)
-//                    .id("\(refreshFlag)")
-//            }
-//        }
-//        .onReceive(viewModel.objectWillChange, perform: { _ in
-//            refreshFlag.toggle()
-//        })
-//    }
-//}
-//
-//
-//struct TreeDetail_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TreeDetail(treeType: .binary)
-//    }
-//}
 
 let binaryTree = Tree<Int>(50, children: [
     Tree(17, children: [
@@ -171,6 +155,35 @@ struct BinaryTreeView: View {
             ScrollView {
                 VStack {
                     
+                    HStack {
+                        Spacer()
+                        
+                        Button("Save", action: {
+                            if let treeName = treeName {
+                                try? tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: treeName)
+                            } else {
+                                let alert = UIAlertController(title: "Choose title", message: "", preferredStyle: .alert)
+                                
+                                alert.addTextField { textField in
+                                    //
+                                }
+                                
+                                alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] _ in
+                                    if let textField = alert?.textFields?.first, let text = textField.text, !text.isEmpty {
+                                        treeName = text
+                                        try? tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: text)
+                                    } else {
+                                        // Couldn't save because the title is missing
+                                    }
+                                }))
+                                
+                                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                                
+                                UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                            }
+                        })
+                    }
+                    
                     if let tree = tree {
                         BinaryDiagram(tree: tree, node: { value in
                             
@@ -214,32 +227,6 @@ struct BinaryTreeView: View {
         .onAppear {
             showsOptionToGenerate = true
         }
-        .navigationBarItems(trailing:
-                                Button("Save", action: {
-                                    if let treeName = treeName {
-                                        try? tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: treeName)
-                                    } else {
-                                        let alert = UIAlertController(title: "Choose title", message: "", preferredStyle: .alert)
-                                        
-                                        alert.addTextField { textField in
-                                            //
-                                        }
-                                        
-                                        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] _ in
-                                            if let textField = alert?.textFields?.first, let text = textField.text, !text.isEmpty {
-                                                treeName = text
-                                                try? tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: text)
-                                            } else {
-                                                // Couldn't save because the title is missing
-                                            }
-                                        }))
-                                        
-                                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                                        
-                                        UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
-                                    }
-                                    
-        }))
     }
     
     @ViewBuilder

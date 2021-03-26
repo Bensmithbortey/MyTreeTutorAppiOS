@@ -18,13 +18,21 @@ struct TabBar: View {
                 Text("Courses")
             }
             
-            NavigationView {
-                TreesView()
-            }
-            .tabItem {
-                Image(systemName: "list.bullet.rectangle")
-                Text("Tree Visualiser")
-            }
+                NavigationView {
+                    Text("Hello")
+                }
+                .tabItem {
+                    Image(systemName: "list.bullet.rectangle")
+                    Text("hello")
+                }
+            
+//            NavigationView {
+//                TreesView()
+//            }
+//            .tabItem {
+//                Image(systemName: "list.bullet.rectangle")
+//                Text("Tree Visualiser")
+//            }
             
             NavigationView {
                 LivestreamsView()

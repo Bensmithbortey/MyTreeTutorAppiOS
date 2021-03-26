@@ -14,12 +14,12 @@ struct ContentView: View {
 
     @ViewBuilder
     var body: some View {
-        #if os(iOS)
+//        #if os(iOS)
         CoursesView()
-        #else
-        Sidebar()
-            .frame(minWidth: 1000, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
-        #endif
+//        #else
+//        Sidebar()
+//            .frame(minWidth: 1000, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
+//        #endif
     }
 }
 
