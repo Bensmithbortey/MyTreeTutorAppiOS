@@ -125,37 +125,42 @@ struct Diagram<A: Identifiable, V: View>: View {
 
 
 /// A simple Diagram. It's not very performant yet, but works great for smallish trees.
-struct BinaryDiagram<A: Identifiable & Comparable, V: View>: View {
-    let tree: Tree<A>
-    let node: (A) -> V
+struct BinaryDiagram<V: View>: View {
+    let tree: Tree<Unique<Int>>
+    let node: (Unique<Int>) -> V
     
-    typealias Key = CollectDict<A.ID, Anchor<CGPoint>>
+    typealias Key = CollectDict<Unique<Int>.ID, Anchor<CGPoint>>
     var body: some View {
         VStack(alignment: .center) {
             node(tree.value)
                 .anchorPreference(key: Key.self, value: .center, transform: {
                     [self.tree.value.id: $0]
                 })
-            HStack(alignment: .bottom, spacing: 10) {
-                
+           
+//            Text("\(tree.maxHorizontalDistanceLevelOrder() / 2)")
+            let treeNodeWidth = CGFloat(tree.maxHorizontalDistanceLevelOrder()) / 2 * 150
+            
+            HStack(alignment: .top, spacing: 10) {
                 
                 if tree.children.count == 1 {
                     let child = tree.children[0]
                     let value = child.value
                     if value < tree.value {
-                        BinaryDiagram(tree: child, node: self.node)
-                        GeometryReader { geometry in
+                        
+                        HStack(alignment: .bottom, spacing: 10) {
+                            BinaryDiagram(tree: child, node: self.node)
                             Rectangle()
-                                .frame(width: geometry.size.width / 2)
+                                .frame(width: treeNodeWidth)
                                 .foregroundColor(.clear)
                         }
                     } else {
-                        GeometryReader { geometry in
+                        
+                        HStack(alignment: .bottom, spacing: 10) {
                             Rectangle()
-                                .frame(width: geometry.size.width / 2)
+                                .frame(width: treeNodeWidth)
                                 .foregroundColor(.clear)
+                            BinaryDiagram(tree: child, node: self.node)
                         }
-                        BinaryDiagram(tree: child, node: self.node)
                     }
                 } else {
                     ForEach(tree.children, id: \.value.id, content: { child in
@@ -163,7 +168,12 @@ struct BinaryDiagram<A: Identifiable & Comparable, V: View>: View {
                     })
                 }
             }
-        }.backgroundPreferenceValue(Key.self, { (centers: [A.ID: Anchor<CGPoint>]) in
+//            .overlay(
+//                Rectangle()
+//                    .stroke()
+//                    .foregroundColor(.black)
+//            )
+        }.backgroundPreferenceValue(Key.self, { (centers: [Unique<Int>.ID: Anchor<CGPoint>]) in
             GeometryReader { proxy in
                 ForEach(self.tree.children, id: \.value.id, content: {
                     child in
