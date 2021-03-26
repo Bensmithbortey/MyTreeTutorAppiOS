@@ -17,12 +17,17 @@ import Foundation
 
 import SwiftUI
 /// A simple Tree datastructure that holds nodes with `A` as the value.
-struct Tree<A> {
+class Tree<A> {
     var value: A
     var children: [Tree<A>] = []
+    weak var parent: Tree<A>?
+    
     init(_ value: A, children: [Tree<A>] = []) {
         self.value = value
         self.children = children
+        for child in children {
+            child.parent = self
+        }
     }
 }
 
@@ -137,8 +142,7 @@ struct BinaryDiagram<V: View>: View {
                     [self.tree.value.id: $0]
                 })
            
-//            Text("\(tree.maxHorizontalDistanceLevelOrder() / 2)")
-            let treeNodeWidth = CGFloat(tree.maxHorizontalDistanceLevelOrder()) / 2 * 150
+            let treeNodeWidth = CGFloat(tree.maxHorizontalDistanceLevelOrder()) / 2 * 50
             
             HStack(alignment: .top, spacing: 10) {
                 

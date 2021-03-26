@@ -10,11 +10,12 @@ import SwiftUI
 
 extension View {
     func roundedCircle() -> some View {
-        self
-            .frame(width: 50, height: 50)
+        let width: CGFloat = 40
+        
+        return self
+            .frame(width: width, height: width)
             .background(Circle().stroke())
             .background(Circle().fill(Color(.TreeBackground)))
-            .padding(10)
     }
     
     func roundedOutline() -> some View {

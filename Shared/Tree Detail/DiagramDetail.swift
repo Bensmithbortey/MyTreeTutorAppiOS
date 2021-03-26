@@ -26,7 +26,8 @@ struct TreeDetail: View {
             
             Picker(selection: $treeTypeSelection, label: Text("")) {
                 ForEach(TreeType.allCases, id: \.id) { treeType in
-                    Text(treeType.title).tag(treeType.rawValue)
+                    Text(treeType.title)
+                        .tag(treeType.rawValue)
                 }
             }.pickerStyle(SegmentedPickerStyle())
             

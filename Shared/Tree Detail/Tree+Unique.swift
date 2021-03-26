@@ -40,7 +40,7 @@ extension Tree where A == Unique<Int> {
     }
     
     
-    mutating func insert(_ number: Int) {
+    func insert(_ number: Int) {
         if number < value.value {
             if children.count > 0 {
                 children[0].insert(number)
@@ -58,7 +58,7 @@ extension Tree where A == Unique<Int> {
         }
     }
     
-    mutating func delete(_ id: A.ID) {
+    func delete(_ id: A.ID) {
         for index in 0..<children.count {
             let child = children[index]
             if child.value.id == id {

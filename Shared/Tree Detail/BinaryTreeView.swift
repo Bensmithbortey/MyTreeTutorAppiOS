@@ -25,6 +25,8 @@ struct BinaryTreeView: View {
     @State var generateMaxValue: String = ""
     
     @State var selectedNodeID: UUID?
+    @State var highlightedNodeID: UUID?
+    @State var highlightedNode: Tree<Unique<Int>>?
     
     @State var history = [Int]()
     
@@ -37,7 +39,7 @@ struct BinaryTreeView: View {
     var body: some View {
         VStack {
             
-                graphView
+            graphView
             
             HStack {
                 
@@ -105,9 +107,22 @@ struct BinaryTreeView: View {
         }//: ZStack
     }
     
+    func color(node: UUID) -> Color {
+        if let highlightedNodeID = highlightedNodeID, highlightedNodeID == node {
+            return Color(.yellow)
+        }
+        
+        if let selectedNodeID = selectedNodeID, selectedNodeID == node {
+            return Color(.TreeOutline)
+        }
+        return .clear
+    }
+    
     @ViewBuilder
     var graphView: some View {
+        
         VStack {
+            
             if let tree = tree {
                 GeometryReader { geometry in
                     
@@ -118,13 +133,13 @@ struct BinaryTreeView: View {
                         BinaryDiagram(tree: tree, node: { value in
                             // Tree node
                             Text("\(value.value)")
+                                .font(.system(size: 15))
                                 .foregroundColor(Color(.TreeOutline))
                                 .roundedCircle()
                                 .overlay(
                                     Circle()
                                         .stroke()
-                                        .foregroundColor((selectedNodeID != nil ? value.id == selectedNodeID! : false) ?
-                                                            Color(.TreeOutline) : .clear)
+                                        .foregroundColor(color(node: value.id))
                                 )
                                 .onTapGesture {
                                     if selectedNodeID == value.id {
@@ -134,7 +149,6 @@ struct BinaryTreeView: View {
                                     }
                                 }
                         })
-                        //                                    .scaleEffect(treeWidth / geometry.size.width)
                         
                         Text("treeNodeWidth: \(Int(treeNodeWidth))")
                         Text("treeWidth: \(Int(treeWidth))")
@@ -226,7 +240,12 @@ struct BinaryTreeView: View {
                 
                 Button {
                     withAnimation(.default) {
-                        
+                        if highlightedNode == nil {
+                            highlightedNode = highlightedNode?.left()
+                        } else {
+                            highlightedNode = tree
+                        }
+                        highlightedNodeID = highlightedNode?.value.id
                     }
                 } label: {
                     Text("In Order")
