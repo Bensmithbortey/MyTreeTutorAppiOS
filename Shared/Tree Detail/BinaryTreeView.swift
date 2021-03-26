@@ -15,9 +15,81 @@ enum TreeAlgorithm: String, Identifiable, CaseIterable {
          postOrder = "Post-Order"
 }
 
+extension Tree where A == Unique<Int> {
+
+    func generateSteps(algorithm: TreeAlgorithm) -> [AlgorithmStep] {
+
+        var steps = [AlgorithmStep]()
+
+        switch algorithm {
+        case .preOrder:
+            steps.append(AlgorithmStep(node: self))
+            steps += left()?.generateSteps(algorithm: algorithm) ?? []
+            steps += right()?.generateSteps(algorithm: algorithm) ?? []
+        case .inOrder:
+            steps += left()?.generateSteps(algorithm: algorithm) ?? []
+            steps.append(AlgorithmStep(node: self))
+            steps += right()?.generateSteps(algorithm: algorithm) ?? []
+        case .postOrder:
+            steps += left()?.generateSteps(algorithm: algorithm) ?? []
+            steps += right()?.generateSteps(algorithm: algorithm) ?? []
+            steps.append(AlgorithmStep(node: self))
+        }
+
+        return steps
+    }
+
+}
+
+struct AlgorithmStep: Identifiable {
+    var id = UUID()
+    let node: Tree<Unique<Int>>?
+}
+
+class BinaryTreeViewModel: ObservableObject {
+    @Published var tree: Tree<Unique<Int>>?
+
+    @Published var selectedAlgorithm: TreeAlgorithm?
+    @Published var algorithmSteps = [AlgorithmStep]()
+    @Published var selectedAlgorithmStep: AlgorithmStep?
+
+    private var timer: Timer?
+    private var algorithmStepIndex = 0
+
+    init(tree: Tree<Unique<Int>>?) {
+        self.tree = tree
+    }
+
+    func generateSteps() {
+        timer?.invalidate()
+
+        guard let algorithm = selectedAlgorithm else { return }
+        algorithmSteps = tree?.generateSteps(algorithm: algorithm) ?? []
+
+        algorithmStepIndex = 0
+
+        if !algorithmSteps.isEmpty {
+            timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true, block: { _ in
+
+                self.selectedAlgorithmStep = self.algorithmSteps[self.algorithmStepIndex]
+                self.algorithmStepIndex += 1
+                if self.algorithmStepIndex == self.algorithmSteps.count {
+                    self.timer?.invalidate()
+                }
+            })
+        }
+    }
+}
+
+
 struct BinaryTreeView: View {
-    
-    @State var tree: Tree<Unique<Int>>? = nil
+
+    @ObservedObject var viewModel: BinaryTreeViewModel
+
+    init(tree: Tree<Unique<Int>>? = nil, treeName: String? = nil) {
+        viewModel = BinaryTreeViewModel(tree: tree)
+        self.treeName = treeName
+    }
     
     @State var insertValue: String = ""
     @State var findValue: String = ""
@@ -25,17 +97,14 @@ struct BinaryTreeView: View {
     @State var generateMaxValue: String = ""
     
     @State var selectedNodeID: UUID?
-    @State var highlightedNodeID: UUID?
-    @State var highlightedNode: Tree<Unique<Int>>?
     
     @State var history = [Int]()
     
     @State var showsOptionToGenerate = false
     
     @State var treeName: String?
-    
-    @State var selectedAlgorithm: TreeAlgorithm?
-    
+
+
     var body: some View {
         VStack {
             
@@ -57,7 +126,7 @@ struct BinaryTreeView: View {
                             .padding(25)
                         
                         VStack(alignment: .leading) {
-                            Text(selectedAlgorithm?.rawValue ?? "")
+                            Text(viewModel.selectedAlgorithm?.rawValue ?? "")
                             
                             ForEach(TreeAlgorithm.allCases, id: \.id) { algorithm in
                                 
@@ -68,7 +137,7 @@ struct BinaryTreeView: View {
                                     .padding(.vertical, 10)
                                     .foregroundColor(.white)
                                     .onTapGesture {
-                                        selectedAlgorithm = algorithm
+                                        viewModel.selectedAlgorithm = algorithm
                                     }
                                 
                                 if algorithm != TreeAlgorithm.allCases.last! {
@@ -97,6 +166,11 @@ struct BinaryTreeView: View {
                 
                 VStack {
                     Text("Tree Steps")
+
+                    ForEach(viewModel.algorithmSteps) { step in
+                        Text("- \(step.node?.value.value ?? 0)")
+                            .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .blue : .black)
+                    }
                 }
                 .frame(width: 300)
             }//: Outer HStack
@@ -108,7 +182,8 @@ struct BinaryTreeView: View {
     }
     
     func color(node: UUID) -> Color {
-        if let highlightedNodeID = highlightedNodeID, highlightedNodeID == node {
+        if let highlightedNodeID = viewModel.selectedAlgorithmStep?.node?.value.id,
+           highlightedNodeID.uuidString == node.uuidString {
             return Color(.yellow)
         }
         
@@ -123,7 +198,7 @@ struct BinaryTreeView: View {
         
         VStack {
             
-            if let tree = tree {
+            if let tree = viewModel.tree {
                 GeometryReader { geometry in
                     
                     let treeNodeWidth = CGFloat(tree.maxHorizontalDistanceLevelOrder())
@@ -149,7 +224,7 @@ struct BinaryTreeView: View {
                                     }
                                 }
                         })
-                        
+
                         Text("treeNodeWidth: \(Int(treeNodeWidth))")
                         Text("treeWidth: \(Int(treeWidth))")
                     }
@@ -194,10 +269,10 @@ struct BinaryTreeView: View {
                 Button {
                     withAnimation(.default) {
                         if let value = Int(insertValue) {
-                            if let _ = tree {
-                                self.tree?.insert(value)
+                            if let tree = viewModel.tree {
+                                tree.insert(value)
                             } else {
-                                tree = Tree(Unique(value))
+                                viewModel.tree = Tree(Unique(value))
                             }
                             history.append(value)
                         }
@@ -214,7 +289,7 @@ struct BinaryTreeView: View {
                 Button {
                     withAnimation(.default) {
                         if let value = Int(findValue) {
-                            let ids = tree?.findIDs(value: Unique(value)) ?? []
+                            let ids = viewModel.tree?.findIDs(value: Unique(value)) ?? []
                             self.selectedNodeID = ids.first
                         }
                     }
@@ -240,12 +315,7 @@ struct BinaryTreeView: View {
                 
                 Button {
                     withAnimation(.default) {
-                        if highlightedNode == nil {
-                            highlightedNode = highlightedNode?.left()
-                        } else {
-                            highlightedNode = tree
-                        }
-                        highlightedNodeID = highlightedNode?.value.id
+                        viewModel.generateSteps()
                     }
                 } label: {
                     Text("In Order")
@@ -263,17 +333,17 @@ struct BinaryTreeView: View {
             
             Button {
                 
-                withAnimation(.default) {
+//                withAnimation(.default) {
                     if let selectedNodeID = selectedNodeID {
                         
-                        if let tree = tree, tree.value.id == selectedNodeID {
-                            self.tree = nil
+                        if let tree = viewModel.tree, tree.value.id == selectedNodeID {
+                            viewModel.tree = nil
                         } else {
-                            tree?.delete(selectedNodeID)
+                            viewModel.tree?.delete(selectedNodeID)
                         }
                         self.selectedNodeID = nil
                     }
-                }
+//                }
             } label: {
                 Text("Delete")
             }
@@ -282,19 +352,19 @@ struct BinaryTreeView: View {
     
     func generate(min: Int, max: Int, totalNodeCount: Int = 8) {
         let value = min + Int(arc4random() % UInt32(max - min))
-        tree = Tree(Unique(value))
+        viewModel.tree = Tree(Unique(value))
         
         // Insert 9 random elements, thus generating the random tree
         for _ in 0..<totalNodeCount {
             let value = min + Int(arc4random() % UInt32(max - min))
-            tree?.insert(value)
+            viewModel.tree?.insert(value)
         }
     }
     
     var saveButton: some View {
         Button("Save", action: {
             if let treeName = treeName {
-                try? tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: treeName)
+                try? viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: treeName)
             } else {
                 let alert = UIAlertController(title: "Choose title", message: "", preferredStyle: .alert)
                 
@@ -305,7 +375,7 @@ struct BinaryTreeView: View {
                 alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] _ in
                     if let textField = alert?.textFields?.first, let text = textField.text, !text.isEmpty {
                         treeName = text
-                        try? tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: text)
+                        try? viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: text)
                     } else {
                         // Couldn't save because the title is missing
                     }
