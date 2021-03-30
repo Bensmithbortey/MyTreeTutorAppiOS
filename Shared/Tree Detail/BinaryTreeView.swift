@@ -24,114 +24,174 @@ struct BinaryTreeView: View {
     
     @State var selectedNodeID: UUID?
     
-    @State var history = [Int]()
-    
     @State var showsOptionToGenerate = false
     
     @State var treeName: String?
 
+    @State var showTreeAlgorithmsView = false
+    @State var showToolboxView = false
+    @State var showTreeStepsView = false
+
 
     var body: some View {
-        VStack {
-            
-            graphView
-            
+        ZStack {
+
             HStack {
-                
-                VStack {
-                    Text(treeName ?? "")
-                        .font(.system(size: 24))
-                    
-                    Spacer()
-                    
-                    // Tree algorithms
-                    VStack {
-                        Text("Tree Alhorithms")
-                            .font(.system(size: 24, weight: .bold))
-                            .foregroundColor(.white)
-                            .padding(25)
-                        
-                        VStack(alignment: .leading) {
-                            Text(viewModel.selectedAlgorithm?.rawValue ?? "")
-                            
-                            ForEach(TreeAlgorithm.allCases, id: \.id) { algorithm in
-                                
-                                Text(algorithm.rawValue)
-                                    .font(.system(size: 24, weight: .semibold))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.leading)
-                                    .padding(.vertical, 10)
-                                    .foregroundColor(.white)
-                                    .onTapGesture {
-                                        viewModel.selectAlgorithm(algorithm)
-                                    }
-                                
-                                if algorithm != TreeAlgorithm.allCases.last! {
-                                    Rectangle()
-                                        .foregroundColor(.white)
-                                        .frame(height: 0.5)
-                                }
-                            }
-                        }
-                        .frame(width: 200)
-                        .padding(.bottom, 25)
-                    }
-                    .background(Color.blue)
-                    .overlay(
-                        Rectangle()
-                            .stroke()
-                            .foregroundColor(.black)
-                    )
-                }
-                
-                VStack {
+                Spacer()
+
+                graphView
+                    .frame(width: 400, height: 400)
+
+                Spacer()
+            }
+
+            VStack {
+                Spacer()
+
+                toolboxView
+            }
+
+
+            VStack {
+
+                HStack {
+                    treeAlgorithmsView
+
                     Spacer()
 
-                    HStack {
-
-                        Button(action: {
-                            viewModel.stepBackward()
-                        }, label: {
-                            Image(systemName: .backwardEnd)
-                        })
-
-                        Button(action: {
-                            if viewModel.isPlayingAlgorithm {
-                                viewModel.pause()
-                            } else {
-                                viewModel.resume()
-                            }
-                        }, label: {
-                            Image(systemName: viewModel.isPlayingAlgorithm ? .pause : .play)
-                        })
-
-
-                        Button(action: {
-                            viewModel.stepForward()
-                        }, label: {
-                            Image(systemName: .forwardEnd)
-                        })
-
-                    }
-
-                    toolboxView
+                    treeStepsView
+                }//: Outer HStack
+                .onAppear {
+                    showsOptionToGenerate = true
                 }
-                
-                VStack {
+            }
+        }//: ZStack
+    }
+
+
+    var treeStepsView: some View {
+        VStack {
+            // Tree algorithms
+            VStack {
+                Group {
                     Text("Tree Steps")
 
                     ForEach(viewModel.algorithmSteps) { step in
                         Text("- \(step.node?.value.value ?? 0)")
-                            .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .blue : .black)
+                            .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .yellow : .black)
                     }
                 }
-                .frame(width: 300)
-            }//: Outer HStack
-            .onAppear {
-                showsOptionToGenerate = true
+                .frame(width: 200)
+                .opacity(showTreeStepsView ? 1 : 0)
             }
-            
-        }//: ZStack
+            .squaredOutline()
+        }
+        .offset(x: showTreeStepsView ? 0 : 200)
+        .animation(.easeIn)
+        .onTapGesture {
+            showTreeStepsView.toggle()
+        }
+    }
+
+    @ViewBuilder
+    var playbackToolbarView: some View {
+
+        let imageSide: CGFloat = 20
+
+        HStack(spacing: imageSide) {
+
+            Button(action: {
+                viewModel.stepBackward()
+            }, label: {
+                Image(systemName: .backwardEnd)
+                    .resizable()
+                    .frame(width: imageSide, height: imageSide)
+            })
+
+            Button(action: {
+                if viewModel.isPlayingAlgorithm {
+                    viewModel.pause()
+                } else {
+                    viewModel.resume()
+                }
+            }, label: {
+                Image(systemName: viewModel.isPlayingAlgorithm ? .pause : .play)
+                    .resizable()
+                    .frame(width: imageSide, height: imageSide)
+            })
+
+
+            Button(action: {
+                viewModel.stepForward()
+            }, label: {
+                Image(systemName: .forwardEnd)
+                    .resizable()
+                    .frame(width: imageSide, height: imageSide)
+            })
+
+        }
+        .foregroundColor(.black)
+    }
+
+
+    var treeAlgorithmsView: some View {
+        VStack {
+            Text(treeName ?? "")
+                .font(.system(size: 24))
+
+            Spacer()
+
+            // Tree algorithms
+            VStack(spacing: 25) {
+                Group {
+                    Text("Tree Algorithms")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(25)
+
+                    VStack(alignment: .leading) {
+                        Text(viewModel.selectedAlgorithm?.rawValue ?? "")
+
+                        ForEach(TreeAlgorithm.allCases, id: \.id) { algorithm in
+
+                            Text(algorithm.rawValue)
+                                .font(.system(size: 24, weight: .semibold))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading)
+                                .padding(.vertical, 10)
+                                .foregroundColor(.white)
+                                .onTapGesture {
+                                    viewModel.selectAlgorithm(algorithm)
+                                }
+
+                            if algorithm != TreeAlgorithm.allCases.last! {
+                                Rectangle()
+                                    .foregroundColor(.white)
+                                    .frame(height: 0.5)
+                            }
+                        }
+                    }
+                    .frame(width: 200)
+
+                    Button {
+                        withAnimation(.default) {
+                            viewModel.generateSteps()
+                            showTreeStepsView = true
+                        }
+                    } label: {
+                        Text("Generate sorted Array")
+                    }
+                    .padding([.bottom, .horizontal], 25)
+                }
+                .opacity(showTreeAlgorithmsView ? 1 : 0)
+            }
+            .squaredOutline()
+        }
+        .offset(x: showTreeAlgorithmsView ? 0 : -200)
+        .animation(.easeIn)
+        .onTapGesture {
+            showTreeAlgorithmsView.toggle()
+        }
     }
     
     func color(node: UUID) -> Color {
@@ -196,84 +256,84 @@ struct BinaryTreeView: View {
     @ViewBuilder
     var toolboxView: some View {
         VStack(spacing: 30) {
-            
-            // Generate random Tree
-            HStack {
-                Text("Generate\nrandom tree")
-                
-                VStack {
-                    TextField("Min", text: $generateMinValue)
-                    TextField("Max", text: $generateMaxValue)
-                }
-                
-                Button {
-                    if let min = Int(generateMinValue), let max = Int(generateMaxValue) {
-                        viewModel.generate(min: min, max: max)
-                    }
-                } label: {
-                    Text("Generate")
-                }
-            }
-            
-            // Insert
-            HStack {
-                TextField("Insert a node", text: $insertValue)
-                
-                Button {
-                    withAnimation(.default) {
-                        if let value = Int(insertValue) {
-                            viewModel.insert(value)
+            playbackToolbarView
+
+            VStack(spacing: 30) {
+
+                Group {
+                    // Generate random Tree
+                    HStack {
+                        Text("Generate\nrandom tree")
+
+                        VStack {
+                            TextField("Min", text: $generateMinValue)
+                            TextField("Max", text: $generateMaxValue)
+                        }
+
+                        Button {
+                            if let min = Int(generateMinValue), let max = Int(generateMaxValue) {
+                                viewModel.generate(min: min, max: max)
+                            }
+                        } label: {
+                            Text("Generate")
                         }
                     }
-                } label: {
-                    Text("Insert")
-                }
-            }
-            
-            // Find
-            HStack {
-                TextField("Find a node", text: $findValue)
-                
-                Button {
-                    withAnimation(.default) {
-                        if let value = Int(findValue) {
-                            let ids = viewModel.tree?.findIDs(value: Unique(value)) ?? []
-                            self.selectedNodeID = ids.first
+
+                    // Insert
+                    HStack {
+                        TextField("Insert a node", text: $insertValue)
+
+                        Button {
+                            withAnimation(.default) {
+                                if let value = Int(insertValue) {
+                                    viewModel.insert(value)
+                                }
+                            }
+                        } label: {
+                            Text("Insert")
                         }
                     }
-                } label: {
-                    Text("Find")
-                }
-            }
-            
-            //
-            HStack {
-                Button {
-                    withAnimation(.default) {
-                        
-                    }
-                } label: {
-                    Text("Balance")
-                }
-            }
-            
-            //
-            HStack {
-                Text("Generate sorted Array")
-                
-                Button {
-                    withAnimation(.default) {
-                        viewModel.generateSteps()
-                    }
-                } label: {
-                    Text("Generate")
-                }
-            }
-            
-            deleteButton
 
-            saveButton
+                    // Find
+                    HStack {
+                        TextField("Find a node", text: $findValue)
 
+                        Button {
+                            withAnimation(.default) {
+                                if let value = Int(findValue) {
+                                    let ids = viewModel.tree?.findIDs(value: Unique(value)) ?? []
+                                    self.selectedNodeID = ids.first
+                                }
+                            }
+                        } label: {
+                            Text("Find")
+                        }
+                    }
+
+                    //
+                    HStack {
+                        Button {
+                            withAnimation(.default) {
+
+                            }
+                        } label: {
+                            Text("Balance")
+                        }
+                    }
+
+                    deleteButton
+
+                    saveButton
+                }
+                .opacity(showToolboxView ? 1 : 0)
+            }
+            .squaredOutline()
+        }
+        .padding(.horizontal, 100)
+        .offset(y: showToolboxView ? 0 : 320)
+        .animation(.easeIn)
+        .onTapGesture {
+            showToolboxView.toggle()
         }
     }
     

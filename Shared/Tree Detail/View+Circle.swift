@@ -27,6 +27,16 @@ extension View {
                     .foregroundColor(.gray)
             )
     }
+
+    func squaredOutline(color: Color = .blue) -> some View {
+        self
+            .background(color)
+            .overlay(
+                Rectangle()
+                    .stroke()
+                    .foregroundColor(.black)
+            )
+    }
 }
 
 struct View_Circle_Previews: PreviewProvider {
