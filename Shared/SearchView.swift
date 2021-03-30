@@ -47,22 +47,18 @@ struct SearchView: View {
                 .mask(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .padding(.vertical, 8)
             
-            
             ForEach(filteredTrees) { tree in
                 let tree = tree as TreeModel
-                
-                
-                #if os(iOS)
-                NavigationLink(destination:
-                    TreeDetail(treeType: .binary, tree: tree.generateTree(), treeName: tree.title)
-                ){
-                    Text(tree.title ?? "")
-                        .frame(maxHeight: 240)
-                }
-                #else
-                TreeItem(treeType: treeType)
-                    .frame(maxHeight: 240)
-                #endif
+
+                Text(tree.title ?? "")
+                    .frame(maxHeight: .infinity)
+                    .onTapGesture {
+                        NotificationCenter.default.post(name: .changeTab,
+                                                        object: Tab.treeVisualizer, userInfo: [
+                                                            "TreeModelNavigation": TreeModelNavigation(title: tree.title,
+                                                                                                       tree: tree.generateTree())
+                                                        ])
+                    }
                 
             }.onDelete { (indexSet) in
                 for index in indexSet {

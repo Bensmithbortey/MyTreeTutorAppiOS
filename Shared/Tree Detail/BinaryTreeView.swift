@@ -188,7 +188,7 @@ struct BinaryTreeView: View {
         }
         
         if let selectedNodeID = selectedNodeID, selectedNodeID == node {
-            return Color(.TreeOutline)
+            return Color(.blue)
         }
         return .clear
     }
@@ -323,6 +323,8 @@ struct BinaryTreeView: View {
             }
             
             deleteButton
+            
+            saveButton
             
         }
     }

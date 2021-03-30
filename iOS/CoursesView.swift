@@ -7,25 +7,48 @@
 
 import SwiftUI
 
+extension Notification.Name {
+
+    static let changeTab = Notification.Name("changeTab")
+
+}
+
+enum Tab: Int {
+    case treeVisualizer,
+         courses,
+         search
+}
+
+struct TreeModelNavigation {
+    let title: String?
+    let tree: Tree<Unique<Int>>
+}
+
 struct CoursesView: View {
     @Namespace var namespace
     @State var items = courses
     @State var show =  false
     @State var showNavBar = true
-    @State var selection: Set<NavigationItem> = [.courses]
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     @State var selectedTreeType: TreeType?
+
+    @State var selectedTree: TreeModelNavigation?
+    @State var tabSelection: Int = 0
     
     var body: some View {
         ZStack {
-//            if horizontalSizeClass == .compact {
-                tabView
-//            } else {
-//                sidebar
-//            }
+            tabView
             fullContent
         }
+        .onReceive(NotificationCenter.default.publisher(for: .changeTab), perform: { notification in
+            if let tab = notification.object as? Tab {
+                tabSelection = tab.rawValue
+            }
+            if let navigation = notification.userInfo?["TreeModelNavigation"] as? TreeModelNavigation {
+                selectedTree = navigation
+            }
+        })
     }
     
     var content: some View {
@@ -149,15 +172,20 @@ struct CoursesView: View {
     }
     
     var tabView: some View {
-        TabView {
-//            NavigationView {
-                TreeDetail(treeType: .binary)
-//            }
-//            .navigationViewStyle(StackNavigationViewStyle())
+        TabView(selection: $tabSelection) {
+            VStack {
+                if let tree = selectedTree {
+                    TreeDetail(treeType: .binary,
+                               tree: tree.tree,
+                               treeName: tree.title)
+                } else {
+                    TreeDetail(treeType: .binary)
+                }
+            }
             .tabItem {
                 Image(systemName: "list.bullet.rectangle")
                 Text("Tree Visualiser")
-            }
+            }.tag(Tab.treeVisualizer.rawValue)
             
             NavigationView {
                 content
@@ -166,8 +194,7 @@ struct CoursesView: View {
             .navigationViewStyle(StackNavigationViewStyle())
             .tabItem { Image(systemName: "book.closed")
                 Text("Courses")
-                
-            }
+            }.tag(Tab.courses.rawValue)
             
             NavigationView {
                 SearchView()
@@ -176,7 +203,7 @@ struct CoursesView: View {
             .tabItem {
                 Image(systemName: "magnifyingglass")
                 Text("Search")
-            }
+            }.tag(Tab.treeVisualizer.rawValue)
         }
     }
 }
