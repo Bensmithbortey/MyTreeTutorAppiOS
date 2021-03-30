@@ -86,7 +86,34 @@ struct BinaryTreeView: View {
                 
                 VStack {
                     Spacer()
-                    
+
+                    HStack {
+
+                        Button(action: {
+                            viewModel.stepBackward()
+                        }, label: {
+                            Image(systemName: .backwardEnd)
+                        })
+
+                        Button(action: {
+                            if viewModel.isPlayingAlgorithm {
+                                viewModel.pause()
+                            } else {
+                                viewModel.resume()
+                            }
+                        }, label: {
+                            Image(systemName: viewModel.isPlayingAlgorithm ? .pause : .play)
+                        })
+
+
+                        Button(action: {
+                            viewModel.stepForward()
+                        }, label: {
+                            Image(systemName: .forwardEnd)
+                        })
+
+                    }
+
                     toolboxView
                 }
                 
@@ -244,9 +271,9 @@ struct BinaryTreeView: View {
             }
             
             deleteButton
-            
+
             saveButton
-            
+
         }
     }
     

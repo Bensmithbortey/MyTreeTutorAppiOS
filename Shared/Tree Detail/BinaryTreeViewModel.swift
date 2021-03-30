@@ -20,6 +20,10 @@ class BinaryTreeViewModel: ObservableObject {
     private var timer: Timer?
     private var algorithmStepIndex = 0
 
+    var isPlayingAlgorithm: Bool {
+        return timer != nil
+    }
+
     init(tree: Tree<Unique<Int>>?) {
         self.tree = tree
     }
@@ -38,17 +42,44 @@ class BinaryTreeViewModel: ObservableObject {
         algorithmStepIndex = 0
 
         if !algorithmSteps.isEmpty {
-            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-
-                self.selectedAlgorithmStep = self.algorithmSteps[self.algorithmStepIndex]
-                self.algorithmStepIndex += 1
-                if self.algorithmStepIndex == self.algorithmSteps.count {
-                    self.timer?.invalidate()
-                }
-                self.objectWillChange.send()
-            })
+            resume()
         }
         objectWillChange.send()
+    }
+
+    func pause() {
+        timer?.invalidate()
+        objectWillChange.send()
+    }
+
+    func resume() {
+        guard !algorithmSteps.isEmpty else { return }
+
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+
+            self.selectedAlgorithmStep = self.algorithmSteps[self.algorithmStepIndex]
+            self.algorithmStepIndex += 1
+            if self.algorithmStepIndex == self.algorithmSteps.count {
+                self.timer?.invalidate()
+                self.timer = nil
+            }
+            self.objectWillChange.send()
+        })
+    }
+
+    func stepForward() {
+        guard algorithmSteps.count - 1 > algorithmStepIndex else { return }
+
+        algorithmStepIndex += 1
+        selectedAlgorithmStep = algorithmSteps[algorithmStepIndex]
+        pause()
+    }
+
+    func stepBackward() {
+        guard algorithmStepIndex > 0 else { return }
+        algorithmStepIndex -= 1
+        selectedAlgorithmStep = algorithmSteps[algorithmStepIndex]
+        pause()
     }
 
     func insert(_ value: Int) {
@@ -60,7 +91,9 @@ class BinaryTreeViewModel: ObservableObject {
         objectWillChange.send()
     }
 
-    func generate(min: Int, max: Int, totalNodeCount: Int = 8) {
+    func generate(min: Int,
+                  max: Int,
+                  totalNodeCount: Int = 8) {
         let value = min + Int(arc4random() % UInt32(max - min))
         tree = Tree(Unique(value))
 
