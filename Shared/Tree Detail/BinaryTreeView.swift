@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 enum TreeAlgorithm: String, Identifiable, CaseIterable {
     var id: String { rawValue }
@@ -47,7 +48,9 @@ struct AlgorithmStep: Identifiable {
 }
 
 class BinaryTreeViewModel: ObservableObject {
-    @Published var tree: Tree<Unique<Int>>?
+    var tree: Tree<Unique<Int>>?
+
+    let objectWillChange = PassthroughSubject<Void, Never>()
 
     @Published var selectedAlgorithm: TreeAlgorithm?
     @Published var algorithmSteps = [AlgorithmStep]()
@@ -78,6 +81,27 @@ class BinaryTreeViewModel: ObservableObject {
                 }
             })
         }
+    }
+
+    func insert(_ value: Int) {
+        if let tree = tree {
+            tree.insert(value)
+        } else {
+            tree = Tree(Unique(value))
+        }
+        objectWillChange.send()
+    }
+
+    func generate(min: Int, max: Int, totalNodeCount: Int = 8) {
+        let value = min + Int(arc4random() % UInt32(max - min))
+        tree = Tree(Unique(value))
+
+        // Insert 9 random elements, thus generating the random tree
+        for _ in 0..<totalNodeCount {
+            let value = min + Int(arc4random() % UInt32(max - min))
+            tree?.insert(value)
+        }
+        objectWillChange.send()
     }
 }
 
@@ -231,7 +255,7 @@ struct BinaryTreeView: View {
                 }
             } else {
                 Button {
-                    generate(min: 1, max: 100)
+                    viewModel.generate(min: 1, max: 100)
                 } label: {
                     Text("Generate a Tree")
                 }
@@ -255,7 +279,7 @@ struct BinaryTreeView: View {
                 
                 Button {
                     if let min = Int(generateMinValue), let max = Int(generateMaxValue) {
-                        generate(min: min, max: max)
+                        viewModel.generate(min: min, max: max)
                     }
                 } label: {
                     Text("Generate")
@@ -269,12 +293,7 @@ struct BinaryTreeView: View {
                 Button {
                     withAnimation(.default) {
                         if let value = Int(insertValue) {
-                            if let tree = viewModel.tree {
-                                tree.insert(value)
-                            } else {
-                                viewModel.tree = Tree(Unique(value))
-                            }
-                            history.append(value)
+                            viewModel.insert(value)
                         }
                     }
                 } label: {
@@ -349,17 +368,6 @@ struct BinaryTreeView: View {
             } label: {
                 Text("Delete")
             }
-        }
-    }
-    
-    func generate(min: Int, max: Int, totalNodeCount: Int = 8) {
-        let value = min + Int(arc4random() % UInt32(max - min))
-        viewModel.tree = Tree(Unique(value))
-        
-        // Insert 9 random elements, thus generating the random tree
-        for _ in 0..<totalNodeCount {
-            let value = min + Int(arc4random() % UInt32(max - min))
-            viewModel.tree?.insert(value)
         }
     }
     

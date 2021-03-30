@@ -65,7 +65,7 @@ extension TreeModel {
 
     func generateTree() -> Tree<Unique<Int>> {
         
-        var tree = Tree(Unique(Int(value)))
+        let tree = Tree(Unique(Int(value)))
         
         for child in sortedChildren {
             tree.children.append(child.generateTree())

@@ -38,19 +38,19 @@ extension Tree where A == Unique<Int> {
             return nil
         }
     }
-    
-    
+
     func insert(_ number: Int) {
         if number < value.value {
             if children.count > 0 {
-                children[0].insert(number)
+                left()?.insert(number)
             } else {
                 children.append(Tree(Unique(number)))
             }
         } else {
             if children.count == 2 {
                 children[1].insert(number)
-            } else if children.count == 1 && children[0].value.value > number {
+            } else if children.count == 1
+                        && children[0].value.value > number {
                 children[0].insert(number)
             } else {
                 children.append(Tree(Unique(number)))
