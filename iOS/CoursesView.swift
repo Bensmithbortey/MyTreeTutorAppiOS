@@ -14,8 +14,8 @@ extension Notification.Name {
 }
 
 enum Tab: Int {
-    case treeVisualizer,
-         courses,
+    case courses,
+         treeVisualizer,
          search
 }
 
@@ -173,6 +173,18 @@ struct CoursesView: View {
     
     var tabView: some View {
         TabView(selection: $tabSelection) {
+
+            NavigationView {
+                content
+                    .navigationTitle(showNavBar ? "Courses" : "")
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .tabItem { Image(systemName: "book.closed")
+                Text("Courses")
+            }.tag(Tab.courses.rawValue)
+
+
+
             VStack {
                 if let tree = selectedTree {
                     TreeDetail(treeType: .binary,
@@ -186,16 +198,9 @@ struct CoursesView: View {
                 Image(systemName: "list.bullet.rectangle")
                 Text("Tree Visualiser")
             }.tag(Tab.treeVisualizer.rawValue)
-            
-            NavigationView {
-                content
-                    .navigationTitle(showNavBar ? "Courses" : "")
-            }
-            .navigationViewStyle(StackNavigationViewStyle())
-            .tabItem { Image(systemName: "book.closed")
-                Text("Courses")
-            }.tag(Tab.courses.rawValue)
-            
+
+
+
             NavigationView {
                 SearchView()
             }

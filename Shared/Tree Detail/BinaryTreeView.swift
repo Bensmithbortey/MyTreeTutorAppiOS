@@ -74,7 +74,7 @@ struct BinaryTreeView: View {
                 })
                 .padding()
 
-                Group {
+                VStack {
                     Text("Tree Steps")
 
                     ScrollView {
@@ -88,6 +88,17 @@ struct BinaryTreeView: View {
                 }
                 .frame(width: width, height: 300)
                 .opacity(showTreeStepsView ? 1 : 0)
+                .overlay(
+                    HStack {
+                        Text("Tree Steps")
+                            .foregroundColor(.white)
+                            .rotationEffect(Angle(degrees: 270))
+                            .offset(x: -20)
+                            .opacity(showTreeStepsView ? 0 : 1)
+
+                        Spacer()
+                    }
+                )
             }
             .squaredOutline()
         }
@@ -162,7 +173,7 @@ struct BinaryTreeView: View {
                     .padding()
                 }
 
-                Group {
+                VStack(spacing: 25) {
                     Text("Tree Algorithms")
                         .font(.system(size: 24, weight: .bold))
                         .foregroundColor(.white)
@@ -192,6 +203,17 @@ struct BinaryTreeView: View {
                     }
                 }
                 .opacity(showTreeAlgorithmsView ? 1 : 0)
+                .overlay(
+                    HStack {
+                        Spacer()
+
+                        Text("Tree Algorithms")
+                            .foregroundColor(.white)
+                            .rotationEffect(Angle(degrees: 90))
+                            .offset(x: 40)
+                            .opacity(showTreeAlgorithmsView ? 0 : 1)
+                    }
+                )
             }
             .frame(width: width)
             .squaredOutline()
