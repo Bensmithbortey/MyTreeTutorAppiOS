@@ -40,21 +40,33 @@ extension Tree where A == Unique<Int> {
     }
 
     func insert(_ number: Int) {
-        if number < value.value {
+        insert(Tree(Unique(number)))
+    }
+
+    func insert(_ node: Tree<Unique<Int>>) {
+        if node.value.value < value.value {
             if children.count > 0 {
-                left()?.insert(number)
+                left()?.insert(node)
             } else {
-                children.append(Tree(Unique(number)))
+                children.append(node)
             }
         } else {
             if children.count == 2 {
-                children[1].insert(number)
+                children[1].insert(node)
             } else if children.count == 1, let right = right() {
-                right.insert(number)
+                right.insert(node)
             } else {
-                children.append(Tree(Unique(number)))
+                children.append(node)
             }
         }
+    }
+
+    func findRoot() -> Tree<Unique<Int>> {
+        var root = self
+        while root.parent != nil {
+            root = root.parent!
+        }
+        return root
     }
     
     func delete(_ id: A.ID) {
@@ -62,7 +74,10 @@ extension Tree where A == Unique<Int> {
             let child = children[index]
             if child.value.id == id {
                 children.remove(at: index)
-                break
+                for node in [child.left(), child.right()].compactMap({ $0 }) {
+                    findRoot().insert(node)
+                }
+                return
             }
         }
         

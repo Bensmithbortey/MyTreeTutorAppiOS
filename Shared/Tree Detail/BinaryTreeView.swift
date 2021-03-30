@@ -8,111 +8,6 @@
 import SwiftUI
 import Combine
 
-enum TreeAlgorithm: String, Identifiable, CaseIterable {
-    var id: String { rawValue }
-    
-    case inOrder = "In-Order",
-         preOrder = "Pre-Order",
-         postOrder = "Post-Order"
-}
-
-extension Tree where A == Unique<Int> {
-
-    func generateSteps(algorithm: TreeAlgorithm) -> [AlgorithmStep] {
-
-        var steps = [AlgorithmStep]()
-
-        switch algorithm {
-        case .preOrder:
-            steps.append(AlgorithmStep(node: self))
-            steps += left()?.generateSteps(algorithm: algorithm) ?? []
-            steps += right()?.generateSteps(algorithm: algorithm) ?? []
-        case .inOrder:
-            steps += left()?.generateSteps(algorithm: algorithm) ?? []
-            steps.append(AlgorithmStep(node: self))
-            steps += right()?.generateSteps(algorithm: algorithm) ?? []
-        case .postOrder:
-            steps += left()?.generateSteps(algorithm: algorithm) ?? []
-            steps += right()?.generateSteps(algorithm: algorithm) ?? []
-            steps.append(AlgorithmStep(node: self))
-        }
-
-        return steps
-    }
-
-}
-
-struct AlgorithmStep: Identifiable {
-    var id = UUID()
-    let node: Tree<Unique<Int>>?
-}
-
-class BinaryTreeViewModel: ObservableObject {
-    var tree: Tree<Unique<Int>>?
-
-    let objectWillChange = PassthroughSubject<Void, Never>()
-
-    @Published var selectedAlgorithm: TreeAlgorithm?
-    @Published var algorithmSteps = [AlgorithmStep]()
-    @Published var selectedAlgorithmStep: AlgorithmStep?
-
-    private var timer: Timer?
-    private var algorithmStepIndex = 0
-
-    init(tree: Tree<Unique<Int>>?) {
-        self.tree = tree
-    }
-
-    func selectAlgorithm(_ selectedAlgorithm: TreeAlgorithm?) {
-        self.selectedAlgorithm = selectedAlgorithm
-        objectWillChange.send()
-    }
-
-    func generateSteps() {
-        timer?.invalidate()
-
-        guard let algorithm = selectedAlgorithm else { return }
-        algorithmSteps = tree?.generateSteps(algorithm: algorithm) ?? []
-
-        algorithmStepIndex = 0
-
-        if !algorithmSteps.isEmpty {
-            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-
-                self.selectedAlgorithmStep = self.algorithmSteps[self.algorithmStepIndex]
-                self.algorithmStepIndex += 1
-                if self.algorithmStepIndex == self.algorithmSteps.count {
-                    self.timer?.invalidate()
-                }
-                self.objectWillChange.send()
-            })
-        }
-        objectWillChange.send()
-    }
-
-    func insert(_ value: Int) {
-        if let tree = tree {
-            tree.insert(value)
-        } else {
-            tree = Tree(Unique(value))
-        }
-        objectWillChange.send()
-    }
-
-    func generate(min: Int, max: Int, totalNodeCount: Int = 8) {
-        let value = min + Int(arc4random() % UInt32(max - min))
-        tree = Tree(Unique(value))
-
-        // Insert 9 random elements, thus generating the random tree
-        for _ in 0..<totalNodeCount {
-            let value = min + Int(arc4random() % UInt32(max - min))
-            tree?.insert(value)
-        }
-        objectWillChange.send()
-    }
-}
-
-
 struct BinaryTreeView: View {
 
     @ObservedObject var viewModel: BinaryTreeViewModel
@@ -360,18 +255,12 @@ struct BinaryTreeView: View {
         HStack {
             
             Button {
-                
-//                withAnimation(.default) {
+                withAnimation(.default) {
                     if let selectedNodeID = selectedNodeID {
-                        
-                        if let tree = viewModel.tree, tree.value.id == selectedNodeID {
-                            viewModel.tree = nil
-                        } else {
-                            viewModel.tree?.delete(selectedNodeID)
-                        }
+                        viewModel.delete(selectedNodeID)
                         self.selectedNodeID = nil
                     }
-//                }
+                }
             } label: {
                 Text("Delete")
             }
