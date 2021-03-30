@@ -50,7 +50,25 @@ struct BinaryTreeView: View {
 
                     Spacer()
 
-                    treeStepsView
+                    VStack(alignment: .trailing) {
+
+                        HStack {
+                            Spacer()
+
+                            Button {
+                                let alert = UIAlertController(title: "Instructions", message: "Here are instructions on how to use the app", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "Got it", style: .cancel, handler: nil))
+
+                                UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
+                            } label: {
+                                Image(systemName: .infoCircleFill)
+                            }
+                        }.padding()
+
+                        Spacer()
+
+                        treeStepsView
+                    }
                 }//: Outer HStack
                 .onAppear {
                     showsOptionToGenerate = true
