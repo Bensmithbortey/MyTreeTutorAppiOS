@@ -63,6 +63,11 @@ class BinaryTreeViewModel: ObservableObject {
         self.tree = tree
     }
 
+    func selectAlgorithm(_ selectedAlgorithm: TreeAlgorithm?) {
+        self.selectedAlgorithm = selectedAlgorithm
+        objectWillChange.send()
+    }
+
     func generateSteps() {
         timer?.invalidate()
 
@@ -72,15 +77,17 @@ class BinaryTreeViewModel: ObservableObject {
         algorithmStepIndex = 0
 
         if !algorithmSteps.isEmpty {
-            timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true, block: { _ in
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
 
                 self.selectedAlgorithmStep = self.algorithmSteps[self.algorithmStepIndex]
                 self.algorithmStepIndex += 1
                 if self.algorithmStepIndex == self.algorithmSteps.count {
                     self.timer?.invalidate()
                 }
+                self.objectWillChange.send()
             })
         }
+        objectWillChange.send()
     }
 
     func insert(_ value: Int) {
@@ -161,7 +168,7 @@ struct BinaryTreeView: View {
                                     .padding(.vertical, 10)
                                     .foregroundColor(.white)
                                     .onTapGesture {
-                                        viewModel.selectedAlgorithm = algorithm
+                                        viewModel.selectAlgorithm(algorithm)
                                     }
                                 
                                 if algorithm != TreeAlgorithm.allCases.last! {
@@ -337,7 +344,7 @@ struct BinaryTreeView: View {
                         viewModel.generateSteps()
                     }
                 } label: {
-                    Text("In Order")
+                    Text("Generate")
                 }
             }
             

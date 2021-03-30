@@ -49,9 +49,8 @@ extension Tree where A == Unique<Int> {
         } else {
             if children.count == 2 {
                 children[1].insert(number)
-            } else if children.count == 1
-                        && children[0].value.value > number {
-                children[0].insert(number)
+            } else if children.count == 1, let right = right() {
+                right.insert(number)
             } else {
                 children.append(Tree(Unique(number)))
             }
