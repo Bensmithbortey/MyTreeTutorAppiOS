@@ -11,7 +11,11 @@ enum SystemImage: String {
     case backwardEnd = "backward.end",
          forwardEnd = "forward.end",
          pause = "pause",
-         play = "play"
+         play = "play",
+         arrowForward = "arrow.forward",
+         arrowBackward = "arrow.backward",
+         arrowUp = "arrow.up",
+         arrowDown = "arrow.down"
 }
 
 extension Image {

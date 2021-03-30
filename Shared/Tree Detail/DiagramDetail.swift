@@ -24,12 +24,12 @@ struct TreeDetail: View {
     var body: some View {
         VStack {
             
-            Picker(selection: $treeTypeSelection, label: Text("")) {
-                ForEach(TreeType.allCases, id: \.id) { treeType in
-                    Text(treeType.title)
-                        .tag(treeType.rawValue)
-                }
-            }.pickerStyle(SegmentedPickerStyle())
+//            Picker(selection: $treeTypeSelection, label: Text("")) {
+//                ForEach(TreeType.allCases, id: \.id) { treeType in
+//                    Text(treeType.title)
+//                        .tag(treeType.rawValue)
+//                }
+//            }.pickerStyle(SegmentedPickerStyle())
             
             switch selectedTreeType {
             case .binary:
@@ -38,7 +38,7 @@ struct TreeDetail: View {
                 Spacer()
             }
 
-        }.padding()
+        }
     }
 }
 

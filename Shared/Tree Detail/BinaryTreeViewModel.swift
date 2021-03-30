@@ -49,6 +49,7 @@ class BinaryTreeViewModel: ObservableObject {
 
     func pause() {
         timer?.invalidate()
+        timer = nil
         objectWillChange.send()
     }
 

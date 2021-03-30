@@ -29,31 +29,22 @@ struct BinaryTreeView: View {
     @State var treeName: String?
 
     @State var showTreeAlgorithmsView = false
-    @State var showToolboxView = false
     @State var showTreeStepsView = false
+
+    private let visibleMenuSize: CGFloat = 44
 
 
     var body: some View {
         ZStack {
 
-            HStack {
-                Spacer()
-
+            VStack {
                 graphView
                     .frame(width: 400, height: 400)
-
-                Spacer()
-            }
-
-            VStack {
-                Spacer()
 
                 toolboxView
             }
 
-
             VStack {
-
                 HStack {
                     treeAlgorithmsView
 
@@ -68,29 +59,40 @@ struct BinaryTreeView: View {
         }//: ZStack
     }
 
-
+    @ViewBuilder
     var treeStepsView: some View {
+        let width: CGFloat = 200
+
         VStack {
             // Tree algorithms
-            VStack {
+            VStack(alignment: .leading) {
+                Button(action: {
+                    showTreeStepsView.toggle()
+                }, label: {
+                    Image(systemName: showTreeStepsView ? .arrowForward : .arrowBackward)
+                        .foregroundColor(.white)
+                })
+                .padding()
+
                 Group {
                     Text("Tree Steps")
 
-                    ForEach(viewModel.algorithmSteps) { step in
-                        Text("- \(step.node?.value.value ?? 0)")
-                            .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .yellow : .black)
+                    ScrollView {
+                        VStack {
+                            ForEach(viewModel.algorithmSteps) { step in
+                                Text("- \(step.node?.value.value ?? 0)")
+                                    .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .yellow : .black)
+                            }
+                        }
                     }
                 }
-                .frame(width: 200)
+                .frame(width: width, height: 300)
                 .opacity(showTreeStepsView ? 1 : 0)
             }
             .squaredOutline()
         }
-        .offset(x: showTreeStepsView ? 0 : 200)
+        .offset(x: showTreeStepsView ? 0 : width - visibleMenuSize)
         .animation(.easeIn)
-        .onTapGesture {
-            showTreeStepsView.toggle()
-        }
     }
 
     @ViewBuilder
@@ -133,25 +135,39 @@ struct BinaryTreeView: View {
         .foregroundColor(.black)
     }
 
-
+    @ViewBuilder
     var treeAlgorithmsView: some View {
+        let width: CGFloat = 200
+
         VStack {
-            Text(treeName ?? "")
-                .font(.system(size: 24))
+            HStack {
+                Text(treeName ?? "")
+                    .font(.system(size: 24))
+            }
 
             Spacer()
 
             // Tree algorithms
             VStack(spacing: 25) {
+
+                HStack {
+                    Spacer()
+
+                    Button(action: {
+                        showTreeAlgorithmsView.toggle()
+                    }, label: {
+                        Image(systemName: showTreeAlgorithmsView ? .arrowBackward : .arrowForward)
+                            .foregroundColor(.white)
+                    })
+                    .padding()
+                }
+
                 Group {
                     Text("Tree Algorithms")
                         .font(.system(size: 24, weight: .bold))
                         .foregroundColor(.white)
-                        .padding(25)
 
                     VStack(alignment: .leading) {
-                        Text(viewModel.selectedAlgorithm?.rawValue ?? "")
-
                         ForEach(TreeAlgorithm.allCases, id: \.id) { algorithm in
 
                             Text(algorithm.rawValue)
@@ -159,9 +175,12 @@ struct BinaryTreeView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading)
                                 .padding(.vertical, 10)
-                                .foregroundColor(.white)
+                                .foregroundColor(viewModel.selectedAlgorithm == algorithm ? .yellow : .white)
                                 .onTapGesture {
                                     viewModel.selectAlgorithm(algorithm)
+                                    viewModel.generateSteps()
+                                    showTreeStepsView = true
+                                    showTreeAlgorithmsView = false
                                 }
 
                             if algorithm != TreeAlgorithm.allCases.last! {
@@ -171,26 +190,13 @@ struct BinaryTreeView: View {
                             }
                         }
                     }
-                    .frame(width: 200)
-
-                    Button {
-                        withAnimation(.default) {
-                            viewModel.generateSteps()
-                            showTreeStepsView = true
-                        }
-                    } label: {
-                        Text("Generate sorted Array")
-                    }
-                    .padding([.bottom, .horizontal], 25)
                 }
                 .opacity(showTreeAlgorithmsView ? 1 : 0)
             }
+            .frame(width: width)
             .squaredOutline()
-        }
-        .offset(x: showTreeAlgorithmsView ? 0 : -200)
-        .animation(.easeIn)
-        .onTapGesture {
-            showTreeAlgorithmsView.toggle()
+            .offset(x: showTreeAlgorithmsView ? 0 : -(width - visibleMenuSize))
+            .animation(.easeIn)
         }
     }
     
@@ -255,86 +261,79 @@ struct BinaryTreeView: View {
     
     @ViewBuilder
     var toolboxView: some View {
+        let height: CGFloat = 250
+
         VStack(spacing: 30) {
+
             playbackToolbarView
 
             VStack(spacing: 30) {
 
                 Group {
                     // Generate random Tree
-                    HStack {
-                        Text("Generate\nrandom tree")
 
-                        VStack {
-                            TextField("Min", text: $generateMinValue)
-                            TextField("Max", text: $generateMaxValue)
-                        }
+                    HStack(spacing: 100) {
 
-                        Button {
-                            if let min = Int(generateMinValue), let max = Int(generateMaxValue) {
-                                viewModel.generate(min: min, max: max)
+                        HStack {
+                            Text("Generate\nrandom tree")
+
+                            VStack {
+                                TextField("Min", text: $generateMinValue)
+                                TextField("Max", text: $generateMaxValue)
                             }
-                        } label: {
-                            Text("Generate")
-                        }
-                    }
 
-                    // Insert
-                    HStack {
-                        TextField("Insert a node", text: $insertValue)
-
-                        Button {
-                            withAnimation(.default) {
-                                if let value = Int(insertValue) {
-                                    viewModel.insert(value)
+                            Button {
+                                if let min = Int(generateMinValue), let max = Int(generateMaxValue) {
+                                    viewModel.generate(min: min, max: max)
                                 }
+                            } label: {
+                                Text("Generate")
                             }
-                        } label: {
-                            Text("Insert")
                         }
-                    }
 
-                    // Find
-                    HStack {
-                        TextField("Find a node", text: $findValue)
+                        // Insert
+                        HStack {
+                            TextField("Insert a node", text: $insertValue)
 
-                        Button {
-                            withAnimation(.default) {
-                                if let value = Int(findValue) {
-                                    let ids = viewModel.tree?.findIDs(value: Unique(value)) ?? []
-                                    self.selectedNodeID = ids.first
+                            Button {
+                                withAnimation(.default) {
+                                    if let value = Int(insertValue) {
+                                        viewModel.insert(value)
+                                    }
                                 }
+                            } label: {
+                                Text("Insert")
                             }
-                        } label: {
-                            Text("Find")
                         }
+
                     }
 
-                    //
-                    HStack {
-                        Button {
-                            withAnimation(.default) {
+                    HStack(spacing: 100) {
+                        // Find
+                        HStack {
+                            TextField("Find a node", text: $findValue)
 
+                            Button {
+                                withAnimation(.default) {
+                                    if let value = Int(findValue) {
+                                        let ids = viewModel.tree?.findIDs(value: Unique(value)) ?? []
+                                        self.selectedNodeID = ids.first
+                                    }
+                                }
+                            } label: {
+                                Text("Find")
                             }
-                        } label: {
-                            Text("Balance")
                         }
+
+                        deleteButton
+
+                        saveButton
                     }
-
-                    deleteButton
-
-                    saveButton
                 }
-                .opacity(showToolboxView ? 1 : 0)
             }
-            .squaredOutline()
         }
+        .frame(height: height)
         .padding(.horizontal, 100)
-        .offset(y: showToolboxView ? 0 : 320)
-        .animation(.easeIn)
-        .onTapGesture {
-            showToolboxView.toggle()
-        }
     }
     
     var deleteButton: some View {

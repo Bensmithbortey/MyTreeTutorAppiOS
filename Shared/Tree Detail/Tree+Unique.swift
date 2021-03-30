@@ -45,10 +45,10 @@ extension Tree where A == Unique<Int> {
 
     func insert(_ node: Tree<Unique<Int>>) {
         if node.value.value < value.value {
-            if children.count > 0 {
-                left()?.insert(node)
+            if let left = left() {
+                left.insert(node)
             } else {
-                children.append(node)
+                children.insert(node, at: 0)
             }
         } else {
             if children.count == 2 {
