@@ -104,13 +104,23 @@ struct BinaryTreeView: View {
                     ScrollView {
                         VStack {
                             let index = viewModel.algorithmSteps.firstIndex(where: { step in
+                                // Find the index of the selected algorithm step
                                 return viewModel.selectedAlgorithmStep?.id == step.id
-                            }) ?? viewModel.algorithmSteps.count
+                            }) ?? (
+                                // If the algorithm is playing and we don't have any selection yet, we should display the node at index 0
+                                viewModel.isPlayingAlgorithm
+                                ?
+                                    0
+                                :
+                                    // Otherwise, it means the animation is over
+                                    // We show all the steps in that case
+                                viewModel.algorithmSteps.count - 1
+                            )
 
+                            // Let's show all the steps up to the selected one
                             let currentSteps = viewModel.algorithmSteps.dropLast(max(0, viewModel.algorithmSteps.count - index - 1))
 
                             ForEach(currentSteps) { step in
-
                                 Text("- \(step.node?.value.value ?? 0)")
                                     .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .yellow : .black)
                             }
@@ -119,19 +129,23 @@ struct BinaryTreeView: View {
                     }
 
                     HStack {
+                        Text("Slow")
+
                         Slider(value: $algorithmSpeed, in: 0.2...10) {
                             Text("Speed")
                         }
                         .onChange(of: algorithmSpeed, perform: { value in
+                            // Whenever we change the slider's value, we also change the speed on the view model
+                            // This way, the next step will be scheduled with this speed in mind
                             viewModel.speed = algorithmSpeed
                         })
 
-                        Text(String(format: "%0.1f", algorithmSpeed))
-                            .frame(width: 50, alignment: .trailing)
+                        Text("Fast")
                     }
                     .padding()
                 }
-                .frame(width: width, height: 300)
+                .frame(width: width)
+                .frame(maxHeight: .infinity)
                 .opacity(showTreeStepsView ? 1 : 0)
                 .overlay(
                     HStack {
