@@ -105,7 +105,7 @@ struct BinaryTreeView: View {
                         VStack {
                             let index = viewModel.algorithmSteps.firstIndex(where: { step in
                                 return viewModel.selectedAlgorithmStep?.id == step.id
-                            }) ?? 0
+                            }) ?? viewModel.algorithmSteps.count
 
                             let currentSteps = viewModel.algorithmSteps.dropLast(max(0, viewModel.algorithmSteps.count - index - 1))
 
