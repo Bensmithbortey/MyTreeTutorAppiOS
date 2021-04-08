@@ -11,10 +11,11 @@ struct BigButtonStyle: ButtonStyle {
 
     let foregroundColor: Color
     let backgroundColor: Color
+    var padding: CGFloat = 20
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding()
+            .padding(padding)
             .frame(maxWidth: .infinity)
             .foregroundColor(foregroundColor)
             .background(backgroundColor)

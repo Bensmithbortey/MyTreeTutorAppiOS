@@ -39,7 +39,8 @@ struct BinaryTreeView: View {
 
             VStack {
                 graphView
-                    .frame(width: 400, height: 400)
+                    .frame(width: 400)
+                    .frame(maxHeight: .infinity)
 
                 toolboxView
             }
@@ -297,20 +298,12 @@ struct BinaryTreeView: View {
                         Text("treeWidth: \(Int(treeWidth))")
                     }
                 }
-            } else {
-                Button {
-                    viewModel.generate(min: 1, max: 100)
-                } label: {
-                    Text("Generate a Tree")
-                }
-                .roundedOutline()
             }
         }//: VStack
     }
     
     @ViewBuilder
     var toolboxView: some View {
-        let height: CGFloat = 250
 
         VStack(spacing: 30) {
 
@@ -321,69 +314,136 @@ struct BinaryTreeView: View {
                 Group {
                     // Generate random Tree
 
-                    HStack(spacing: 100) {
+                    HStack(alignment: .top, spacing: 50) {
 
-                        HStack {
-                            Text("Generate\nrandom tree")
+                        VStack(alignment: .leading, spacing: 25) {
 
-                            VStack {
-                                TextField("Min", text: $generateMinValue)
-                                TextField("Max", text: $generateMaxValue)
-                            }
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Generate random tree")
+                                    .font(.title2)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
 
-                            Button {
-                                if let min = Int(generateMinValue), let max = Int(generateMaxValue) {
-                                    viewModel.generate(min: min, max: max)
+                                HStack {
+
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        HStack {
+                                            Text("Min")
+                                                .frame(width: 40, alignment: .leading)
+                                            TextField("Min", text: $generateMinValue)
+                                                .padding(6)
+                                                .background(Color(.sRGB, white: 0.92, opacity: 1.0))
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        }
+                                        HStack {
+                                            Text("Max")
+                                                .frame(width: 40, alignment: .leading)
+                                            TextField("Max", text: $generateMaxValue)
+                                                .padding(6)
+                                                .background(Color(.sRGB, white: 0.92, opacity: 1.0))
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        }
+                                    }
+                                    .frame(width: 120)
+
+                                    Spacer()
+
+                                    Button {
+                                        if let min = Int(generateMinValue), let max = Int(generateMaxValue) {
+                                            viewModel.generate(min: min, max: max)
+                                        }
+                                    } label: {
+                                        Text("Generate")
+                                    }
+                                    .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary), padding: 8))
+                                    .frame(width: 100)
                                 }
-                            } label: {
-                                Text("Generate")
                             }
-                            .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary)))
+
+
+                            VStack(alignment: .leading, spacing: 12) {
+
+                                Text("Find a node")
+                                    .font(.title2)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                                // Find
+                                HStack {
+                                    TextField("Find a node", text: $findValue)
+
+                                    Button {
+                                        withAnimation(.default) {
+                                            if let value = Int(findValue) {
+                                                let ids = viewModel.tree?.findIDs(value: Unique(value)) ?? []
+                                                self.selectedNodeID = ids.first
+                                            }
+                                        }
+                                    } label: {
+                                        Text("Find")
+                                    }
+                                    .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary), padding: 8))
+                                    .frame(width: 100)
+                                }
+                            }
                         }
 
                         // Insert
-                        HStack {
-                            TextField("Insert a node", text: $insertValue)
+                        VStack {
+
+                            VStack(alignment: .leading, spacing: 20) {
+
+                                HStack {
+                                    TextField("Insert a node", text: $insertValue)
+                                        .padding(6)
+                                        .background(Color(.sRGB, white: 0.92, opacity: 1.0))
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+
+                                    Spacer()
+
+                                    Button {
+                                        withAnimation(.default) {
+                                            if let value = Int(insertValue) {
+                                                viewModel.insert(value)
+                                            }
+                                        }
+                                    } label: {
+                                        Text("Insert")
+                                    }
+                                    .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary), padding: 8))
+                                    .frame(width: 100)
+                                }
+                            }
+
+
+                            HStack(spacing: 20) {
+                                Text("Delete selected")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                                deleteButton
+                                    .frame(width: 100)
+                            }
 
                             Button {
-                                withAnimation(.default) {
-                                    if let value = Int(insertValue) {
-                                        viewModel.insert(value)
-                                    }
-                                }
+                                viewModel.generate(min: 1, max: 100)
                             } label: {
-                                Text("Insert")
+                                Text("Generate a Tree")
                             }
-                        }
+                            .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary), padding: 8))
+                            .padding(.bottom, 20)
 
+                            saveButton
+                        }
                     }
 
-                    HStack(spacing: 100) {
-                        // Find
-                        HStack {
-                            TextField("Find a node", text: $findValue)
-
-                            Button {
-                                withAnimation(.default) {
-                                    if let value = Int(findValue) {
-                                        let ids = viewModel.tree?.findIDs(value: Unique(value)) ?? []
-                                        self.selectedNodeID = ids.first
-                                    }
-                                }
-                            } label: {
-                                Text("Find")
-                            }
-                        }
-
-                        deleteButton
-
-                        saveButton
-                    }
                 }
-            }
-        }
-        .frame(height: height)
+
+            }//: Inner VStack
+            .padding()
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .shadow(color: Color.black.opacity(0.25), radius: 16, x: 0.0, y: 2)
+        }//: Outer VStack
         .padding(.horizontal, 100)
+        .padding(.vertical, 30)
     }
     
     var deleteButton: some View {
@@ -400,6 +460,7 @@ struct BinaryTreeView: View {
             } label: {
                 Text("Delete")
             }
+            .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary), padding: 8))
         }
     }
     
