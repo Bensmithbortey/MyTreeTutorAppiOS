@@ -184,7 +184,7 @@ struct BinaryDiagram<V: View>: View {
                     Line(
                         from: proxy[centers[self.tree.value.id]!],
                         to: proxy[centers[child.value.id]!])
-                        .stroke()
+                        .stroke(lineWidth: 3)
                 })
             }
         })

@@ -240,16 +240,19 @@ struct BinaryTreeView: View {
         }
     }
     
-    func color(node: UUID) -> Color {
+    func strokeColor(node: UUID) -> Color {
+        return .clear
+    }
+
+    func backgroundColor(node: UUID) -> Color {
         if let highlightedNodeID = viewModel.selectedAlgorithmStep?.node?.value.id,
            highlightedNodeID.uuidString == node.uuidString {
             return Color(.yellow)
         }
-        
         if let selectedNodeID = selectedNodeID, selectedNodeID == node {
-            return Color(.blue)
+            return Color(.TreeSelectedBackground)
         }
-        return .clear
+        return Color(.TreeBackground)
     }
     
     @ViewBuilder
@@ -264,17 +267,23 @@ struct BinaryTreeView: View {
                     let treeWidth = treeNodeWidth * 50 + (treeNodeWidth - 1) * 10
                     
                     VStack {
+                        let width: CGFloat = 40
+
                         BinaryDiagram(tree: tree, node: { value in
                             // Tree node
                             Text("\(value.value)")
                                 .font(.system(size: 15))
+                                .fontWeight(.bold)
                                 .foregroundColor(Color(.TreeOutline))
-                                .roundedCircle()
-                                .overlay(
-                                    Circle()
-                                        .stroke()
-                                        .foregroundColor(color(node: value.id))
-                                )
+
+                                .frame(width: width, height: width)
+                                .background(Circle().strokeBorder(lineWidth: 3))
+                                .background(Circle().fill(backgroundColor(node: value.id)))
+//                                .overlay(
+//                                    Circle()
+//                                        .stroke()
+//                                        .foregroundColor(strokeColor(node: value.id))
+//                                )
                                 .onTapGesture {
                                     if selectedNodeID == value.id {
                                         selectedNodeID = nil

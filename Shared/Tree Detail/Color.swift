@@ -11,7 +11,8 @@ enum MTTColor: String {
     case Primary,
          Secondary,
          TreeOutline,
-         TreeBackground
+         TreeBackground,
+         TreeSelectedBackground
 }
 
 extension Color {

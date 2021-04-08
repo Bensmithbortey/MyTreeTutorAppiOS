@@ -14,7 +14,7 @@ extension View {
         
         return self
             .frame(width: width, height: width)
-            .background(Circle().stroke())
+            .background(Circle().strokeBorder(lineWidth: 3))
             .background(Circle().fill(Color(.TreeBackground)))
     }
     
@@ -23,7 +23,7 @@ extension View {
             .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
-                    .strokeBorder(lineWidth: 2)
+                    .strokeBorder(lineWidth: 3)
                     .foregroundColor(.gray)
             )
     }
