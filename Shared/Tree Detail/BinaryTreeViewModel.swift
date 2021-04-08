@@ -17,12 +17,15 @@ class BinaryTreeViewModel: ObservableObject {
     @Published var algorithmSteps = [AlgorithmStep]()
     @Published var selectedAlgorithmStep: AlgorithmStep?
 
-    private var timer: Timer?
+    var speed: Float?
+    var timeInterval: TimeInterval {
+        return TimeInterval((10 - (speed ?? 5)) / 5)
+    }
+
+//    private var timer: Timer?
     private var algorithmStepIndex = 0
 
-    var isPlayingAlgorithm: Bool {
-        return timer != nil
-    }
+    var isPlayingAlgorithm: Bool = false
 
     init(tree: Tree<Unique<Int>>?) {
         self.tree = tree
@@ -34,8 +37,6 @@ class BinaryTreeViewModel: ObservableObject {
     }
 
     func generateSteps() {
-        timer?.invalidate()
-
         guard let algorithm = selectedAlgorithm else { return }
         algorithmSteps = tree?.generateSteps(algorithm: algorithm) ?? []
 
@@ -48,24 +49,31 @@ class BinaryTreeViewModel: ObservableObject {
     }
 
     func pause() {
-        timer?.invalidate()
-        timer = nil
+        isPlayingAlgorithm = false
         objectWillChange.send()
     }
 
     func resume() {
         guard !algorithmSteps.isEmpty else { return }
 
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+        isPlayingAlgorithm = true
+
+        scheduleStep()
+    }
+
+    private func scheduleStep() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + timeInterval) {
 
             self.selectedAlgorithmStep = self.algorithmSteps[self.algorithmStepIndex]
             self.algorithmStepIndex += 1
             if self.algorithmStepIndex == self.algorithmSteps.count {
-                self.timer?.invalidate()
-                self.timer = nil
+                self.isPlayingAlgorithm = false
+            } else {
+                self.scheduleStep()
             }
             self.objectWillChange.send()
-        })
+
+        }
     }
 
     func stepForward() {

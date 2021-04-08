@@ -16,7 +16,9 @@ struct BinaryTreeView: View {
         viewModel = BinaryTreeViewModel(tree: tree)
         self.treeName = treeName
     }
-    
+
+    @State var algorithmSpeed: Float = 5
+
     @State var insertValue: String = ""
     @State var findValue: String = ""
     @State var generateMinValue: String = ""
@@ -87,7 +89,9 @@ struct BinaryTreeView: View {
             // Tree algorithms
             VStack(alignment: .leading) {
                 Button(action: {
-                    showTreeStepsView.toggle()
+                    withAnimation {
+                        showTreeStepsView.toggle()
+                    }
                 }, label: {
                     Image(systemName: showTreeStepsView ? .arrowForward : .arrowBackward)
                         .foregroundColor(.white)
@@ -99,12 +103,33 @@ struct BinaryTreeView: View {
 
                     ScrollView {
                         VStack {
-                            ForEach(viewModel.algorithmSteps) { step in
+                            let index = viewModel.algorithmSteps.firstIndex(where: { step in
+                                return viewModel.selectedAlgorithmStep?.id == step.id
+                            }) ?? 0
+
+                            let currentSteps = viewModel.algorithmSteps.dropLast(max(0, viewModel.algorithmSteps.count - index - 1))
+
+                            ForEach(currentSteps) { step in
+
                                 Text("- \(step.node?.value.value ?? 0)")
                                     .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .yellow : .black)
                             }
                         }
+                        .animation(.easeIn)
                     }
+
+                    HStack {
+                        Slider(value: $algorithmSpeed, in: 0.2...10) {
+                            Text("Speed")
+                        }
+                        .onChange(of: algorithmSpeed, perform: { value in
+                            viewModel.speed = algorithmSpeed
+                        })
+
+                        Text(String(format: "%0.1f", algorithmSpeed))
+                            .frame(width: 50, alignment: .trailing)
+                    }
+                    .padding()
                 }
                 .frame(width: width, height: 300)
                 .opacity(showTreeStepsView ? 1 : 0)
@@ -123,7 +148,6 @@ struct BinaryTreeView: View {
             .squaredOutline()
         }
         .offset(x: showTreeStepsView ? 0 : width - visibleMenuSize)
-        .animation(.easeIn)
     }
 
     @ViewBuilder
