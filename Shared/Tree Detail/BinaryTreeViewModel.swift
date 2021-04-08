@@ -114,4 +114,9 @@ class BinaryTreeViewModel: ObservableObject {
         }
         objectWillChange.send()
     }
+
+    func clear() {
+        tree = nil
+        objectWillChange.send()
+    }
 }

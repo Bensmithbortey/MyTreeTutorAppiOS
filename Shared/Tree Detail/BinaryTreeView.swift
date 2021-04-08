@@ -422,13 +422,24 @@ struct BinaryTreeView: View {
                                     .frame(width: 100)
                             }
 
-                            Button {
-                                viewModel.generate(min: 1, max: 100)
-                            } label: {
-                                Text("Generate a Tree")
+
+                            HStack(spacing: 20) {
+                                Button {
+                                    viewModel.generate(min: 1, max: 100)
+                                } label: {
+                                    Text("Generate a Tree")
+                                }
+                                .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary), padding: 8))
+                                .padding(.bottom, 20)
+
+                                Button {
+                                    viewModel.clear()
+                                } label: {
+                                    Text("Clear the Tree")
+                                }
+                                .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary), padding: 8))
+                                .padding(.bottom, 20)
                             }
-                            .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary), padding: 8))
-                            .padding(.bottom, 20)
 
                             saveButton
                         }
