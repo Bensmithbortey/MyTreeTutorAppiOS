@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CourseSectionDetail: View {
-    var section: CourseSection = courseSections[1]
+    var section: CourseSection
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -63,13 +63,13 @@ struct CourseSectionDetail: View {
             .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
             .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 10)
             
-            CourseSectionContent()
+            CourseSectionContent(textFileName: section.contentFileName)
         }
     }
 }
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSectionDetail()
+        CourseSectionDetail(section: CourseSection(title: "Title", subtitle: "Subtitle", logo: "abcd", color: .blue, contentFileName: "SampleContent"))
     }
 }

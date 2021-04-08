@@ -16,6 +16,7 @@ struct Course: Identifiable, Hashable {
     var logo: String
     var show: Bool
     var index: Double
+    var contentFileName: String
 }
 
 var courses = [
@@ -26,7 +27,8 @@ var courses = [
         image: "Illustration 2",
         logo: "Logo SwiftUI",
         show: false,
-        index: -1
+        index: -1,
+        contentFileName: "IntroductionToTrees"
     ),
     Course(
         title: "Binary Search Tree",
@@ -35,7 +37,8 @@ var courses = [
         image: "Illustration 1",
         logo: "Logo UI Design",
         show: false,
-        index: -1
+        index: -1,
+        contentFileName: "SampleContent"
     ),
     Course(
         title: "Spanning Tree",
@@ -44,7 +47,8 @@ var courses = [
         image: "Illustration 2",
         logo: "Logo SwiftUI",
         show: false,
-        index: -1
+        index: -1,
+        contentFileName: "SampleContent"
     ),
     Course(
         title: "AVL Trees",
@@ -53,6 +57,7 @@ var courses = [
         image: "Illustration 3",
         logo: "Logo UI Design",
         show: false,
-        index: -1
+        index: -1,
+        contentFileName: "SampleContent"
     )
 ]

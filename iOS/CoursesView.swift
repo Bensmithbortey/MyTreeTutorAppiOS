@@ -83,12 +83,13 @@ struct CoursesView: View {
             if items[index].show {
                 ScrollView {
                     VStack {
-                        CourseItem(course: items[index], cornerRadius: show ? 10 : 22)
+                        let course = items[index]
+                        CourseItem(course: course, cornerRadius: show ? 10 : 22)
                             .matchedGeometryEffect(id: items[index].id, in: namespace, properties: .frame, isSource: items[index].show)
                             .frame(maxHeight: 300)
                             .zIndex(1)
                         VStack {
-                            CourseSectionContent()
+                            CourseSectionContent(textFileName: course.contentFileName)
                         }
                         .offset(y: show ? 0 : -100)
                         .opacity(show ? 1 : 0)
@@ -143,13 +144,13 @@ struct CoursesView: View {
                     VStack {
                         TreeDetail(treeType: treeType)
                             .frame(maxHeight: 300)
-                            .zIndex(1)
-                        VStack {
-                            CourseSectionContent()
-                        }
-                        .offset(y: show ? 0 : -100)
-                        .opacity(show ? 1 : 0)
-                        .zIndex(0)
+//                            .zIndex(1)
+//                        VStack {
+//                            CourseSectionContent(textFileName: course.contentFileName)
+//                        }
+//                        .offset(y: show ? 0 : -100)
+//                        .opacity(show ? 1 : 0)
+//                        .zIndex(0)
                     }
                     .background(
                         Color("Background 1")
