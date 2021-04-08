@@ -73,6 +73,7 @@ struct BinaryTreeView: View {
                 }//: Outer HStack
                 .onAppear {
                     showsOptionToGenerate = true
+                    viewModel.generate(min: 1, max: 100)
                 }
             }
         }//: ZStack
