@@ -144,13 +144,6 @@ struct CoursesView: View {
                     VStack {
                         TreeDetail(treeType: treeType)
                             .frame(maxHeight: 300)
-//                            .zIndex(1)
-//                        VStack {
-//                            CourseSectionContent(textFileName: course.contentFileName)
-//                        }
-//                        .offset(y: show ? 0 : -100)
-//                        .opacity(show ? 1 : 0)
-//                        .zIndex(0)
                     }
                     .background(
                         Color("Background 1")

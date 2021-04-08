@@ -8,7 +8,9 @@
 import SwiftUI
 
 enum MTTColor: String {
-    case TreeOutline,
+    case Primary,
+         Secondary,
+         TreeOutline,
          TreeBackground
 }
 

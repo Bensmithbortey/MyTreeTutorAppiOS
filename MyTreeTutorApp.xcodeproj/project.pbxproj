@@ -8,16 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4A24C0DE260269360046A99D /* TreesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24C0DD260269360046A99D /* TreesView.swift */; };
-		4A24C0E0260269C80046A99D /* TreeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24C0DF260269C80046A99D /* TreeDetail.swift */; };
 		4A24C0E226026A030046A99D /* TreeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24C0E126026A030046A99D /* TreeItem.swift */; };
 		4A24C0E326026A2F0046A99D /* TreeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24C0E126026A030046A99D /* TreeItem.swift */; };
 		4A2BBE57260BBC4100BEC829 /* TreeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2BBE56260BBC4100BEC829 /* TreeType.swift */; };
-		4A50BC422603C50D00286FBA /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC412603C50D00286FBA /* BinaryTree.swift */; };
-		4A50BC482603C53C00286FBA /* BinaryTreeViewModel_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC472603C53C00286FBA /* BinaryTreeViewModel_old.swift */; };
-		4A50BC4E2603C57B00286FBA /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC4D2603C57B00286FBA /* Arrow.swift */; };
-		4A50BC542603C59900286FBA /* BinaryTreeView_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC532603C59900286FBA /* BinaryTreeView_old.swift */; };
 		4A50BC5A2603D52B00286FBA /* Diagrams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC592603D52B00286FBA /* Diagrams.swift */; };
-		4A50BC602603D5AF00286FBA /* DiagramDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC5F2603D5AF00286FBA /* DiagramDetail.swift */; };
+		4A50BC602603D5AF00286FBA /* TreeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC5F2603D5AF00286FBA /* TreeDetail.swift */; };
 		4A594DE02606290700F9954A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A594DDF2606290700F9954A /* Color.swift */; };
 		4A594DE626062D8700F9954A /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A594DE526062D8700F9954A /* TODO.swift */; };
 		4A594E0F26064C8500F9954A /* Diagrams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC592603D52B00286FBA /* Diagrams.swift */; };
@@ -113,6 +108,8 @@
 		CED049BC261F40E700CE0BE2 /* IntroductionToTrees.html in Resources */ = {isa = PBXBuildFile; fileRef = CED049BA261F40E700CE0BE2 /* IntroductionToTrees.html */; };
 		CED049CA261F429600CE0BE2 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED049C9261F429600CE0BE2 /* BlurView.swift */; };
 		CED049CB261F429600CE0BE2 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED049C9261F429600CE0BE2 /* BlurView.swift */; };
+		CED049D1261F456D00CE0BE2 /* BigButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED049D0261F456D00CE0BE2 /* BigButtonStyle.swift */; };
+		CED049D2261F456D00CE0BE2 /* BigButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED049D0261F456D00CE0BE2 /* BigButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,15 +131,10 @@
 
 /* Begin PBXFileReference section */
 		4A24C0DD260269360046A99D /* TreesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreesView.swift; sourceTree = "<group>"; };
-		4A24C0DF260269C80046A99D /* TreeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeDetail.swift; sourceTree = "<group>"; };
 		4A24C0E126026A030046A99D /* TreeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeItem.swift; sourceTree = "<group>"; };
 		4A2BBE56260BBC4100BEC829 /* TreeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeType.swift; sourceTree = "<group>"; };
-		4A50BC412603C50D00286FBA /* BinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
-		4A50BC472603C53C00286FBA /* BinaryTreeViewModel_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeViewModel_old.swift; sourceTree = "<group>"; };
-		4A50BC4D2603C57B00286FBA /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
-		4A50BC532603C59900286FBA /* BinaryTreeView_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTreeView_old.swift; sourceTree = "<group>"; };
 		4A50BC592603D52B00286FBA /* Diagrams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagrams.swift; sourceTree = "<group>"; };
-		4A50BC5F2603D5AF00286FBA /* DiagramDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramDetail.swift; sourceTree = "<group>"; };
+		4A50BC5F2603D5AF00286FBA /* TreeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeDetail.swift; sourceTree = "<group>"; };
 		4A594DDF2606290700F9954A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4A594DE526062D8700F9954A /* TODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
 		4A81EC0E260E329A0022F3C6 /* StaticTreeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTreeData.swift; sourceTree = "<group>"; };
@@ -208,6 +200,7 @@
 		CED0499B261F3A5F00CE0BE2 /* HTMLText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLText.swift; sourceTree = "<group>"; };
 		CED049BA261F40E700CE0BE2 /* IntroductionToTrees.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = IntroductionToTrees.html; sourceTree = "<group>"; };
 		CED049C9261F429600CE0BE2 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		CED049D0261F456D00CE0BE2 /* BigButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButtonStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +241,7 @@
 				4A594DE526062D8700F9954A /* TODO.swift */,
 				4A81EC14260E32E50022F3C6 /* View+Circle.swift */,
 				4A50BC592603D52B00286FBA /* Diagrams.swift */,
-				4A50BC5F2603D5AF00286FBA /* DiagramDetail.swift */,
+				4A50BC5F2603D5AF00286FBA /* TreeDetail.swift */,
 				4A81EC20260E33A50022F3C6 /* BinaryTreeView.swift */,
 				CE61073926137B0B008C6512 /* Images.swift */,
 				CE6DDA47261372BA005A0F5A /* BinaryTreeViewModel.swift */,
@@ -258,21 +251,8 @@
 				4A81EC1A260E33430022F3C6 /* Tree+Unique.swift */,
 				4A81EC0E260E329A0022F3C6 /* StaticTreeData.swift */,
 				4A594DDF2606290700F9954A /* Color.swift */,
-				4A50BC652603F07700286FBA /* ViewModel version */,
 			);
 			path = "Tree Detail";
-			sourceTree = "<group>";
-		};
-		4A50BC652603F07700286FBA /* ViewModel version */ = {
-			isa = PBXGroup;
-			children = (
-				4A24C0DF260269C80046A99D /* TreeDetail.swift */,
-				4A50BC532603C59900286FBA /* BinaryTreeView_old.swift */,
-				4A50BC4D2603C57B00286FBA /* Arrow.swift */,
-				4A50BC472603C53C00286FBA /* BinaryTreeViewModel_old.swift */,
-				4A50BC412603C50D00286FBA /* BinaryTree.swift */,
-			);
-			path = "ViewModel version";
 			sourceTree = "<group>";
 		};
 		4A5720F425EFF8C90094181E /* Library */ = {
@@ -285,6 +265,7 @@
 				4AAA9F1E25F032DF005F958D /* ToggleButton.swift */,
 				CED049C9261F429600CE0BE2 /* BlurView.swift */,
 				4AAA9F5C25F04895005F958D /* CloseButton.swift */,
+				CED049D0261F456D00CE0BE2 /* BigButtonStyle.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -601,20 +582,18 @@
 				4AAACF5125EBF32C00A59D64 /* LivestreamSection.swift in Sources */,
 				4AAA9F2F25F032E0005F958D /* DateTitle.swift in Sources */,
 				4A594DE02606290700F9954A /* Color.swift in Sources */,
-				4A50BC482603C53C00286FBA /* BinaryTreeViewModel_old.swift in Sources */,
 				4A2BBE57260BBC4100BEC829 /* TreeType.swift in Sources */,
 				4AAACF4D25EBF32C00A59D64 /* TutorialSection.swift in Sources */,
 				4A594E602606508200F9954A /* Persistence.swift in Sources */,
 				4AD9564725ED124E00BF8C7A /* CourseSectionDetail.swift in Sources */,
+				CED049D1261F456D00CE0BE2 /* BigButtonStyle.swift in Sources */,
 				4AAACF4F25EBF32C00A59D64 /* CourseSection.swift in Sources */,
 				4AAA9F4425F0358A005F958D /* TutorialItem.swift in Sources */,
 				CE61073A26137B0B008C6512 /* Images.swift in Sources */,
 				4AAA9F4A25F035AF005F958D /* TutorialSectionRow.swift in Sources */,
-				4A24C0E0260269C80046A99D /* TreeDetail.swift in Sources */,
 				4A50BC5A2603D52B00286FBA /* Diagrams.swift in Sources */,
-				4A50BC602603D5AF00286FBA /* DiagramDetail.swift in Sources */,
+				4A50BC602603D5AF00286FBA /* TreeDetail.swift in Sources */,
 				4AAA9F1A25F03072005F958D /* SearchView.swift in Sources */,
-				4A50BC422603C50D00286FBA /* BinaryTree.swift in Sources */,
 				4AAACF5725EBF32C00A59D64 /* Livestream.swift in Sources */,
 				4ACD163225EB092000A1DE99 /* MyTreeTutorApp.xcdatamodeld in Sources */,
 				4AAA9F0425F02C31005F958D /* CoursesView.swift in Sources */,
@@ -629,7 +608,6 @@
 				CE6DDA3C26137271005A0F5A /* TreeAlgorithm.swift in Sources */,
 				4A81EC0F260E329A0022F3C6 /* StaticTreeData.swift in Sources */,
 				4AAA9F4D25F0361B005F958D /* LiveStreamItem.swift in Sources */,
-				4A50BC542603C59900286FBA /* BinaryTreeView_old.swift in Sources */,
 				4A24C0DE260269360046A99D /* TreesView.swift in Sources */,
 				4AAA9F1425F02F9C005F958D /* TutorialPages.swift in Sources */,
 				4AAACF4B25EBF32C00A59D64 /* Tutorial.swift in Sources */,
@@ -642,7 +620,6 @@
 				4AAA9F3525F03434005F958D /* CourseSectionContent.swift in Sources */,
 				4AAA9F5025F03630005F958D /* LiveStreamRow.swift in Sources */,
 				CE6DDA3626137256005A0F5A /* AlgorithmStep.swift in Sources */,
-				4A50BC4E2603C57B00286FBA /* Arrow.swift in Sources */,
 				4AAA9F3225F03417005F958D /* CourseContent.swift in Sources */,
 				4AAACF4225EBF0D300A59D64 /* CourseDetail.swift in Sources */,
 				4AAA9F2B25F032E0005F958D /* ProgressView.swift in Sources */,
@@ -654,6 +631,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AAA9F4E25F0361B005F958D /* LiveStreamItem.swift in Sources */,
+				CED049D2261F456D00CE0BE2 /* BigButtonStyle.swift in Sources */,
 				4ACD163525EB092000A1DE99 /* MyTreeTutorApp.swift in Sources */,
 				4AAA9F5425F03649005F958D /* CertificateItem.swift in Sources */,
 				4AAA9F4225F0356D005F958D /* CourseRow.swift in Sources */,

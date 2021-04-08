@@ -329,6 +329,7 @@ struct BinaryTreeView: View {
                             } label: {
                                 Text("Generate")
                             }
+                            .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary)))
                         }
 
                         // Insert
@@ -418,7 +419,7 @@ struct BinaryTreeView: View {
                 UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
             }
         })//: Save button
-        .roundedOutline()
+        .buttonStyle(BigButtonStyle(foregroundColor: .white, backgroundColor: Color(.Primary)))
     }
 }
 
