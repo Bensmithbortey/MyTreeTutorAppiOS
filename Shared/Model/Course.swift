@@ -31,6 +31,26 @@ var courses = [
         contentFileName: "IntroductionToTrees"
     ),
     Course(
+        title: "Binary Tree",
+        subtitle: "",
+        color: Color(#colorLiteral(red: 0, green: 0.5217629075, blue: 1, alpha: 1)),
+        image: "Illustration 1",
+        logo: "Logo UI Design",
+        show: false,
+        index: -1,
+        contentFileName: "BinaryTrees"
+    ),
+    Course(
+        title: "Traversing Binary Tree",
+        subtitle: "",
+        color: Color(#colorLiteral(red: 0, green: 0.5217629075, blue: 1, alpha: 1)),
+        image: "Illustration 1",
+        logo: "Logo UI Design",
+        show: false,
+        index: -1,
+        contentFileName: "TraversingBinary"
+    ),
+    Course(
         title: "Binary Search Tree",
         subtitle: "",
         color: Color(#colorLiteral(red: 0, green: 0.5217629075, blue: 1, alpha: 1)),
@@ -38,7 +58,7 @@ var courses = [
         logo: "Logo UI Design",
         show: false,
         index: -1,
-        contentFileName: "SampleContent"
+        contentFileName: "BinarySearchTree"
     ),
     Course(
         title: "Spanning Tree",
@@ -48,7 +68,7 @@ var courses = [
         logo: "Logo SwiftUI",
         show: false,
         index: -1,
-        contentFileName: "SampleContent"
+        contentFileName: "SpanningTree"
     ),
     Course(
         title: "AVL Trees",
@@ -58,6 +78,26 @@ var courses = [
         logo: "Logo UI Design",
         show: false,
         index: -1,
-        contentFileName: "SampleContent"
+        contentFileName: "AVLTree"
+    ),
+    Course(
+        title: "AVL Tree - Insertion",
+        subtitle: "",
+        color: Color(#colorLiteral(red: 0, green: 0.5217629075, blue: 1, alpha: 1)),
+        image: "Illustration 1",
+        logo: "Logo UI Design",
+        show: false,
+        index: -1,
+        contentFileName: "AVLTreesInsertion"
+    ),
+    Course(
+        title: "AVL Tree - Deletion",
+        subtitle: "",
+        color: Color(#colorLiteral(red: 0, green: 0.5217629075, blue: 1, alpha: 1)),
+        image: "Illustration 1",
+        logo: "Logo UI Design",
+        show: false,
+        index: -1,
+        contentFileName: "AVLTreeDeletion"
     )
 ]

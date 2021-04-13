@@ -7,19 +7,45 @@
 
 import SwiftUI
 
-struct HTMLText: UIViewRepresentable {
+class HTMLTextCache {
 
-   let html: String
+    static let shared = HTMLTextCache()
+    private init() {}
 
-    init(_ html: String) {
-        self.html = html
+    private var attributedStrings = [String: NSAttributedString]()
+
+    func generateAttributedString(for textFileName: String) {
+
+        DispatchQueue.global(qos: .default).async {
+
+            if let file = Bundle.main.url(forResource: textFileName, withExtension: "html"),
+               let data = try? Data(contentsOf: file),
+               let html = String(data: data, encoding: .utf8) {
+
+                let data = Data(html.utf8)
+                if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+
+                    DispatchQueue.main.async {
+                        self.attributedStrings[textFileName] = attributedString
+                    }//: DispatchQueue.main.async
+                }//: NSAttributedString generation
+            }//: get
+        }//: qos
     }
 
+    func attributedString(for textFileName: String) -> NSAttributedString? {
+        return attributedStrings[textFileName]
+    }
+
+}
+
+struct HTMLText: UIViewRepresentable {
+
+    let attributedString: NSAttributedString
+
     init?(textFileName: String) {
-        if let file = Bundle.main.url(forResource: textFileName, withExtension: "html"),
-           let data = try? Data(contentsOf: file),
-           let html = String(data: data, encoding: .utf8) {
-            self.html = html
+        if let string = HTMLTextCache.shared.attributedString(for: textFileName) {
+            self.attributedString = string
         } else {
             return nil
         }
@@ -33,13 +59,7 @@ struct HTMLText: UIViewRepresentable {
         label.setContentHuggingPriority(.required, for: .vertical)
         label.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-
-        DispatchQueue.main.async {
-            let data = Data(html.utf8)
-            if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-                label.attributedText = attributedString
-            }
-        }
+        label.attributedText = attributedString
 
         return label
     }

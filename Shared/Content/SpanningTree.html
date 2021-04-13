@@ -1,0 +1,74 @@
+<h1 style="color: #4485b8;"><span>Spanning Tree</span></h1>
+<p>In this topic, we will learn about the <strong><em>spanning tree</em></strong> and <strong><em>minimum spanning tree</em></strong>. Before knowing about the spanning trees, we should know about some graphs.</p>
+<p><strong>The following are the types of graphs:</strong></p>
+<ul class="points">
+<li><strong>Undirected graph:</strong> An undirected graph is a graph in which all the edges do not point to any particular direction, i.e., they are not unidirectional; they are bidirectional.<br />It can also be defined as a graph in which set of V vertices and set of E edges, each edge connecting two different vertices.</li>
+<li><strong>Connected graph:</strong> A connected graph is a graph in which a path always exists from a vertex to any other vertex.<br />A graph is connected if we can reach any vertex from any other vertex by following edges in either direction.</li>
+<li><strong>Directed graph:</strong> A directed graph is defined as a graph in which set of V vertices and set of Edges, each connecting two different vertices, but it is not mandatory that node points in the opposite direction also.</li>
+</ul>
+<h3 class="h3"></h3>
+<h3 class="h3">What is a Spanning tree?</h3>
+<p>If we have a graph containing V vertices and E edges, then the graph can be represented as:</p>
+<p><strong>G(V, E)</strong></p>
+<p>If we create the spanning tree from the above graph, then the spanning tree would have the same number of vertices as the graph, but the vertices are not equal. The edges in the spanning tree would be equal to the number of edges in the graph minus 1.</p>
+<p><strong>Suppose the spanning tree is represented as:</strong></p>
+<p>G`(V`, E`)</p>
+<p><strong>where,</strong></p>
+<p>V=V`</p>
+<p>E`ϵ E -1</p>
+<p>E`=|V| - 1</p>
+<p><strong>Let's understand through an example.</strong></p>
+<p>Suppose we want to create the spanning tree of the graph, which is shown below:</p>
+<p><img src="https://benbocreative.com/TreeVisualiserCourses/Spanning%20Tree/1-discrete-mathematics-minimum-spanning-tree.png" alt="" width="380" height="495" style="display: block; margin-left: auto; margin-right: auto;" /></p>
+<p></p>
+<p></p>
+
+<h3 class="h3">Minimum Spanning Trees</h3>
+<p>The minimum spanning tree is the tree whose sum of the edge weights is minimum. From the above spanning trees, the total edge weight of the spanning tree 1 is 12, the total edge weight of the spanning tree 2 is 14, and the total edge weight of the spanning tree 3 is 11; therefore, the total edge weight of the spanning tree 3 is minimum. From the above graph, we can also create one more spanning tree as shown below:</p>
+<p><span><img src="https://benbocreative.com/TreeVisualiserCourses/Spanning%20Tree/3-discrete-mathematics-minimum-spanning-tree.png" alt="" style="display: block; margin-left: auto; margin-right: auto;" width="369" height="428" /></span></p>
+<p>In the above tree, the total edge weight is 10 which is less than the above spanning trees; therefore, the minimum spanning tree is a tree which is having an edge weight, i.e., 10.</p>
+<p><strong>Properties of Spanning tree</strong></p>
+<ul class="points">
+<li>A connected graph can contain more than one spanning tree. The spanning trees which are minimally connected or we can say that the tree which is having a minimum total edge weight would be considered as the minimum spanning tree.</li>
+<li>All the possible spanning trees that can be created from the given graph G would have the same number of vertices, but the number of edges in the spanning tree would be equal to the number of vertices in the given graph minus 1.</li>
+<li>The spanning tree does not contain any cycle. Let's understand this property through an example.<br />Suppose we have the graph which is given below:</li>
+</ul>
+<p></p>
+<p><img src="https://benbocreative.com/TreeVisualiserCourses/Spanning%20Tree/4-discrete-mathematics-minimum-spanning-tree.png" alt="" width="426" height="307" style="display: block; margin-left: auto; margin-right: auto;" /></p>
+<p></p>
+<p><span>We can create the spanning trees of the above graph, which are shown below:</span></p>
+<p><span><img src="https://benbocreative.com/TreeVisualiserCourses/Spanning%20Tree/5-discrete-mathematics-minimum-spanning-tree.png" alt="" width="528" height="402" style="display: block; margin-left: auto; margin-right: auto;" /></span></p>
+
+<p></p>
+<p>As we can observe in the above spanning trees that one edge has been removed. If we do not remove one edge from the graph, then the tree will form a cycle, and that tree will not be considered as the spanning tree.</p>
+<ul class="points">
+<li>The spanning tree cannot be disconnected. If we remove one more edge from any of the above spanning trees as shown below:<br />The above tree is not a spanning tree because it is disconnected now.</li>
+<li>If two or three edges have the same edge weight, then there would be more than two minimum spanning trees. If each edge has a distinct weight, then there will be only one or unique minimum spanning tree.</li>
+<li>A complete undirected graph can have <strong>n<sup>n-2</sup></strong> number of spanning trees where n is the number of vertices in the graph. For example, the value of n is 5 then the number of spanning trees would be equal to 125.</li>
+<li>Each connected and undirected graph contains at least one spanning tree.</li>
+<li>The disconnected graph does not contain any spanning tree, which we have already discussed.</li>
+<li>If the graph is a complete graph, then the spanning tree can be constructed by removing maximum (e-n+1) edges. Let's understand this property through an example.<br />A complete graph is a graph in which each pair of vertices are connected. Consider the complete graph having 3 vertices, which is shown below:</li>
+</ul>
+<p><strong><img src="https://benbocreative.com/TreeVisualiserCourses/Spanning%20Tree/6-discrete-mathematics-minimum-spanning-tree.png" alt="" width="384" height="273" style="display: block; margin-left: auto; margin-right: auto;" /></strong></p>
+<p><strong><span>We can create three spanning trees from the above graph shown as below:</span></strong></p>
+<p><strong><span></span></strong></p>
+<p><strong><span><img src="https://benbocreative.com/TreeVisualiserCourses/Spanning%20Tree/7-discrete-mathematics-minimum-spanning-tree.png" alt="" width="581" height="302" style="display: block; margin-left: auto; margin-right: auto;" /></span></strong></p>
+<p></p>
+<p></p>
+
+<p>According to this property, the maximum number of edges from the graph can be formulated as (e-n+1) where e is the number of edges, n is the number of vertices. When we substitute the value of e and n in the formula, then we get 1 value. It means that we can remove maximum 1 edge from the graph to make a spanning tree. In the above spanning trees, the one edge has been removed.</p>
+<p></p>
+
+<p><strong>Applications of Spanning trees</strong></p>
+<p><strong>The following are the applications of the spanning trees:</strong></p>
+<ul class="points">
+<li><strong>Building a network:</strong> Suppose there are many routers in the network connected to each other, so there might be a possibility that it forms a loop. So, to avoid the formation of the loop, we use the tree data structure to connect the routers, and a minimum spanning tree is used to minimally connect them.</li>
+<li><strong>Clustering:</strong> Here, clustering means that grouping the set of objects in such a way that similar objects belong to the same group than to the different group. Our goal is to divide the n objects into k groups such that the distance between the different groups gets maximized.</li>
+</ul>
+<p><strong>How can clustering be achieved?</strong></p>
+<p>First, we divide the n objects into k groups.</p>
+<p>Secondly, we will combine these clusters iteratively by adding an edge between them.</p>
+<p>Stop when we reach the k clusters.</p>
+<p><strong>Approach</strong></p>
+<p>One of the approaches that can be used to obtain clustering is to compute a minimum spanning tree. The minimum spanning tree can be simply calculated by dropping the k-1 most heavily weighted edge from the graph.</p>
+<p></p>
