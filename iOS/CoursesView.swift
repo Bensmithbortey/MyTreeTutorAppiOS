@@ -45,8 +45,11 @@ struct CoursesView: View {
             if let tab = notification.object as? Tab {
                 tabSelection = tab.rawValue
             }
-            if let navigation = notification.userInfo?["TreeModelNavigation"] as? TreeModelNavigation {
-                selectedTree = navigation
+            DispatchQueue.main.async {
+
+                if let navigation = notification.userInfo?["TreeModelNavigation"] as? TreeModelNavigation {
+                    selectedTree = navigation
+                }
             }
         })
     }

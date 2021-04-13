@@ -14,7 +14,7 @@ struct BinaryTreeView: View {
 
     init(tree: Tree<Unique<Int>>? = nil, treeName: String? = nil) {
         viewModel = BinaryTreeViewModel(tree: tree)
-        self.treeName = treeName
+        self.loadedTreeName = treeName
     }
 
     @State var algorithmSpeed: Float = 5
@@ -27,7 +27,8 @@ struct BinaryTreeView: View {
     @State var selectedNodeID: UUID?
     
     @State var showsOptionToGenerate = false
-    
+
+    var loadedTreeName: String?
     @State var treeName: String?
 
     @State var showTreeAlgorithmsView = false
@@ -77,7 +78,10 @@ struct BinaryTreeView: View {
                 }//: Outer HStack
                 .onAppear {
                     showsOptionToGenerate = true
-                    viewModel.generate(min: 1, max: 100)
+
+                    if viewModel.tree == nil {
+                        viewModel.generate(min: 1, max: 100)
+                    }
                 }
             }
         }//: ZStack
@@ -219,8 +223,9 @@ struct BinaryTreeView: View {
 
         VStack {
             HStack {
-                Text(treeName ?? "")
+                Text(treeName ?? (loadedTreeName ?? "Undefined"))
                     .font(.system(size: 24))
+                    .padding(.top, 50)
             }
 
             Spacer()
@@ -519,7 +524,7 @@ struct BinaryTreeView: View {
     
     var saveButton: some View {
         Button("Save", action: {
-            if let treeName = treeName {
+            if let treeName = treeName ?? loadedTreeName {
                 try? viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: treeName)
             } else {
                 let alert = UIAlertController(title: "Choose title", message: "", preferredStyle: .alert)
