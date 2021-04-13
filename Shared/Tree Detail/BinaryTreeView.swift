@@ -44,6 +44,8 @@ struct BinaryTreeView: View {
                     .frame(width: 400)
                     .frame(maxHeight: .infinity)
 
+                arrayView
+
                 toolboxView
             }
 
@@ -82,6 +84,34 @@ struct BinaryTreeView: View {
     }
 
     @ViewBuilder
+    var arrayView: some View {
+        HStack {
+            let index = viewModel.algorithmSteps.firstIndex(where: { step in
+                // Find the index of the selected algorithm step
+                return viewModel.selectedAlgorithmStep?.id == step.id
+            }) ?? (
+                // If the algorithm is playing and we don't have any selection yet, we should display the node at index 0
+                viewModel.isPlayingAlgorithm
+                ?
+                    0
+                :
+                    // Otherwise, it means the animation is over
+                    // We show all the steps in that case
+                viewModel.algorithmSteps.count - 1
+            )
+
+            // Let's show all the steps up to the selected one
+            let currentSteps = viewModel.algorithmSteps.dropLast(max(0, viewModel.algorithmSteps.count - index - 1))
+
+            ForEach(currentSteps) { step in
+                Text("\(step.node?.value.value ?? 0)")
+                    .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .yellow : .black)
+            }
+        }
+        .animation(.easeIn)
+    }
+
+    @ViewBuilder
     var treeStepsView: some View {
         let width: CGFloat = 200
 
@@ -103,29 +133,8 @@ struct BinaryTreeView: View {
 
                     ScrollView {
                         VStack {
-                            let index = viewModel.algorithmSteps.firstIndex(where: { step in
-                                // Find the index of the selected algorithm step
-                                return viewModel.selectedAlgorithmStep?.id == step.id
-                            }) ?? (
-                                // If the algorithm is playing and we don't have any selection yet, we should display the node at index 0
-                                viewModel.isPlayingAlgorithm
-                                ?
-                                    0
-                                :
-                                    // Otherwise, it means the animation is over
-                                    // We show all the steps in that case
-                                viewModel.algorithmSteps.count - 1
-                            )
 
-                            // Let's show all the steps up to the selected one
-                            let currentSteps = viewModel.algorithmSteps.dropLast(max(0, viewModel.algorithmSteps.count - index - 1))
-
-                            ForEach(currentSteps) { step in
-                                Text("- \(step.node?.value.value ?? 0)")
-                                    .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .yellow : .black)
-                            }
                         }
-                        .animation(.easeIn)
                     }
 
                     HStack {
@@ -303,9 +312,6 @@ struct BinaryTreeView: View {
             if let tree = viewModel.tree {
                 GeometryReader { geometry in
                     
-                    let treeNodeWidth = CGFloat(tree.maxHorizontalDistanceLevelOrder())
-                    let treeWidth = treeNodeWidth * 50 + (treeNodeWidth - 1) * 10
-                    
                     VStack {
                         let width: CGFloat = 40
 
@@ -332,11 +338,8 @@ struct BinaryTreeView: View {
                                     }
                                 }
                         })
-
-                        Text("treeNodeWidth: \(Int(treeNodeWidth))")
-                        Text("treeWidth: \(Int(treeWidth))")
-                    }
-                }
+                    }//: VStack
+                }//: GeometryReader
             }
         }//: VStack
     }

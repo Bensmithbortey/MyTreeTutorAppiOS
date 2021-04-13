@@ -50,7 +50,6 @@ class BinaryTreeViewModel: ObservableObject {
     func pause() {
         isPlayingAlgorithm = false
         objectWillChange.send()
-        self.scheduleDeselect()
     }
 
     func resume() {
@@ -63,6 +62,9 @@ class BinaryTreeViewModel: ObservableObject {
 
     private func scheduleStep() {
         DispatchQueue.main.asyncAfter(deadline: .now() + timeInterval) {
+            guard self.algorithmSteps.count - 1 > self.algorithmStepIndex, self.isPlayingAlgorithm else {
+                return
+            }
 
             self.selectedAlgorithmStep = self.algorithmSteps[self.algorithmStepIndex]
             self.algorithmStepIndex += 1
