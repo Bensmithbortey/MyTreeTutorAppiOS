@@ -15,6 +15,14 @@ class BinaryTreeViewModel: ObservableObject {
 
     @Published var selectedAlgorithm: TreeAlgorithm?
     @Published var algorithmSteps = [AlgorithmStep]()
+    var arraySteps: [AlgorithmStep] {
+        let dropLast = algorithmSteps.count - algorithmStepIndex - 1
+        if dropLast >= 0 {
+            return algorithmSteps.dropLast(dropLast).filter { $0.direction == .none }
+        } else {
+            return []
+        }
+    }
     @Published var selectedAlgorithmStep: AlgorithmStep?
 
     var speed: Float?
@@ -22,7 +30,7 @@ class BinaryTreeViewModel: ObservableObject {
         return TimeInterval((10 - (speed ?? 5)) / 5)
     }
 
-    private var algorithmStepIndex = 0
+    public private(set) var algorithmStepIndex = 0
 
     var isPlayingAlgorithm: Bool = false
 
@@ -37,6 +45,7 @@ class BinaryTreeViewModel: ObservableObject {
 
     func generateSteps() {
         guard let algorithm = selectedAlgorithm else { return }
+        AlgorithmStep.resetStepCounter()
         algorithmSteps = tree?.generateSteps(algorithm: algorithm) ?? []
 
         algorithmStepIndex = 0

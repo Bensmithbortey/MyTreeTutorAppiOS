@@ -90,29 +90,71 @@ struct BinaryTreeView: View {
     @ViewBuilder
     var arrayView: some View {
         HStack {
-            let index = viewModel.algorithmSteps.firstIndex(where: { step in
-                // Find the index of the selected algorithm step
-                return viewModel.selectedAlgorithmStep?.id == step.id
-            }) ?? (
-                // If the algorithm is playing and we don't have any selection yet, we should display the node at index 0
-                viewModel.isPlayingAlgorithm
-                ?
-                    0
-                :
-                    // Otherwise, it means the animation is over
-                    // We show all the steps in that case
-                viewModel.algorithmSteps.count - 1
-            )
-
-            // Let's show all the steps up to the selected one
-            let currentSteps = viewModel.algorithmSteps.dropLast(max(0, viewModel.algorithmSteps.count - index - 1))
-
-            ForEach(currentSteps) { step in
+            ForEach(viewModel.arraySteps) { step in
                 Text("\(step.node?.value.value ?? 0)")
                     .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .yellow : .black)
             }
         }
         .animation(.easeIn)
+    }
+
+    @ViewBuilder
+    var algorithmStepView: some View {
+
+        if let selectedAlgorithm = viewModel.selectedAlgorithm,
+           let direction = viewModel.selectedAlgorithmStep?.direction {
+            VStack {
+
+
+                if selectedAlgorithm == .inOrder {
+
+                    Text("inOrder(left)")
+                        .foregroundColor(direction.isLeft ? .yellow : .black)
+                    Text("visit this")
+                        .foregroundColor(direction == .none ? .yellow : .black)
+                    Text("inOrder(right)")
+                        .foregroundColor(direction.isRight ? .yellow : .black)
+                }
+
+                if selectedAlgorithm == .preOrder {
+
+                    Text("visit this")
+                        .foregroundColor(direction == .none ? .yellow : .black)
+                    Text("preOrder(left)")
+                        .foregroundColor(direction.isLeft ? .yellow : .black)
+                    Text("preOrder(right)")
+                        .foregroundColor(direction.isRight ? .yellow : .black)
+                }
+
+                if selectedAlgorithm == .postOrder {
+
+                    Text("postOrder(left)")
+                        .foregroundColor(direction.isLeft ? .yellow : .black)
+                    Text("postOrder(right)")
+                        .foregroundColor(direction.isRight ? .yellow : .black)
+                    Text("visit this")
+                        .foregroundColor(direction == .none ? .yellow : .black)
+                }
+
+
+                ScrollView {
+
+                    ScrollViewReader { value in
+
+                        let selectedStepID = viewModel.selectedAlgorithmStep?.id ?? 0
+
+                        ForEach(viewModel.algorithmSteps) { step in
+                            Text("\(step.direction == .none ? "\(step.node?.value.value ?? 0)" : step.direction.description)")
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(selectedStepID == step.id ? .yellow : .black)
+                        }
+                        .onReceive(viewModel.selectedAlgorithmStep.publisher) { output in
+                            value.scrollTo(selectedStepID, anchor: .center)
+                        }
+                    }
+                }//: ScrollView
+            }//: Outer VStack
+        }//: if let statement
     }
 
     @ViewBuilder
@@ -135,11 +177,7 @@ struct BinaryTreeView: View {
                 VStack {
                     Text("Tree Steps")
 
-                    ScrollView {
-                        VStack {
-
-                        }
-                    }
+                    algorithmStepView
 
                     HStack {
                         Text("Slow")
