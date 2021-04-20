@@ -1,6 +1,81 @@
-<!-- ######## This is a comment, visible only in the source editor  ######## -->
-<h1 style="color: #4485b8;"><span>Binary Search Tree</span></h1>
-<p><span></span></p>
-<p><span>AVL tree is a self-balancing Binary Search Tree (BST) where the difference between heights of left and right subtrees cannot be more than one for all nodes.&nbsp;</span><br /><strong>An Example Tree that is an AVL Tree</strong><span>&nbsp;</span></p>
-<p><span></span></p>
-<p></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVLTree</title>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="page-01">
+    <div class="header">
+        <div class="container">
+            <h1 class="main-heading">Binary Search <span>Tree</span></h1>
+            <h4 class="main-sub-heading">Binary Search tree exhibits a special behavior. A node's left child must have a value less than its parent's value and the node's right child must have a value greater than its parent value.</h4>
+        </div>    
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <div class=""></div>
+            <div class="wrapper">
+                <div class="img-fluid">
+                    <img src="https://benbocreative.com/TreeVisualiserCourses/Intro%20to%20trees/2-general-trees.jpg" alt="">
+                </div>
+                <p class="main-sub-heading width-100">We're going to implement tree using node object and connecting them through references.</p>
+                <h2 class="heading">Tree Node</h2>
+                <h3 class="sub-heading">The code to write a tree node would be similar to what is given below. It has a data part and references to its left and right child nodes.</h3>
+                <div class="img-fluid">
+                    <img src="https://benbocreative.com/TreeVisualiserCourses/Intro%20to%20trees/3-general-trees.png" alt="">
+                </div>
+                <p class="main-sub-heading width-100">In a tree, all nodes share a common construct.</p>
+
+                <h2 class="heading">BST Basic Operations</h2>
+                <h3 class="sub-heading">The basic operations that can be performed on a binary search tree data structure are the following</h3>
+                <div class="list">
+                    <ul>
+                        <li><span>Insert -</span> Inserts an element in a tree/create a tree.</li>
+                        <li><span>Search -</span> Searches an element in a tree.</li>
+                        <li><span>Preorder Traversal -</span> Traverses a tree in a pre-order manner.</li>
+                        <li><span>Inorder Traversal -</span> Traverses a tree in an in-order manner.</li>
+                        <li><span>Postorder Traversal -</span> Traverses a tree in a post-order manner.</li>
+                    </ul>
+                </div>
+                <p class="main-sub-heading width-100">We shall learn to create (inserting into) a tree structure and searching a data item in a tree in this chapter. We shall learn about tree traversing methods in the coming chapter.</p>
+                
+                <h1 class="main-heading">Insert Operation</h1>
+                <p>The very first insertion creates the tree. Afterward, whenever an element is to be inserted, first locate its proper location. Start searching from the root node, then if the data is less than the key value, search for the empty location in the left subtree and insert the data. Otherwise, search for the empty location in the right subtree and insert the data.</p>
+                <div class="box">
+                    <h2 class="heading">Algorithm</h2>
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/Intro%20to%20trees/4-general-trees.png" alt="">
+                    </div>
+                </div>
+                <div class="box">
+                    <h2 class="heading">Implementation</h2>
+                    <p class="sub-heading">The implementation of the insert function should look like this</p>
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/Intro%20to%20trees/5-general-trees.png" alt="">
+                    </div>
+                </div>
+
+
+                <h1 class="main-heading">Search Operation</h1>
+                <p class="text-center">Whenever an element is to be searched, start searching from the root node, then if the data is less than the key value, search for the element in the left subtree. Otherwise, search for the element in the right subtree. Follow the same algorithm for each node.</p>
+                <div class="box">
+                    <h2 class="heading">Algorithm</h2>
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/Intro%20to%20trees/6-general-trees.png" alt="">
+                    </div>
+                </div>
+                <div class="box">
+                    <p class="sub-heading">The implementation of this algorithm should look like this.</p>
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/Intro%20to%20trees/7-general-trees.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

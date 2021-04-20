@@ -11,13 +11,6 @@ import SwiftUI
 struct MyTreeTutorApp: App {
     let persistenceController = PersistenceController.shared
 
-    init() {
-        // Cache the HTML content so that we can display it faster
-        for course in courses {
-            HTMLTextCache.shared.generateAttributedString(for: course.contentFileName)
-        }
-    }
-
     var body: some Scene {
         WindowGroup {
             ContentView()

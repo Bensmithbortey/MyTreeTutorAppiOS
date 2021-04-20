@@ -31,7 +31,8 @@ struct CourseSectionDetail: View {
     }
     
     var content: some View {
-        ScrollView {
+//        ScrollView {
+        VStack {
             VStack(alignment: .leading) {
                 HStack(alignment: .top) {
                     Image(section.logo)

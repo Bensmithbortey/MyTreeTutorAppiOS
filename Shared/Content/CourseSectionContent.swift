@@ -14,7 +14,8 @@ struct CourseSectionContent: View {
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 20) {
-                HTMLText(textFileName: textFileName)
+                HTMLText(textFileName: textFileName)?
+                    .frame(height: 500)
             }
             .padding(16)
         }

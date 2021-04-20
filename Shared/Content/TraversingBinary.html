@@ -1,6 +1,72 @@
-<!-- ######## This is a comment, visible only in the source editor  ######## -->
-<h1 style="color: #4485b8;"><span>Traversing Binary Trees</span></h1>
-<p><span></span></p>
-<p><span>AVL tree is a self-balancing Binary Search Tree (BST) where the difference between heights of left and right subtrees cannot be more than one for all nodes.&nbsp;</span><br /><strong>An Example Tree that is an AVL Tree</strong><span>&nbsp;</span></p>
-<p><span></span></p>
-<p></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVLTree</title>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="page-01">
+    <div class="header">
+        <div class="container">
+            <h1 class="main-heading"><span>Tree</span> Traversal</h1>
+            <h4 class="main-sub-heading">Traversal is a process to visit all the nodes of a tree and may print their values too. As all nodes are connected via edges (links) we always start from the root (head) node. That is, we cannot randomly access a node in a tree. There are three ways which we use to traverse a tree</h4>
+        </div>    
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <div class="wrapper">
+                <div class="list">
+                    <ul>
+                        <li>In-order Traversal</li>
+                        <li>Pre-order Traversal</li>
+                        <li>Post-order Traversal</li>
+                    </ul>
+                </div>
+                <p class="sub-heading">Generally, we traverse a tree to search or locate a given item or key in the tree or to print all the values it contains.</p>
+                
+                <h2 class="heading">In-order Traversal</h2>
+                <p>In this traversal method, the left subtree is visited first, then the root and later the right sub-tree. We should always remember that every node may represent a subtree itself.</p>
+                <p class="sub-heading">If a binary tree is traversed <b>in-order</b>, the output will produce sorted key values in an ascending order.</p>
+
+                <div class="img-fluid">
+                    <img src="https://benbocreative.com/TreeVisualiserCourses/Traversing%20Binary%20Trees/1-binarysearchtraversal-trees.jpg" alt="">
+                </div>
+                <p class="sub-heading">We start from <b>A</b>, and following in-order traversal, we move to its left subtree <b>B</b>. <b>B</b> is also traversed in-order. The process goes on until all the nodes are visited. The output of inorder traversal of this tree will be</p>
+                <p class="sub-heading"><b><i>D &rarr; B &rarr; E &rarr; A &rarr; F &rarr; C &rarr; G</i></b></p>
+                <div class="box">
+                    <h2 class="heading">Algorithm</h2>
+                    <div class="img-fluid">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/Traversing%20Binary%20Trees/2-binarysearchtraversal-trees.png" alt="">
+                    </div>
+                </div>
+                
+                <h2 class="heading">Post-order Traversal</h2>
+                <p class="sub-heading">In this traversal method, the root node is visited last, hence the name. First, we traverse the left subtree, then the right subtree and finally the root node.</p>
+                <div class="img-fluid">
+                    <img src="https://benbocreative.com/TreeVisualiserCourses/Traversing%20Binary%20Trees/1-binarysearchtraversal-trees.jpg" alt="">
+                </div>
+                <p class="sub-heading">We start from <b>A</b>, and following Post-order traversal, we first visit the left subtree <b>B</b>. <b>B</b> is also traversed post-order. The process goes on until all the nodes are visited. The output of post-order traversal of this tree will be</p>
+                <p class="sub-heading"><b><i>D &rarr; E &rarr; B &rarr; F &rarr; G &rarr; C &rarr; A</i></b></p>
+                <div class="box">
+                    <h2 class="heading">Algorithm</h2>
+                    <div class="img-fluid">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/Traversing%20Binary%20Trees/6-binarysearchtraversal-trees.png" alt="">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <h4><span></span></h4>
+    <p><span></span></p>
+    <p><span></span></p>
+    <p></p>
+    <div></div>
+    <p></p>
+</body>
+</html>

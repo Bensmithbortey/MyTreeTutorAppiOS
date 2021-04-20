@@ -1,6 +1,95 @@
-<!-- ######## This is a comment, visible only in the source editor  ######## -->
-<h1 style="color: #4485b8;"><span>AVL Tree (Deletion)</span></h1>
-<p><span></span></p>
-<p><span>AVL tree is a self-balancing Binary Search Tree (BST) where the difference between heights of left and right subtrees cannot be more than one for all nodes.&nbsp;</span><br /><strong>An Example Tree that is an AVL Tree</strong><span>&nbsp;</span></p>
-<p><span></span></p>
-<p></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVLTree</title>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="page-01">
+    <div class="header">
+        <div class="container">
+            <h1 class="main-heading">AVL <span>Trees</span> Deletion</h1>
+            <h2 class="heading">Steps to <span>follow</span> for deletion</h2>
+            <h4 class="main-sub-heading">To make sure that the given tree remains AVL after every deletion, we must augment the standard BST delete operation to perform some re-balancing. Following are two basic operations that can be performed to re-balance a BST without violating the BST property (keys(left) &lt; key(root) &lt; keys(right)).</h4>
+        </div>    
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <div class=""></div>
+            <div class="wrapper">
+                <div class="list">
+                    <ul>
+                        <li><span>1)</span> Left Rotation</li>
+                        <li><span>2)</span> Right Rotation</li>
+                    </ul>
+                </div>
+                <div class="img-fluid">
+                    <img src="https://benbocreative.com/TreeVisualiserCourses/AVL%20Trees/Deletion/1a-AVLTreeDeletion.png" alt="">
+                </div>
+                <p class="main-sub-heading padding-top-2">Let w be the node to be deleted</p>
+                <div class="list">
+                    <ul>
+                        <li><span>1)</span> Perform standard BST delete for w.</li>
+                        <li><span>2)</span> Starting from w, travel up and find the first unbalanced node. Let z be the first unbalanced node, y be the larger height child of z, and x be the larger height child of y. Note that the definitions of x and y are different from <a href="https://www.geeksforgeeks.org/avl-tree-set-1-insertion/">insertion </a>here.</li>
+                        <li><span>3)</span> Re-balance the tree by performing appropriate rotations on the subtree rooted with z. There can be 4 possible cases that needs to be handled as x, y and z can be arranged in 4 ways. Following are the possible 4 arrangements:</li>
+                    </ul>
+                    <ul>
+                        <li><span>a)</span> y is left child of z and x is left child of y (Left Left Case)</li>
+                        <li><span>b)</span> y is left child of z and x is right child of y (Left Right Case)</li>
+                        <li><span>c)</span> y is right child of z and x is right child of y (Right Right Case)</li>
+                        <li><span>d)</span> y is right child of z and x is left child of y (Right Left Case)</li>
+                    </ul>
+                </div>
+                <p class="main-sub-heading padding-top-2">Like insertion, following are the operations to be performed in above mentioned 4 cases. Note that, unlike insertion, fixing the node z won&rsquo;t fix the complete AVL tree. After fixing z, we may have to fix ancestors of z as well (See <a href="http://www.youtube.com/watch?v=TbvhGcf6UJU">this video lecture</a> for proof)</p>
+                <div class="box">
+                    <h2 class="heading">a) Left Left Case</h2>
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/AVL%20Trees/Deletion/1b-AVLTreeDeletion.png" alt="">
+                    </div>
+                </div>
+                <div class="box">
+                    <h2 class="heading">b) Left Right Case</h2>
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/AVL%20Trees/Deletion/2-AVLTreeDeletion.png" alt="">
+                    </div>
+                </div>
+                <div class="box">
+                    <h2 class="heading">c) Right Right Case</h2>
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/AVL%20Trees/Deletion/3-AVLTreeDeletion.png" alt="">
+                    </div>
+                </div>
+                <div class="box">
+                    <h2 class="heading">d) Right Left Case</h2>
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/AVL%20Trees/Deletion/4-AVLTreeDeletion.png" alt="">
+                    </div>
+                </div>
+                <p class="main-sub-heading padding-top-2">Unlike insertion, in deletion, after we perform a rotation at z, we may have to perform a rotation at ancestors of z. Thus, we must continue to trace the path until we reach the root.</p>
+                <div class="box">
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/AVL%20Trees/Deletion/5-AVLTreeDeletion.jpg" alt="">
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/AVL%20Trees/Deletion/6-AVLTreeDeletion.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="footer">
+        <div class="container">
+            <div class="content">
+                <p class="sub-heading">A node with value 32 is being deleted. After deleting 32, we travel up and find the first unbalanaced node which is 44. We mark it as z, its higher height child as y which is 62, and y&rsquo;s higher height child as x which could be either 78 or 50 as both are of same height. We have considered 78. Now the case is Right Right, so we perform left rotation.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

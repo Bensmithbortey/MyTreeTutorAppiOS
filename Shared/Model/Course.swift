@@ -31,14 +31,14 @@ var courses = [
         contentFileName: "IntroductionToTrees"
     ),
     Course(
-        title: "Binary Tree",
+        title: "Binary Search Tree",
         subtitle: "",
         color: Color(#colorLiteral(red: 0, green: 0.5217629075, blue: 1, alpha: 1)),
         image: "Illustration 1",
         logo: "Logo UI Design",
         show: false,
         index: -1,
-        contentFileName: "BinaryTrees"
+        contentFileName: "BinarySearchTree"
     ),
     Course(
         title: "Traversing Binary Tree",
@@ -49,16 +49,6 @@ var courses = [
         show: false,
         index: -1,
         contentFileName: "TraversingBinary"
-    ),
-    Course(
-        title: "Binary Search Tree",
-        subtitle: "",
-        color: Color(#colorLiteral(red: 0, green: 0.5217629075, blue: 1, alpha: 1)),
-        image: "Illustration 1",
-        logo: "Logo UI Design",
-        show: false,
-        index: -1,
-        contentFileName: "BinarySearchTree"
     ),
     Course(
         title: "Spanning Tree",
@@ -98,6 +88,6 @@ var courses = [
         logo: "Logo UI Design",
         show: false,
         index: -1,
-        contentFileName: "AVLTreeDeletion"
+        contentFileName: "AVLTreesDeletion"
     )
 ]

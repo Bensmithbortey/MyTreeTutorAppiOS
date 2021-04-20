@@ -6,65 +6,39 @@
 //
 
 import SwiftUI
-
-class HTMLTextCache {
-
-    static let shared = HTMLTextCache()
-    private init() {}
-
-    private var attributedStrings = [String: NSAttributedString]()
-
-    func generateAttributedString(for textFileName: String) {
-
-        DispatchQueue.global(qos: .default).async {
-
-            if let file = Bundle.main.url(forResource: textFileName, withExtension: "html"),
-               let data = try? Data(contentsOf: file),
-               let html = String(data: data, encoding: .utf8) {
-
-                let data = Data(html.utf8)
-                if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-
-                    DispatchQueue.main.async {
-                        self.attributedStrings[textFileName] = attributedString
-                    }//: DispatchQueue.main.async
-                }//: NSAttributedString generation
-            }//: get
-        }//: qos
-    }
-
-    func attributedString(for textFileName: String) -> NSAttributedString? {
-        return attributedStrings[textFileName]
-    }
-
-}
+import WebKit
 
 struct HTMLText: UIViewRepresentable {
 
-    let attributedString: NSAttributedString
+    private let fileURL: URL
+    private let folderURL: URL
 
     init?(textFileName: String) {
-        if let string = HTMLTextCache.shared.attributedString(for: textFileName) {
-            self.attributedString = string
+        if let file = Bundle.main.url(forResource: textFileName, withExtension: "html") {
+            fileURL = file
+            
+            var folder = file
+            folder.deleteLastPathComponent()
+            folderURL = folder
         } else {
             return nil
         }
     }
 
-    func makeUIView(context: UIViewRepresentableContext<Self>) -> UILabel {
-        let label = UILabel()
-        label.numberOfLines = 0
+    func makeUIView(context: UIViewRepresentableContext<Self>) -> WKWebView {
+        let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: 30, height: 50))
 
-        label.setContentHuggingPriority(.required, for: .horizontal) // << here !!
-        label.setContentHuggingPriority(.required, for: .vertical)
-        label.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        label.attributedText = attributedString
+        webView.setContentHuggingPriority(.required, for: .horizontal) // << here !!
+        webView.setContentHuggingPriority(.required, for: .vertical)
+        webView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        webView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
-        return label
+        webView.loadFileURL(fileURL, allowingReadAccessTo: folderURL)
+
+        return webView
     }
 
-    func updateUIView(_ uiView: UILabel, context: Context) {
+    func updateUIView(_ uiView: WKWebView, context: Context) {
 
     }
 }

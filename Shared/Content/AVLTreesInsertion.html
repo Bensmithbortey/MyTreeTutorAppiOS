@@ -1,6 +1,57 @@
-<!-- ######## This is a comment, visible only in the source editor  ######## -->
-<h1 style="color: #4485b8;"><span>AVL Tree (Insertion)</span></h1>
-<p><span></span></p>
-<p><span>AVL tree is a self-balancing Binary Search Tree (BST) where the difference between heights of left and right subtrees cannot be more than one for all nodes.&nbsp;</span><br /><strong>An Example Tree that is an AVL Tree</strong><span>&nbsp;</span></p>
-<p><span></span></p>
-<p></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVLTree</title>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="page-01">
+    <div class="header">
+        <div class="container">
+            <h1 class="main-heading">AVL <span>Trees</span> Insertion</h1>
+            <h4 class="main-sub-heading">To make sure that the given tree remains AVL after every insertion, we must augment the standard BST insert operation to perform some re-balancing. Following are two basic operations that can be performed to re-balance a BST without violating the BST property (keys(left) &lt; key(root) &lt; keys(right)).</h4>
+        </div>    
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <div class=""></div>
+            <div class="wrapper">
+                <div class="list">
+                    <ul>
+                        <li><span>1)</span> Left Rotation</li>
+                        <li><span>2)</span> Right Rotation</li>
+                    </ul>
+                </div>
+                <div class="img-fluid">
+                    <img src="https://benbocreative.com/TreeVisualiserCourses/AVL%20Trees/Insertion/3-AVL-Tree1.png" alt="">
+                </div>
+                <p class="main-sub-heading"><b>Steps to follow for insertion</b></p>
+                <p class="main-sub-heading">Let the newly inserted node be w</p>
+                <div class="list">
+                    <ul>
+                        <li><span>1)</span> Perform standard BST insert for w.</li>
+                        <li><span>2)</span> Starting from w, travel up and find the first unbalanced node. Let z be the first unbalanced node, y be the child of z that comes on the path from w to z and w be the grandchild of z that comes on the path from w to z.</li>
+                        <li><span>3)</span> Re-balance the tree by performing appropriate rotations on the subtree rooted with z. There can be 4 possible cases that needs to be handled as x, y and z can be arranged in 4 ways. Following are the possible 4 arrangements:</li>
+                    </ul>
+                    <ul>
+                        <li><span>a)</span> y is left child of z and x is left child of y (Left Left Case)</li>
+                        <li><span>b)</span> y is left child of z and x is right child of y (Left Right Case)</li>
+                        <li><span>c)</span> y is right child of z and x is right child of y (Right Right Case)</li>
+                        <li><span>d)</span> y is right child of z and x is left child of y (Right Left Case)</li>
+                    </ul>
+                </div>
+                <p class="main-sub-heading padding-top-2">Following are the operations to be performed in above mentioned 4 cases. In all of the cases, we only need to re-balance the subtree rooted with z and the complete tree becomes balanced as the height of subtree (After appropriate rotations) rooted with z becomes same as it was before insertion.</p>
+                <div class="box">
+                    <h2 class="heading">a) Left Left Case</h2>
+                    <div class="img">
+                        <img src="https://benbocreative.com/TreeVisualiserCourses/AVL%20Trees/Deletion/1b-AVLTreeDeletion.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

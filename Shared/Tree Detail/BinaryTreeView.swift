@@ -175,7 +175,8 @@ struct BinaryTreeView: View {
                 .padding()
 
                 VStack {
-                    Text("Tree Steps")
+                    Text("TREE STEPS")
+                        .bold()
 
                     algorithmStepView
 
@@ -261,7 +262,7 @@ struct BinaryTreeView: View {
 
         VStack {
             HStack {
-                Text(treeName ?? (loadedTreeName ?? "Undefined"))
+                Text(treeName ?? (loadedTreeName ?? ""))
                     .font(.system(size: 24))
                     .padding(.top, 50)
             }
@@ -454,6 +455,9 @@ struct BinaryTreeView: View {
                                 // Find
                                 HStack {
                                     TextField("Find a node", text: $findValue)
+                                        .padding(6)
+                                        .background(Color(.sRGB, white: 0.92, opacity: 1.0))
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
 
                                     Button {
                                         withAnimation(.default) {
