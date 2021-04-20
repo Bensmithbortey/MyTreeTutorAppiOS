@@ -121,6 +121,9 @@ struct BinaryTreeView: View {
                         .foregroundColor(direction == .none && isSelection ? .yellow : .black)
                     Text("inOrder(right)")
                         .foregroundColor(direction.isRight ? .yellow : .black)
+
+                    Text("This is a post order text, lorem ipsum dolorem amet")
+                        .lineLimit(nil)
                 }
 
                 if selectedAlgorithm == .preOrder {
@@ -131,6 +134,9 @@ struct BinaryTreeView: View {
                         .foregroundColor(direction.isLeft ? .yellow : .black)
                     Text("preOrder(right)")
                         .foregroundColor(direction.isRight ? .yellow : .black)
+
+                    Text("This is a pre order text, lorem ipsum doloret")
+                        .lineLimit(nil)
                 }
 
                 if selectedAlgorithm == .postOrder {
@@ -141,6 +147,9 @@ struct BinaryTreeView: View {
                         .foregroundColor(direction.isRight ? .yellow : .black)
                     Text("visit this")
                         .foregroundColor(direction == .none && isSelection ? .yellow : .black)
+
+                    Text("This is a post order text, lorem ipsum doloret")
+                        .lineLimit(nil)
                 }
 
                 ScrollView {
