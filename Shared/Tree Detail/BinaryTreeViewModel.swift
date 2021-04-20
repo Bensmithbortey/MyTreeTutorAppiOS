@@ -13,8 +13,8 @@ class BinaryTreeViewModel: ObservableObject {
 
     let objectWillChange = PassthroughSubject<Void, Never>()
 
-    @Published var selectedAlgorithm: TreeAlgorithm?
-    @Published var algorithmSteps = [AlgorithmStep]()
+    var selectedAlgorithm: TreeAlgorithm?
+    var algorithmSteps = [AlgorithmStep]()
     var arraySteps: [AlgorithmStep] {
         let dropLast = algorithmSteps.count - algorithmStepIndex - 1
         if dropLast >= 0 {
@@ -23,7 +23,8 @@ class BinaryTreeViewModel: ObservableObject {
             return []
         }
     }
-    @Published var selectedAlgorithmStep: AlgorithmStep?
+    var selectedAlgorithmStep: AlgorithmStep?
+    var name: String?
 
     var speed: Float?
     var timeInterval: TimeInterval {
@@ -71,8 +72,8 @@ class BinaryTreeViewModel: ObservableObject {
 
     private func scheduleStep() {
         DispatchQueue.main.asyncAfter(deadline: .now() + timeInterval) {
-            print("self.algorithmStepIndex: \(self.algorithmStepIndex) / \(self.algorithmSteps.count)")
             guard
+                !self.algorithmSteps.isEmpty,
                 self.algorithmSteps.count > self.algorithmStepIndex,
                 self.isPlayingAlgorithm else {
 
@@ -83,11 +84,9 @@ class BinaryTreeViewModel: ObservableObject {
             self.selectedAlgorithmStep = self.algorithmSteps[self.algorithmStepIndex]
             if self.algorithmStepIndex == self.algorithmSteps.count - 1 {
                 self.scheduleDeselect()
-                print("scheduleDeselect")
             } else {
                 self.algorithmStepIndex += 1
                 self.scheduleStep()
-                print("schedule another step")
             }
             self.objectWillChange.send()
         }
@@ -150,6 +149,10 @@ class BinaryTreeViewModel: ObservableObject {
 
     func clear() {
         tree = nil
+        name = ""
+        algorithmStepIndex = 0
+        isPlayingAlgorithm = false
+        algorithmSteps.removeAll()
         objectWillChange.send()
     }
 }

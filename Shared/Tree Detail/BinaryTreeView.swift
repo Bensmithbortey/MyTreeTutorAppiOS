@@ -14,7 +14,7 @@ struct BinaryTreeView: View {
 
     init(tree: Tree<Unique<Int>>? = nil, treeName: String? = nil) {
         viewModel = BinaryTreeViewModel(tree: tree)
-        self.loadedTreeName = treeName
+        viewModel.name = treeName
     }
 
     @State var algorithmSpeed: Float = 5
@@ -27,9 +27,6 @@ struct BinaryTreeView: View {
     @State var selectedNodeID: UUID?
     
     @State var showsOptionToGenerate = false
-
-    var loadedTreeName: String?
-    @State var treeName: String?
 
     @State var showTreeAlgorithmsView = false
     @State var showTreeStepsView = false
@@ -89,13 +86,21 @@ struct BinaryTreeView: View {
 
     @ViewBuilder
     var arrayView: some View {
-        HStack {
-            ForEach(viewModel.arraySteps) { step in
-                Text("\(step.node?.value.value ?? 0)")
-                    .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .yellow : .black)
+        if viewModel.selectedAlgorithm != nil && !viewModel.arraySteps.isEmpty {
+            VStack {
+                Text("Array values")
+
+                HStack {
+                    ForEach(viewModel.arraySteps) { step in
+                        Text("\(step.node?.value.value ?? 0)")
+                            .foregroundColor(viewModel.selectedAlgorithmStep?.id == step.id ? .yellow : .black)
+                    }
+                }
+                .animation(.easeIn)
             }
+        } else {
+            EmptyView()
         }
-        .animation(.easeIn)
     }
 
     @ViewBuilder
@@ -149,6 +154,8 @@ struct BinaryTreeView: View {
                                 .frame(maxWidth: .infinity)
                                 .foregroundColor(selectedStepID == step.id ? .yellow : .black)
                         }
+
+                        HStack{}
                         .onReceive(viewModel.selectedAlgorithmStep.publisher) { output in
                             if selectedStepID > 10 {
                                 value.scrollTo(selectedStepID, anchor: .center)
@@ -158,6 +165,9 @@ struct BinaryTreeView: View {
                 }//: ScrollView
             }//: Outer VStack
         }//: if let statement
+        else {
+            EmptyView()
+        }
     }
 
     @ViewBuilder
@@ -183,6 +193,8 @@ struct BinaryTreeView: View {
 
                     algorithmStepView
 
+                    Spacer()
+                    
                     HStack {
                         Text("Slow")
 
@@ -265,7 +277,7 @@ struct BinaryTreeView: View {
 
         VStack {
             HStack {
-                Text(treeName ?? (loadedTreeName ?? ""))
+                Text(viewModel.name ?? "")
                     .font(.system(size: 24))
                     .padding(.top, 50)
             }
@@ -569,7 +581,7 @@ struct BinaryTreeView: View {
     
     var saveButton: some View {
         Button("Save", action: {
-            if let treeName = treeName ?? loadedTreeName {
+            if let treeName = viewModel.name {
                 try? viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: treeName)
             } else {
                 let alert = UIAlertController(title: "Choose title", message: "", preferredStyle: .alert)
@@ -580,7 +592,7 @@ struct BinaryTreeView: View {
                 
                 alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] _ in
                     if let textField = alert?.textFields?.first, let text = textField.text, !text.isEmpty {
-                        treeName = text
+                        viewModel.name = text
                         try? viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: text)
                     } else {
                         // Couldn't save because the title is missing
