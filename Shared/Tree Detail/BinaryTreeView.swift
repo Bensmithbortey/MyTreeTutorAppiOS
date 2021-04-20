@@ -101,8 +101,10 @@ struct BinaryTreeView: View {
     @ViewBuilder
     var algorithmStepView: some View {
 
-        if let selectedAlgorithm = viewModel.selectedAlgorithm,
-           let direction = viewModel.selectedAlgorithmStep?.direction {
+        let direction = viewModel.selectedAlgorithmStep?.direction ?? .none
+        let isSelection = viewModel.selectedAlgorithmStep == nil
+
+        if let selectedAlgorithm = viewModel.selectedAlgorithm {
             VStack {
 
 
@@ -111,7 +113,7 @@ struct BinaryTreeView: View {
                     Text("inOrder(left)")
                         .foregroundColor(direction.isLeft ? .yellow : .black)
                     Text("visit this")
-                        .foregroundColor(direction == .none ? .yellow : .black)
+                        .foregroundColor(direction == .none && isSelection ? .yellow : .black)
                     Text("inOrder(right)")
                         .foregroundColor(direction.isRight ? .yellow : .black)
                 }
@@ -119,7 +121,7 @@ struct BinaryTreeView: View {
                 if selectedAlgorithm == .preOrder {
 
                     Text("visit this")
-                        .foregroundColor(direction == .none ? .yellow : .black)
+                        .foregroundColor(direction == .none && isSelection ? .yellow : .black)
                     Text("preOrder(left)")
                         .foregroundColor(direction.isLeft ? .yellow : .black)
                     Text("preOrder(right)")
@@ -133,9 +135,8 @@ struct BinaryTreeView: View {
                     Text("postOrder(right)")
                         .foregroundColor(direction.isRight ? .yellow : .black)
                     Text("visit this")
-                        .foregroundColor(direction == .none ? .yellow : .black)
+                        .foregroundColor(direction == .none && isSelection ? .yellow : .black)
                 }
-
 
                 ScrollView {
 
@@ -149,7 +150,9 @@ struct BinaryTreeView: View {
                                 .foregroundColor(selectedStepID == step.id ? .yellow : .black)
                         }
                         .onReceive(viewModel.selectedAlgorithmStep.publisher) { output in
-                            value.scrollTo(selectedStepID, anchor: .center)
+                            if selectedStepID > 10 {
+                                value.scrollTo(selectedStepID, anchor: .center)
+                            }
                         }
                     }
                 }//: ScrollView

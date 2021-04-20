@@ -71,26 +71,32 @@ class BinaryTreeViewModel: ObservableObject {
 
     private func scheduleStep() {
         DispatchQueue.main.asyncAfter(deadline: .now() + timeInterval) {
-            guard self.algorithmSteps.count - 1 > self.algorithmStepIndex, self.isPlayingAlgorithm else {
+            print("self.algorithmStepIndex: \(self.algorithmStepIndex) / \(self.algorithmSteps.count)")
+            guard
+                self.algorithmSteps.count > self.algorithmStepIndex,
+                self.isPlayingAlgorithm else {
+
+                self.scheduleDeselect()
                 return
             }
 
             self.selectedAlgorithmStep = self.algorithmSteps[self.algorithmStepIndex]
-            self.algorithmStepIndex += 1
-            if self.algorithmStepIndex == self.algorithmSteps.count {
-                self.isPlayingAlgorithm = false
+            if self.algorithmStepIndex == self.algorithmSteps.count - 1 {
                 self.scheduleDeselect()
+                print("scheduleDeselect")
             } else {
+                self.algorithmStepIndex += 1
                 self.scheduleStep()
+                print("schedule another step")
             }
             self.objectWillChange.send()
-
         }
     }
 
     private func scheduleDeselect() {
         DispatchQueue.main.asyncAfter(deadline: .now() + timeInterval) {
             self.selectedAlgorithmStep = nil
+            self.isPlayingAlgorithm = false
             self.objectWillChange.send()
         }
     }
