@@ -22,7 +22,7 @@ struct SearchView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(entity: TreeModel.entity(), sortDescriptors: [], predicate: NSPredicate(format: "title != nil"))
+    @FetchRequest(entity: TreeModel.entity(), sortDescriptors: [NSSortDescriptor(key: "isFavorite", ascending: false)], predicate: NSPredicate(format: "title != nil"))
     var trees: FetchedResults<TreeModel>
     
     var filteredTrees: [TreeModel] {
@@ -30,13 +30,10 @@ struct SearchView: View {
             return self.trees.filter({ _ in true })
         } else {
             let searchTextLowercased = searchText.lowercased()
-            var filteredTrees = trees.filter({ model in
+            let filteredTrees = trees.filter({ model in
                 let tree = model as TreeModel
                 return tree.title?.lowercased().contains(searchTextLowercased) ?? false
             })
-            filteredTrees.sort { (a: TreeModel, b: TreeModel) -> Bool in
-                return a.isFavorite && !b.isFavorite
-            }
             return filteredTrees
         }
     }
@@ -66,9 +63,12 @@ struct SearchView: View {
                         }
 
                     Image(systemName: tree.isFavorite ? .starFill : .star)
+                        .foregroundColor(.yellow)
                         .onTapGesture {
-                            tree.isFavorite.toggle()
-                            try! viewContext.save()
+                            withAnimation {
+                                tree.isFavorite.toggle()
+                                try! viewContext.save()
+                            }
                         }
                 }
                 
