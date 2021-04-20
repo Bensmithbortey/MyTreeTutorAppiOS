@@ -12,7 +12,9 @@ enum MTTColor: String {
          Secondary,
          TreeOutline,
          TreeBackground,
-         TreeSelectedBackground
+         TreeSelectedBackground,
+         Background2 = "Background 2"
+
 }
 
 extension Color {

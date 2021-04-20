@@ -43,7 +43,7 @@ struct SearchView: View {
             TextField("Search", text: $searchText)
                 .font(.title3)
                 .padding(8)
-                .background(Color("Background 2"))
+                .background(Color(.Background2))
                 .mask(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .padding(.vertical, 8)
             
