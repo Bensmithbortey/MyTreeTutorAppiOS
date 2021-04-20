@@ -30,10 +30,13 @@ struct SearchView: View {
             return self.trees.filter({ _ in true })
         } else {
             let searchTextLowercased = searchText.lowercased()
-            let filteredTrees = trees.filter({ model in
+            var filteredTrees = trees.filter({ model in
                 let tree = model as TreeModel
                 return tree.title?.lowercased().contains(searchTextLowercased) ?? false
             })
+            filteredTrees.sort { (a: TreeModel, b: TreeModel) -> Bool in
+                return a.isFavorite && !b.isFavorite
+            }
             return filteredTrees
         }
     }
@@ -48,17 +51,26 @@ struct SearchView: View {
                 .padding(.vertical, 8)
             
             ForEach(filteredTrees) { tree in
-                let tree = tree as TreeModel
 
-                Text(tree.title ?? "")
-                    .frame(maxHeight: .infinity)
-                    .onTapGesture {
-                        NotificationCenter.default.post(name: .changeTab,
-                                                        object: Tab.treeVisualizer, userInfo: [
-                                                            "TreeModelNavigation": TreeModelNavigation(title: tree.title,
-                                                                                                       tree: tree.generateTree())
-                                                        ])
-                    }
+                HStack {
+                    let tree = tree as TreeModel
+
+                    Text(tree.title ?? "")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .onTapGesture {
+                            NotificationCenter.default.post(name: .changeTab,
+                                                            object: Tab.treeVisualizer, userInfo: [
+                                                                "TreeModelNavigation": TreeModelNavigation(title: tree.title,
+                                                                                                           tree: tree.generateTree())
+                                                            ])
+                        }
+
+                    Image(systemName: tree.isFavorite ? .starFill : .star)
+                        .onTapGesture {
+                            tree.isFavorite.toggle()
+                            try! viewContext.save()
+                        }
+                }
                 
             }.onDelete { (indexSet) in
                 for index in indexSet {

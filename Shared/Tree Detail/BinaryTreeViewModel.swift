@@ -149,7 +149,7 @@ class BinaryTreeViewModel: ObservableObject {
 
     func clear() {
         tree = nil
-        name = ""
+        name = nil
         algorithmStepIndex = 0
         isPlayingAlgorithm = false
         algorithmSteps.removeAll()

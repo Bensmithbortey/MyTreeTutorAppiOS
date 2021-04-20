@@ -98,6 +98,7 @@ extension Tree where A == Unique<Int> {
         
         let treeModel = insertToCoreData(moc: moc)
         treeModel.title = title
+        treeModel.isFavorite = false
         
         try moc.save()
     }

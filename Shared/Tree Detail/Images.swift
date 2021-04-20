@@ -16,7 +16,9 @@ enum SystemImage: String {
          arrowBackward = "arrow.backward",
          arrowUp = "arrow.up",
          arrowDown = "arrow.down",
-         infoCircleFill = "info.circle.fill"
+         infoCircleFill = "info.circle.fill",
+         star = "star",
+         starFill = "star.fill"
 }
 
 extension Image {
