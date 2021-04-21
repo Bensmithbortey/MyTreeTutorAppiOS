@@ -40,7 +40,7 @@ extension Tree {
 class Unique<A: Comparable>: Identifiable, Comparable, Equatable {
     let value: A
     init(_ value: A) { self.value = value }
-    
+
     static func < (lhs: Unique<A>, rhs: Unique<A>) -> Bool {
         return lhs.value < rhs.value
     }

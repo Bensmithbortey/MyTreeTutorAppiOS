@@ -190,6 +190,8 @@
 		CE6DDA3C26137271005A0F5A /* TreeAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DDA3B26137271005A0F5A /* TreeAlgorithm.swift */; };
 		CE6DDA4226137294005A0F5A /* Tree+AlgorithmStepGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DDA4126137294005A0F5A /* Tree+AlgorithmStepGeneration.swift */; };
 		CE6DDA48261372BA005A0F5A /* BinaryTreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DDA47261372BA005A0F5A /* BinaryTreeViewModel.swift */; };
+		CEAF10D0262F289000A564A3 /* Diagrams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A50BC592603D52B00286FBA /* Diagrams.swift */; };
+		CEAF10D5262F289E00A564A3 /* Tree+Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A81EC1A260E33430022F3C6 /* Tree+Unique.swift */; };
 		CED0499C261F3A5F00CE0BE2 /* HTMLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0499B261F3A5F00CE0BE2 /* HTMLText.swift */; };
 		CED0499D261F3A5F00CE0BE2 /* HTMLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0499B261F3A5F00CE0BE2 /* HTMLText.swift */; };
 		CED049CA261F429600CE0BE2 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED049C9261F429600CE0BE2 /* BlurView.swift */; };
@@ -969,6 +971,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ACD162525EB092000A1DE99 /* Tests_iOS.swift in Sources */,
+				CEAF10D5262F289E00A564A3 /* Tree+Unique.swift in Sources */,
+				CEAF10D0262F289000A564A3 /* Diagrams.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
