@@ -18,6 +18,7 @@ import Foundation
 import SwiftUI
 /// A simple Tree datastructure that holds nodes with `A` as the value.
 class Tree<A> {
+    var height = 0
     var value: A
     var children: [Tree<A>] = []
     weak var parent: Tree<A>?

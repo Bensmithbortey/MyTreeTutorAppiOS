@@ -12,8 +12,13 @@ struct BinaryTreeView: View {
 
     @ObservedObject var viewModel: BinaryTreeViewModel
 
-    init(tree: Tree<Unique<Int>>? = nil, treeName: String? = nil) {
+    let treeType: TreeType
+
+    init(tree: Tree<Unique<Int>>? = nil,
+         treeName: String? = nil,
+         treeType: TreeType) {
         viewModel = BinaryTreeViewModel(tree: tree)
+        self.treeType = treeType
         viewModel.name = treeName
     }
 
@@ -591,7 +596,7 @@ struct BinaryTreeView: View {
     var saveButton: some View {
         Button("Save", action: {
             if let treeName = viewModel.name {
-                try? viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: treeName)
+                try? viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: treeName, type: treeType)
             } else {
                 let alert = UIAlertController(title: "Choose title", message: "", preferredStyle: .alert)
                 
@@ -602,7 +607,7 @@ struct BinaryTreeView: View {
                 alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] _ in
                     if let textField = alert?.textFields?.first, let text = textField.text, !text.isEmpty {
                         viewModel.name = text
-                        try? viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: text)
+                        try? viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: text, type: treeType)
                     } else {
                         // Couldn't save because the title is missing
                     }
@@ -619,8 +624,10 @@ struct BinaryTreeView: View {
 
 
 struct BinaryTreeView_Previews: PreviewProvider {
+
     static var previews: some View {
-        BinaryTreeView()
+        BinaryTreeView(treeType: .binary)
             .previewLayout(.fixed(width: 2688, height: 1242))
     }
+
 }

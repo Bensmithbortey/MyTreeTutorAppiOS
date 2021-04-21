@@ -9,11 +9,11 @@ import SwiftUI
 import Combine
 
 struct TreeDetail: View {
-
-    var treeType: TreeType?
     
     var tree: Tree<Unique<Int>>?
     var treeName: String?
+
+    private let availableTreeTypes: [TreeType] = [.binary, .avl]
     
     @State var treeTypeSelection: String = TreeType.binary.rawValue
     
@@ -23,17 +23,18 @@ struct TreeDetail: View {
     
     var body: some View {
         VStack {
-            
-//            Picker(selection: $treeTypeSelection, label: Text("")) {
-//                ForEach(TreeType.allCases, id: \.id) { treeType in
-//                    Text(treeType.title)
-//                        .tag(treeType.rawValue)
-//                }
-//            }.pickerStyle(SegmentedPickerStyle())
+            Picker(selection: $treeTypeSelection, label: Text("")) {
+                ForEach(availableTreeTypes, id: \.id) { treeType in
+                    Text(treeType.title)
+                        .tag(treeType.rawValue)
+                }
+            }.pickerStyle(SegmentedPickerStyle())
             
             switch selectedTreeType {
             case .binary:
-                BinaryTreeView(tree: tree, treeName: treeName)
+                BinaryTreeView(tree: tree, treeName: treeName, treeType: selectedTreeType)
+            case .avl:
+                BinaryTreeView(tree: tree, treeName: treeName, treeType: selectedTreeType)
             default:
                 Spacer()
             }

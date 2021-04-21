@@ -22,6 +22,7 @@ enum Tab: Int {
 struct TreeModelNavigation {
     let title: String?
     let tree: Tree<Unique<Int>>
+    let type: TreeType
 }
 
 struct CoursesView: View {
@@ -33,7 +34,7 @@ struct CoursesView: View {
     
     @State var selectedTreeType: TreeType?
 
-    @State var selectedTree: TreeModelNavigation?
+    @State var selectedTreeNavigation: TreeModelNavigation?
     @State var tabSelection: Int = 0
     
     var body: some View {
@@ -48,7 +49,7 @@ struct CoursesView: View {
             DispatchQueue.main.async {
 
                 if let navigation = notification.userInfo?["TreeModelNavigation"] as? TreeModelNavigation {
-                    selectedTree = navigation
+                    selectedTreeNavigation = navigation
                 }
             }
         })
@@ -145,7 +146,7 @@ struct CoursesView: View {
             if treeType == selectedTreeType {
                 ScrollView {
                     VStack {
-                        TreeDetail(treeType: treeType)
+                        TreeDetail()
                             .frame(maxHeight: 300)
                     }
                     .background(
@@ -183,12 +184,12 @@ struct CoursesView: View {
 
 
             VStack {
-                if let tree = selectedTree {
-                    TreeDetail(treeType: .binary,
-                               tree: tree.tree,
-                               treeName: tree.title)
+                if let tree = selectedTreeNavigation {
+                    TreeDetail(tree: tree.tree,
+                               treeName: tree.title,
+                               treeTypeSelection: tree.type.rawValue)
                 } else {
-                    TreeDetail(treeType: .binary)
+                    TreeDetail()
                 }
             }
             .tabItem {

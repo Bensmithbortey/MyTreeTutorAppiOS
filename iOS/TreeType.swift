@@ -8,7 +8,10 @@
 import SwiftUI
 
 enum TreeType: String, CaseIterable, Identifiable { // CaseIterable helps with converting the enum into a list
-    case binary, rooted, binarySearch, avl
+    case binary,
+         rooted,
+         binarySearch,
+         avl
     
     // MARK: - Identifiable
     

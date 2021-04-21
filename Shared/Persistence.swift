@@ -63,9 +63,21 @@ extension TreeModel {
         }) as! [TreeModel]
     }
 
+    var treeType: TreeType {
+        return TreeType(rawValue: type ?? TreeType.binary.rawValue)!
+    }
+
     func generateTree() -> Tree<Unique<Int>> {
-        
-        let tree = Tree(Unique(Int(value)))
+        let tree: Tree<Unique<Int>>
+
+        switch treeType {
+        case .avl:
+            tree = AVLTree(Unique(Int(value)))
+        default:
+            tree = Tree(Unique(Int(value)))
+        }
+
+        tree.height = Int(height)
         
         for child in sortedChildren {
             tree.children.append(child.generateTree())
@@ -82,6 +94,7 @@ extension Tree where A == Unique<Int> {
     func insertToCoreData(moc: NSManagedObjectContext) -> TreeModel {
         let treeModel = TreeModel(entity: TreeModel.entity(), insertInto: moc)
         treeModel.value = Int32(value.value)
+        treeModel.height = Int16(height)
         for child in children {
             let model = child.insertToCoreData(moc: moc)
             treeModel.addToChildren(model)
@@ -89,7 +102,7 @@ extension Tree where A == Unique<Int> {
         return treeModel
     }
     
-    func insertToCoreData(moc: NSManagedObjectContext, title: String) throws {
+    func insertToCoreData(moc: NSManagedObjectContext, title: String, type: TreeType) throws {
         let request: NSFetchRequest<TreeModel> = TreeModel.fetchRequest()
         request.predicate = NSPredicate(format: "title == %@", title)
         if let existingModel = try moc.fetch(request).first {
@@ -99,6 +112,7 @@ extension Tree where A == Unique<Int> {
         let treeModel = insertToCoreData(moc: moc)
         treeModel.title = title
         treeModel.isFavorite = false
+        treeModel.type = type.rawValue
         
         try moc.save()
     }

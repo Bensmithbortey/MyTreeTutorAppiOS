@@ -56,9 +56,11 @@ struct SearchView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .onTapGesture {
                             NotificationCenter.default.post(name: .changeTab,
-                                                            object: Tab.treeVisualizer, userInfo: [
+                                                            object: Tab.treeVisualizer,
+                                                            userInfo: [
                                                                 "TreeModelNavigation": TreeModelNavigation(title: tree.title,
-                                                                                                           tree: tree.generateTree())
+                                                                                                           tree: tree.generateTree(),
+                                                                                                           type: tree.treeType)
                                                             ])
                         }
 

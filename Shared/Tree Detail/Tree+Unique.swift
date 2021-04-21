@@ -10,7 +10,7 @@ import Foundation
 // Binary tree
 extension Tree where A == Unique<Int> {
     
-    func left() -> Tree? {
+    func left() -> Tree<A>? {
         if children.count == 2 {
             // We've got two children, so the first one is the lower one
             return children[0]
@@ -25,7 +25,7 @@ extension Tree where A == Unique<Int> {
         }
     }
     
-    func right() -> Tree? {
+    func right() -> Tree<A>? {
         if children.count == 2 {
             return children[1]
         } else if children.count == 1 {
@@ -43,7 +43,7 @@ extension Tree where A == Unique<Int> {
         insert(Tree(Unique(number)))
     }
 
-    func insert(_ node: Tree<Unique<Int>>) {
+    func insert(_ node: Tree<A>) {
         if node.value.value < value.value {
             if let left = left() {
                 left.insert(node)
@@ -61,7 +61,7 @@ extension Tree where A == Unique<Int> {
         }
     }
 
-    func findRoot() -> Tree<Unique<Int>> {
+    func findRoot() -> Tree<A> {
         var root = self
         while root.parent != nil {
             root = root.parent!
@@ -174,6 +174,67 @@ extension Tree where A == Unique<Int> {
         }
       
         return max(maximumRight, -minimumLeft) * 2
+    }
+
+    var dynamicHeight: Int {
+        let leftHeight = left()?.dynamicHeight ?? 0
+        let rightHeight = right()?.dynamicHeight ?? 0
+
+        if (leftHeight > rightHeight){
+            return(leftHeight+1)
+        }
+        else {
+            return(rightHeight+1)
+        }
+    }
+
+    var rightHeight: Int {
+        return right()?.height ?? 0
+    }
+
+    var leftHeight: Int {
+        return left()?.height ?? 0
+    }
+
+    var isLeft: Bool {
+        if let parentLeft = parent?.left(), parentLeft.value.id == self.value.id {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    var isRight: Bool {
+        if let parentRight = parent?.right(), parentRight.value.id == self.value.id {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    var hasLeft: Bool {
+        return left() != nil
+    }
+
+    var hasRight: Bool {
+        return right() != nil
+    }
+
+    func setRight(_ node: Tree<A>) {
+        if hasLeft {
+            children[1] = node
+        } else {
+            children[0] = node
+        }
+    }
+
+    func setLeft(_ node: Tree<A>) {
+        if hasLeft {
+            children[0] = node
+        } else {
+            children.insert(node, at: 0)
+        }
+
     }
 }
 
