@@ -607,7 +607,12 @@ struct BinaryTreeView: View {
                 alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak alert] _ in
                     if let textField = alert?.textFields?.first, let text = textField.text, !text.isEmpty {
                         viewModel.name = text
-                        try? viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: text, type: treeType)
+                        viewModel.objectWillChange.send()
+                        do {
+                            try viewModel.tree?.insertToCoreData(moc: PersistenceController.shared.container.viewContext, title: text, type: treeType)
+                        } catch {
+                            print("Error: \(error.localizedDescription)")
+                        }
                     } else {
                         // Couldn't save because the title is missing
                     }
