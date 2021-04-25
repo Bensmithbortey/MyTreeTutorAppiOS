@@ -395,16 +395,18 @@ struct BinaryTreeView: View {
                             .frame(width: width, height: width)
                             .background(Circle().strokeBorder(lineWidth: 3))
                             .background(Circle().fill(backgroundColor(node: node.value.id)))
-                            .overlay(
-                                HStack {
-                                    Text(node is AVLTree ? "\((node as! AVLTree).balanceFactor)" : "")
-                                        .font(.system(size: 8))
-                                    Text("H(\(node.height))")
-                                        .font(.system(size: 8))
-                                }
-                                .foregroundColor(.blue)
-                                .offset(y: 30)
-                            )
+//                            .overlay(
+//                                HStack {
+//                                    // Tree balance visualisation:
+//                                    Text(node is AVLTree ? "\((node as! AVLTree).balanceFactor)" : "")
+//                                        .font(.system(size: 8))
+//                                    // Height visualisation:
+//                                    Text("H(\(node.height))")
+//                                        .font(.system(size: 8))
+//                                }
+//                                .foregroundColor(.blue)
+//                                .offset(y: 30)
+//                            )
                             .onTapGesture {
                                 if selectedNodeID == node.value.id {
                                     selectedNodeID = nil
