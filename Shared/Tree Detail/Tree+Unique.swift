@@ -39,26 +39,56 @@ extension Tree where A == Unique<Int> {
         }
     }
 
-    func insert(_ number: Int) {
-        insert(Tree(Unique(number)))
+    @discardableResult
+    func insertSimple(_ number: Int) -> Tree<A> {
+        return insertSimple(Tree(Unique(number)))
     }
 
-    func insert(_ node: Tree<A>) {
+    @discardableResult
+    func insertSimple(_ node: Tree<A>) -> Tree<A> {
+
         if node.value.value < value.value {
             if let left = left() {
-                left.insert(node)
+                left.insertSimple(node)
             } else {
                 children.insert(node, at: 0)
+                node.parent = self
+
+                // Increasing height?
+                if children.count == 1 {
+                    height += 1
+                    node.incrementHeightOfAncestors()
+                }
             }
         } else {
             if children.count == 2 {
-                children[1].insert(node)
+                children[1].insertSimple(node)
             } else if children.count == 1, let right = right() {
-                right.insert(node)
+                right.insertSimple(node)
             } else {
                 children.append(node)
+                node.parent = self
+
+                // Increasing height?
+                if children.count == 1 {
+                    height += 1
+                    node.incrementHeightOfAncestors()
+                }
             }
         }
+
+        return self
+    }
+
+    func incrementHeightOfAncestors() {
+        if let parent = parent {
+            parent.recalculateHeight()
+            parent.incrementHeightOfAncestors()
+        }
+    }
+
+    func recalculateHeight() {
+        height = max(leftHeight, rightHeight) + 1
     }
 
     func findRoot() -> Tree<A> {
@@ -75,7 +105,7 @@ extension Tree where A == Unique<Int> {
             if child.value.id == id {
                 children.remove(at: index)
                 for node in [child.left(), child.right()].compactMap({ $0 }) {
-                    findRoot().insert(node)
+                    findRoot().insertSimple(node)
                 }
                 return
             }
@@ -221,20 +251,31 @@ extension Tree where A == Unique<Int> {
     }
 
     func setRight(_ node: Tree<A>) {
-        if hasLeft {
-            children[1] = node
-        } else {
-            children[0] = node
+        if hasRight {
+            let index = hasLeft ? 1 : 0
+
+            // Overriding: Remove the parent if needed
+            if children[index].parent?.value.id == self.value.id {
+                children[index].parent = nil
+            }
+            children.remove(at: index)
         }
+
+        children.append(node)
+        node.parent = self
     }
 
     func setLeft(_ node: Tree<A>) {
         if hasLeft {
-            children[0] = node
-        } else {
-            children.insert(node, at: 0)
+            // Overriding: Remove the parent if needed
+            if children[0].parent?.value.id == self.value.id {
+                children[0].parent = nil
+            }
+            children.remove(at: 0)
         }
 
+        children.insert(node, at: 0)
+        node.parent = self
     }
 }
 

@@ -17,7 +17,7 @@ struct BinaryTreeView: View {
     init(tree: Tree<Unique<Int>>? = nil,
          treeName: String? = nil,
          treeType: TreeType) {
-        viewModel = BinaryTreeViewModel(tree: tree)
+        viewModel = BinaryTreeViewModel(tree: tree, treeType: treeType)
         self.treeType = treeType
         viewModel.name = treeName
     }
@@ -388,26 +388,31 @@ struct BinaryTreeView: View {
                     VStack {
                         let width: CGFloat = 40
 
-                        BinaryDiagram(tree: tree, node: { value in
+                        BinaryDiagram(tree: tree, node: { node in
                             // Tree node
-                            Text("\(value.value)")
+                            Text("\(node.value.value)")
                                 .font(.system(size: 15))
                                 .fontWeight(.bold)
                                 .foregroundColor(Color(.TreeOutline))
 
                                 .frame(width: width, height: width)
                                 .background(Circle().strokeBorder(lineWidth: 3))
-                                .background(Circle().fill(backgroundColor(node: value.id)))
-//                                .overlay(
-//                                    Circle()
-//                                        .stroke()
-//                                        .foregroundColor(strokeColor(node: value.id))
-//                                )
+                                .background(Circle().fill(backgroundColor(node: node.value.id)))
+                                .overlay(
+                                    HStack {
+                                        Text(node is AVLTree ? "\((node as! AVLTree).balanceFactor)" : "")
+                                            .font(.system(size: 8))
+                                        Text("H(\(node.height))")
+                                            .font(.system(size: 8))
+                                    }
+                                    .foregroundColor(.blue)
+                                    .offset(y: 30)
+                                )
                                 .onTapGesture {
-                                    if selectedNodeID == value.id {
+                                    if selectedNodeID == node.value.id {
                                         selectedNodeID = nil
                                     } else {
-                                        selectedNodeID = value.id
+                                        selectedNodeID = node.value.id
                                     }
                                 }
                         })

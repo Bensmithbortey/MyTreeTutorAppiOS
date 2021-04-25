@@ -10,6 +10,7 @@ import Combine
 
 class BinaryTreeViewModel: ObservableObject {
     var tree: Tree<Unique<Int>>?
+    let treeType: TreeType
 
     let objectWillChange = PassthroughSubject<Void, Never>()
 
@@ -35,8 +36,9 @@ class BinaryTreeViewModel: ObservableObject {
 
     var isPlayingAlgorithm: Bool = false
 
-    init(tree: Tree<Unique<Int>>?) {
+    init(tree: Tree<Unique<Int>>?, treeType: TreeType) {
         self.tree = tree
+        self.treeType = treeType
     }
 
     func selectAlgorithm(_ selectedAlgorithm: TreeAlgorithm?) {
@@ -115,11 +117,29 @@ class BinaryTreeViewModel: ObservableObject {
         pause()
     }
 
-    func insert(_ value: Int) {
-        if let tree = tree {
-            tree.insert(value)
-        } else {
+    func node(_ value: Int) -> Tree<Unique<Int>> {
+        let tree: Tree<Unique<Int>>
+
+        switch treeType {
+        case .avl:
+            tree = AVLTree(Unique(value))
+        default:
             tree = Tree(Unique(value))
+        }
+        return tree
+    }
+
+    func insert(_ value: Int) {
+        let insertedTree = node(value)
+
+        if let tree = tree {
+            if let avlTree = tree as? AVLTree {
+                self.tree = avlTree.insert(AVLTree(Unique(value)))
+            } else {
+                self.tree = tree.insertSimple(insertedTree)
+            }
+        } else {
+            tree = insertedTree
         }
         objectWillChange.send()
     }
@@ -128,12 +148,19 @@ class BinaryTreeViewModel: ObservableObject {
                   max: Int,
                   totalNodeCount: Int = 8) {
         let value = min + Int(arc4random() % UInt32(max - min))
-        tree = Tree(Unique(value))
+
+        tree = node(value)
 
         // Insert 9 random elements, thus generating the random tree
         for _ in 0..<totalNodeCount {
             let value = min + Int(arc4random() % UInt32(max - min))
-            tree?.insert(value)
+
+            if let avlTree = tree as? AVLTree {
+
+                tree = avlTree.insert(AVLTree(Unique(value)))
+            } else {
+                tree = tree?.insertSimple(Tree(Unique(value)))
+            }
         }
         objectWillChange.send()
     }

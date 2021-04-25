@@ -21,7 +21,15 @@ class Tree<A> {
     var height = 0
     var value: A
     var children: [Tree<A>] = []
-    weak var parent: Tree<A>?
+    weak var parent: Tree<A>? {
+        didSet {
+            if let parent = parent as? Tree<Unique<Int>>,
+               let me = self as? Tree<Unique<Int>>,
+               parent.value.id == me.value.id {
+                fatalError("Inserting self into self?")
+            }
+        }
+    }
     
     init(_ value: A, children: [Tree<A>] = []) {
         self.value = value
@@ -133,12 +141,12 @@ struct Diagram<A: Identifiable, V: View>: View {
 /// A simple Diagram. It's not very performant yet, but works great for smallish trees.
 struct BinaryDiagram<V: View>: View {
     let tree: Tree<Unique<Int>>
-    let node: (Unique<Int>) -> V
+    let node: (Tree<Unique<Int>>) -> V
     
     typealias Key = CollectDict<Unique<Int>.ID, Anchor<CGPoint>>
     var body: some View {
         VStack(alignment: .center) {
-            node(tree.value)
+            node(tree)
                 .anchorPreference(key: Key.self, value: .center, transform: {
                     [self.tree.value.id: $0]
                 })
@@ -153,7 +161,7 @@ struct BinaryDiagram<V: View>: View {
                     if value < tree.value {
                         
                         HStack(alignment: .bottom, spacing: 10) {
-                            BinaryDiagram(tree: child, node: self.node)
+                            BinaryDiagram(tree: child, node: node)
                             Rectangle()
                                 .frame(width: treeNodeWidth)
                                 .foregroundColor(.clear)
@@ -164,12 +172,12 @@ struct BinaryDiagram<V: View>: View {
                             Rectangle()
                                 .frame(width: treeNodeWidth)
                                 .foregroundColor(.clear)
-                            BinaryDiagram(tree: child, node: self.node)
+                            BinaryDiagram(tree: child, node: node)
                         }
                     }
                 } else {
                     ForEach(tree.children, id: \.value.id, content: { child in
-                        BinaryDiagram(tree: child, node: self.node)
+                        BinaryDiagram(tree: child, node: node)
                     })
                 }
             }
