@@ -63,7 +63,7 @@ struct BinaryTreeView: View {
                             Spacer()
 
                             Button {
-                                let alert = UIAlertController(title: "Instructions", message: "Here are instructions on how to use the app", preferredStyle: .alert)
+                                let alert = UIAlertController(title: "Instructions", message: "First select the type of tree you wish to work with. You have two options: - to add your nodes or generate a random tree. If you want to ‘insert a mode’ type the number in and then insert button. To delete a node, click on the node and then press delete. Generate tree button will generate a random tree for you. If you wish to clear the tree, click clear tree. To run a Tree Algorithm on the tree after you have created it. Click tree Algorithms and select the algorithm you would like to use. It will run and show you how the algorithm is performed.", preferredStyle: .alert)
                                 alert.addAction(UIAlertAction(title: "Got it", style: .cancel, handler: nil))
 
                                 UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
