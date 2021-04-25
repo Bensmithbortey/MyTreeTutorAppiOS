@@ -44,13 +44,12 @@ struct BinaryTreeView: View {
 
             VStack {
                 graphView
-                    .frame(width: 400)
                     .frame(maxHeight: .infinity)
 
                 arrayView
 
                 toolboxView
-            }
+            }.frame(width: UIScreen.main.bounds.size.width)
 
             VStack {
                 HStack {
@@ -383,41 +382,38 @@ struct BinaryTreeView: View {
         VStack {
             
             if let tree = viewModel.tree {
-                GeometryReader { geometry in
-                    
-                    VStack {
-                        let width: CGFloat = 40
+                VStack {
+                    let width: CGFloat = 40
 
-                        BinaryDiagram(tree: tree, node: { node in
-                            // Tree node
-                            Text("\(node.value.value)")
-                                .font(.system(size: 15))
-                                .fontWeight(.bold)
-                                .foregroundColor(Color(.TreeOutline))
+                    BinaryDiagram(tree: tree, node: { node in
+                        // Tree node
+                        Text("\(node.value.value)")
+                            .font(.system(size: 15))
+                            .fontWeight(.bold)
+                            .foregroundColor(Color(.TreeOutline))
 
-                                .frame(width: width, height: width)
-                                .background(Circle().strokeBorder(lineWidth: 3))
-                                .background(Circle().fill(backgroundColor(node: node.value.id)))
-                                .overlay(
-                                    HStack {
-                                        Text(node is AVLTree ? "\((node as! AVLTree).balanceFactor)" : "")
-                                            .font(.system(size: 8))
-                                        Text("H(\(node.height))")
-                                            .font(.system(size: 8))
-                                    }
-                                    .foregroundColor(.blue)
-                                    .offset(y: 30)
-                                )
-                                .onTapGesture {
-                                    if selectedNodeID == node.value.id {
-                                        selectedNodeID = nil
-                                    } else {
-                                        selectedNodeID = node.value.id
-                                    }
+                            .frame(width: width, height: width)
+                            .background(Circle().strokeBorder(lineWidth: 3))
+                            .background(Circle().fill(backgroundColor(node: node.value.id)))
+                            .overlay(
+                                HStack {
+                                    Text(node is AVLTree ? "\((node as! AVLTree).balanceFactor)" : "")
+                                        .font(.system(size: 8))
+                                    Text("H(\(node.height))")
+                                        .font(.system(size: 8))
                                 }
-                        })
-                    }//: VStack
-                }//: GeometryReader
+                                .foregroundColor(.blue)
+                                .offset(y: 30)
+                            )
+                            .onTapGesture {
+                                if selectedNodeID == node.value.id {
+                                    selectedNodeID = nil
+                                } else {
+                                    selectedNodeID = node.value.id
+                                }
+                            }
+                    })
+                }//: VStack
             }
         }//: VStack
     }
