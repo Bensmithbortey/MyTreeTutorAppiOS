@@ -1,19 +1,3 @@
-# My Tree Tutor (iOS) - Discrete Maths:  Tree Visualisation and Algorithms
-
-
-
-How to run this project:
-
-1. Unzip the file.
-2. Open the file and double click "MyTreeTutorApp.xcodeproj"
-3. Now the project should be open.
-4. On the top bar you should see "MyTreeApp (iOS)". Click it and selct iPad Pro (11-inch).
-5. Click run. This will run the app on a iPad Simulator.
-6. Enjoy!
-
-
-Developed by Benjamin-Smith JNR Bortey
-
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -102,7 +86,6 @@ This mobile application was buit with the below:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
@@ -113,19 +96,24 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
+1. Unzip the file.
+2. Open the file and double click "MyTreeTutorApp.xcodeproj"
+3. Now the project should be open.
+4. On the top bar you should see "MyTreeApp (iOS)". Click it and selct iPad Pro (11-inch).
+5. Click run. This will run the app on a iPad Simulator.
+6. Enjoy!
+
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Bensmithbortey/MyTreeTutorAppiOS.git
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
+1. Unzip the file.
+2. Open the file and double click "MyTreeTutorApp.xcodeproj"
+3. Now the project should be open.
+4. On the top bar you should see "MyTreeApp (iOS)". Click it and selct iPad Pro (11-inch).
+5. Click run. This will run the app on a iPad Simulator.
+6. Enjoy!
 
 
 <!-- CONTACT -->
