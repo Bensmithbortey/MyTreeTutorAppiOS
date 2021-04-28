@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>MyTreeTutor</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -29,12 +31,12 @@
 	<true/>
 	<key>UILaunchScreen</key>
 	<dict>
+		<key>UIColorName</key>
+		<string>white</string>
 		<key>UIImageName</key>
 		<string>launchimage</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
 		<false/>
-		<key>UIColorName</key>
-		<string>white</string>
 	</dict>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
