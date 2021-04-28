@@ -87,9 +87,6 @@ Developed by Benjamin-Smith JNR Bortey
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
@@ -115,7 +112,7 @@ A list of commonly used resources that I find helpful are listed in the acknowle
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This mobile application was buit with the below: 
 * [SwiftUI](https://getbootstrap.com)
 * [HML 5](https://jquery.com)
 * [CSS](https://laravel.com)
