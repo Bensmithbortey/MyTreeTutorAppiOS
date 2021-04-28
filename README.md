@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://github.com/Bensmithbortey/MyTreeTutorAppiOS/blob/main/Shared/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5%402x.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/Bensmithbortey/MyTreeTutorAppiOS/blob/main/Shared/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5%402x.png" alt="Logo" width="1500" height="1000">
   </a>
 
   <h3 align="center">My Tree Tutor (iOS) - Discrete Maths:  Tree Visualisation and Algorithms</h3>
@@ -35,6 +35,8 @@
 ## About The Project
 
 [![My Tree Tutor][product-screenshot]](https://github.com/Bensmithbortey/MyTreeTutorAppiOS/blob/main/MyTreeTutor-TreeVisualiser.png)
+
+<img src="https://github.com/Bensmithbortey/MyTreeTutorAppiOS/blob/main/MyTreeTutor-TreeVisualiser.png" alt="Image" width="80" height="80">
 
 There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
