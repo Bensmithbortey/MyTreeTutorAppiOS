@@ -96,24 +96,16 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. Unzip the file.
-2. Open the file and double click "MyTreeTutorApp.xcodeproj"
-3. Now the project should be open.
-4. On the top bar you should see "MyTreeApp (iOS)". Click it and selct iPad Pro (11-inch).
-5. Click run. This will run the app on a iPad Simulator.
-6. Enjoy!
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/Bensmithbortey/MyTreeTutorAppiOS.git
    ```
-1. Unzip the file.
-2. Open the file and double click "MyTreeTutorApp.xcodeproj"
-3. Now the project should be open.
-4. On the top bar you should see "MyTreeApp (iOS)". Click it and selct iPad Pro (11-inch).
-5. Click run. This will run the app on a iPad Simulator.
-6. Enjoy!
+2. Unzip the file.
+3. Open the file and double click "MyTreeTutorApp.xcodeproj"
+4. Now the project should be open.
+5. On the top bar you should see "MyTreeApp (iOS)". Click it and selct iPad Pro (11-inch).
+6. Click run. This will run the app on a iPad Simulator.
+7. Enjoy!
 
 
 <!-- CONTACT -->
