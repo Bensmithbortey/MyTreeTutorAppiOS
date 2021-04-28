@@ -34,7 +34,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![My Tree Tutor][product-screenshot]](https://github.com/Bensmithbortey/MyTreeTutorAppiOS/blob/main/MyTreeTutor-TreeVisualiser.png)
 
 <img src="https://https://github.com/Bensmithbortey/MyTreeTutorAppiOS/blob/main/MyTreeTutor-TreeVisualiser.png" alt="Image" width="500" height="400">
 
