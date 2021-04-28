@@ -66,7 +66,6 @@ Developed by Benjamin-Smith JNR Bortey
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
@@ -93,9 +92,10 @@ A list of commonly used resources that I find helpful are listed in the acknowle
 ### Built With
 
 This mobile application was buit with the below: 
-* [SwiftUI](https://getbootstrap.com)
-* [HML 5](https://jquery.com)
-* [CSS](https://laravel.com)
+* [Swift](https://developer.apple.com/swift/)
+* [SwiftUI](https://developer.apple.com/xcode/swiftui/)
+* [HMTL 5](https://html.spec.whatwg.org)
+* [CSS](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
 
 
 
