@@ -1,9 +1,5 @@
 # My Tree Tutor (iOS) - Discrete Maths:  Tree Visualisation and Algorithms
 
-Required:
-1. Apple Mac Computer
-2. Apple iPad
-3. Xcode installed on the Mac - https://apps.apple.com/gb/app/xcode/id497799835?mt=12
 
 
 How to run this project:
@@ -51,7 +47,7 @@ Developed by Benjamin-Smith JNR Bortey
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">My Tree Tutor (iOS) - Discrete Maths:  Tree Visualisation and Algorithms</h3>
 
   <p align="center">
     An awesome README template to jumpstart your projects!
@@ -127,11 +123,9 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+1. Apple Mac Computer
+2. Apple iPad
+3. Xcode installed on the Mac - https://apps.apple.com/gb/app/xcode/id497799835?mt=12
 
 ### Installation
 
@@ -153,22 +147,12 @@ This is an example of how to list things you need to use the software and how to
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [Benjamin-Smith Bortey](https://twitter.com/majorbenbo) - email@example.com
+Developed By - [Benjamin-Smith Bortey](https://twitter.com/majorbenbo) - ben-smithbortey@hotmail.co.uk
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/Bensmithbortey/MyTreeTutorAppiOS](https://github.com/your_username/Bensmithbortey)
 
 
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
+* [Dr Agi Kurucz](https://www.kcl.ac.uk/people/agi-kurucz)
