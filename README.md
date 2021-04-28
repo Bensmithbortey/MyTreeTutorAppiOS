@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/Bensmithbortey/MyTreeTutorAppiOS/blob/main/Shared/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5%402x.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">My Tree Tutor (iOS) - Discrete Maths:  Tree Visualisation and Algorithms</h3>
