@@ -71,7 +71,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repo/downlaod zip
    ```sh
    git clone https://github.com/Bensmithbortey/MyTreeTutorAppiOS.git
    ```
