@@ -35,7 +35,7 @@
 ## About The Project
 
 
-<img src="https://https://github.com/Bensmithbortey/MyTreeTutorAppiOS/blob/main/MyTreeTutor-TreeVisualiser.png" alt="Image" width="500" height="400">
+<img src="https://github.com/Bensmithbortey/MyTreeTutorAppiOS/blob/main/TreeTutorVid.gif" alt="Image" width="500" height="400" class="center">
 
 My Tree Tutor is a learning app that lets you teach yourself Discrete Maths Trees. Divided into easy to navigate modules, you'll find an explanation of the subject matter, as well as working examples to aid your understanding. 
 
