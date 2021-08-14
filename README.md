@@ -40,10 +40,13 @@
 My Tree Tutor is a learning app that lets you teach yourself Discrete Maths Trees. Divided into easy to navigate modules, you'll find an explanation of the subject matter, as well as working examples to aid your understanding. 
 
 The topics covered in My Tree Tutor are introduction to trees, binary search trees, traversing binary trees, spanning trees, and AVL trees (Insertion & Deletion).
+
 Swift has been used to develop the logic for trees and UI components. It connects to SwiftUI to unlock all the apps functionality. An advantage of using just Swift is that it does not use an external libraries and API’s making it easy to compile and use.
 
 The tree tutor app uses SwiftUI Apple’s UI library, which is used to display the tree visualiser, so that the user can get a visual representation of the trees and how the algorithms run on the tree. This was used so that the user does not have to wait a long time before seeing tree and the running algorithms. 
 
+
+A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
 ### Built With
 
@@ -68,7 +71,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. Clone the repo/downlaod zip
+1. Clone the repo
    ```sh
    git clone https://github.com/Bensmithbortey/MyTreeTutorAppiOS.git
    ```
