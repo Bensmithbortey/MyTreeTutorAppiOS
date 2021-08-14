@@ -37,16 +37,13 @@
 
 <img src="https://https://github.com/Bensmithbortey/MyTreeTutorAppiOS/blob/main/MyTreeTutor-TreeVisualiser.png" alt="Image" width="500" height="400">
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+My Tree Tutor is a learning app that lets you teach yourself Discrete Maths Trees. Divided into easy to navigate modules, you'll find an explanation of the subject matter, as well as working examples to aid your understanding. 
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
+The topics covered in My Tree Tutor are introduction to trees, binary search trees, traversing binary trees, spanning trees, and AVL trees (Insertion & Deletion).
+Swift has been used to develop the logic for trees and UI components. It connects to SwiftUI to unlock all the apps functionality. An advantage of using just Swift is that it does not use an external libraries and API’s making it easy to compile and use.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
+The tree tutor app uses SwiftUI Apple’s UI library, which is used to display the tree visualiser, so that the user can get a visual representation of the trees and how the algorithms run on the tree. This was used so that the user does not have to wait a long time before seeing tree and the running algorithms. 
 
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
 ### Built With
 
