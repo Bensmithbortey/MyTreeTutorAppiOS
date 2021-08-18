@@ -54,15 +54,6 @@ struct SearchView: View {
 
                     Text(tree.title ?? "")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .onTapGesture {
-                            NotificationCenter.default.post(name: .changeTab,
-                                                            object: Tab.treeVisualizer,
-                                                            userInfo: [
-                                                                "TreeModelNavigation": TreeModelNavigation(title: tree.title,
-                                                                                                           tree: tree.generateTree(),
-                                                                                                           type: tree.treeType)
-                                                            ])
-                        }
 
                     Image(systemName: tree.isFavorite ? .starFill : .star)
                         .foregroundColor(.yellow)
@@ -72,6 +63,16 @@ struct SearchView: View {
                                 try! viewContext.save()
                             }
                         }
+                }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    NotificationCenter.default.post(name: .changeTab,
+                                                    object: Tab.treeVisualizer,
+                                                    userInfo: [
+                                                        "TreeModelNavigation": TreeModelNavigation(title: tree.title,
+                                                                                                   tree: tree.generateTree(),
+                                                                                                   type: tree.treeType)
+                                                    ])
                 }
                 
             }.onDelete { (indexSet) in

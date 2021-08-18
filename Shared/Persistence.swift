@@ -64,8 +64,12 @@ extension TreeModel {
     }
 
     var treeType: TreeType {
-        //return TreeType(rawValue: type ?? TreeType.binary.rawValue)!
-        return TreeType(rawValue: type ?? TreeType.binary.rawValue) ?? TreeType(rawValue: "binary")!
+        var rawType: String?
+        if let type = type, !type.isEmpty {
+            rawType = type
+        }
+        return TreeType(rawValue: rawType ?? TreeType.binary.rawValue)!
+        //return TreeType(rawValue: type ?? TreeType.binary.rawValue) ?? TreeType(rawValue: "binary")!
     }
 
     func generateTree() -> Tree<Unique<Int>> {
